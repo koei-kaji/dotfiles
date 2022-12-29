@@ -1,0 +1,7 @@
+brew "ghq"
+brew "hub"
+brew "neofetch"
+brew "neovim"
+brew "peco"
+brew "tmux"
+cask "raycast"
