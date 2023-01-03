@@ -12,6 +12,7 @@ To manage my custom dotfiles
 - peco
 - hub
 - oh-my-zsh
+- volta
 
 ## How to link dotfiles
 
