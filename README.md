@@ -13,6 +13,7 @@ To manage my custom dotfiles
 - hub
 - oh-my-zsh
 - volta
+- vim-jetpack
 
 ## How to link dotfiles
 

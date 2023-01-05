@@ -1,3 +1,4 @@
+" set options
 set shell=/bin/zsh
 set shiftwidth=4
 set tabstop=4
@@ -7,6 +8,16 @@ set autoindent
 set hlsearch
 set clipboard=unnamed
 set number
+set scrolloff=999
+
 syntax on
 
+" map
 inoremap <silent> jj <ESC>
+
+packadd vim-jetpack
+call jetpack#begin()
+Jetpack 'tani/vim-jetpack', {'opt': 1} "bootstrap
+Jetpack 'neoclide/coc.nvim', {'branch': 'release'}
+call jetpack#end()
+
