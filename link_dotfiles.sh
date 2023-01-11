@@ -1,5 +1,7 @@
 #!/bin/sh
 
+./create_concrete_files.sh
+
 targets='
 .zshrc
 .config
@@ -15,12 +17,12 @@ for target in ${targets}; do
   else
     if [ -f ${target_home} ]; then
         echo "rename current file: ${target_home}"
-      mv -i ${target_home} ${target_home}.pre-manage-dottargets
+      mv -i ${target_home} ${target_home}.pre-manage-dotflies
     fi
 
     if [ -d ${target_home} ]; then
       echo "rename current directory: ${target_home}"
-      mv -i ${target_home} ${target_home}.pre-manage-dottargets
+      mv -i ${target_home} ${target_home}.pre-manage-dotfiles
     fi
   fi
 

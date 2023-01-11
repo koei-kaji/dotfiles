@@ -1,3 +1,5 @@
+env:
+  TERM: alacritty
 window:
   padding:
     x: 8
@@ -24,4 +26,4 @@ shell:
   program: /bin/zsh
   args:
     - -c
-    - "/opt/homebrew/bin/tmux a -t 0 || /opt/homebrew/bin/tmux"
+    - "WHICH_TMUX a -t 0 || WHICH_TMUX"
