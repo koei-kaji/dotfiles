@@ -3,5 +3,8 @@ brew "hub"
 brew "neofetch"
 brew "neovim"
 brew "peco"
+brew "rbenv"
 brew "tmux"
+
+cask "alt-tab"
 cask "raycast"
