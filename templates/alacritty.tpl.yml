@@ -23,7 +23,7 @@ font:
   offset:
     y: 1
 shell:
-  program: /bin/zsh
+  program: WHICH_ZSH
   args:
     - -c
     - "WHICH_TMUX a -t 0 || WHICH_TMUX"
