@@ -2,7 +2,6 @@
 
 targets='
 .zshrc
-.zshrc_Linux
 .config
 '
 
