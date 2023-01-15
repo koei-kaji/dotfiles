@@ -151,6 +151,12 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+
 if [[ "$(uname)" == 'Linux' ]]; then
   # Set PATH, MANPATH, etc., for Homebrew.
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

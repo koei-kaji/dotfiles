@@ -3,6 +3,7 @@ brew "hub"
 brew "neofetch"
 brew "neovim"
 brew "peco"
+brew "pyenv"
 brew "rbenv"
 brew "tmux"
 
