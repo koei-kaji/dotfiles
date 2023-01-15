@@ -1,5 +1,3 @@
-#!/bin/sh
-
 cd `dirname $0`
 
 # alacritty 
@@ -13,7 +11,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   sed -e s@COPY_COMMAND@pbcopy@g /tmp/tmux.conf > ./.config/tmux/tmux.conf
 elif [ "$(uname)" == 'Linux' ]; then
   # tmux
-  sed -e s@COPY_COMMAND@xsel -i@g /tmp/tmux.conf > ./.config/tmux/tmux.conf
+  sed -e "s@COPY_COMMAND@xsel -i@g" /tmp/tmux.conf > ./.config/tmux/tmux.conf
 else
   exit 1
 fi

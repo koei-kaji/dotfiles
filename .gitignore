@@ -1,6 +1,8 @@
-.config/alacritty/alacritty.yml
-.config/tmux/tmux.conf
-
-.config/raycast/
+.config/
+!.config/alacritty/.gitkeep
+!.config/coc/
+!.config/neofetch/
+!.config/nvim/
+!.config/tmux/.gitkeep
 
 Brewfile.lock.json

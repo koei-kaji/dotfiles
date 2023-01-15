@@ -120,7 +120,7 @@ alias vim="nvim"
 alias view="nvim -R"
 
 alias zshrc="vim ~/.zshrc"
-alias alacritty="vim ~/.config/alacritty/alacritty.yml"
+alias alacyml="vim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.config/tmux/tmux.conf"
 alias initvim="vim ~/.config/nvim/init.vim"
 
@@ -150,3 +150,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
+
+if [[ "$(uname)" == 'Linux' ]]; then
+  # Set PATH, MANPATH, etc., for Homebrew.
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi

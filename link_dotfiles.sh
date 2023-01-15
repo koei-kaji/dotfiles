@@ -1,9 +1,8 @@
-#!/bin/sh
-
 ./create_concrete_files.sh
 
 targets='
 .zshrc
+.zshrc_Linux
 .config
 '
 
