@@ -156,6 +156,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# direnv
+eval "$(direnv hook zsh)"
 
 if [[ "$(uname)" == 'Linux' ]]; then
   # Set PATH, MANPATH, etc., for Homebrew.

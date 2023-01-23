@@ -1,3 +1,4 @@
+brew "direnv"
 brew "ghq"
 brew "hub"
 brew "neofetch"
