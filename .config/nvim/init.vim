@@ -14,6 +14,10 @@ syntax on
 
 " map
 inoremap <silent> jj <ESC>
+nnoremap j gj
+nnoremap k gk
+nnoremap H ^
+nnoremap L $
 
 packadd vim-jetpack
 call jetpack#begin()

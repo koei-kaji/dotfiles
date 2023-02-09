@@ -1,3 +1,4 @@
+brew "azure-cli"
 brew "direnv"
 brew "ghq"
 brew "hub"
