@@ -12,3 +12,5 @@ brew "tmux"
 
 cask "alt-tab"
 cask "raycast"
+
+tap "homebrew/autoupdate"
