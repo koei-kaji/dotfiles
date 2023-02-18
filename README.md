@@ -14,6 +14,7 @@ To manage my custom dotfiles
 - oh-my-zsh
 - volta
 - vim-jetpack
+- poetry
 
 ## How to link dotfiles
 
