@@ -1,6 +1,7 @@
 brew "azure-cli"
 brew "direnv"
 brew "ghq"
+brew "hadolint"
 brew "hub"
 brew "neofetch"
 brew "neovim"
