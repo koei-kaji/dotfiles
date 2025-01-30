@@ -166,3 +166,12 @@ if [[ "$(uname)" == 'Linux' ]]; then
   # Set PATH, MANPATH, etc., for Homebrew.
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# progate
+export PATH=$HOME/.progate/bin:$PATH
+
+# rye
+source "$HOME/.rye/env"
+
+# laravel sail
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'

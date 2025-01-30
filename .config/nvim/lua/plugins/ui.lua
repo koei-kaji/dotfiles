@@ -58,14 +58,15 @@ return {
 						hide_hidden = false,
 					},
 				},
-				event_handlers = {
-					{
-						event = "file_open_requested",
-						handler = function()
-							require("neo-tree.command").execute({ action = "close" })
-						end,
-					},
-				},
+				-- NOTE: 挙動が微妙なのでコメントアウト
+				-- event_handlers = {
+				-- 	{
+				-- 		event = "file_open_requested",
+				-- 		handler = function()
+				-- 			require("neo-tree.command").execute({ action = "close" })
+				-- 		end,
+				-- 	},
+				-- },
 			})
 		end,
 	},

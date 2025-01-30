@@ -51,7 +51,8 @@ map("n", "<leader>bu", "<Cmd>BufferRestore<CR>", kopts)
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
-map("n", "<leader>e", ":Neotree toggle<CR>", kopts)
+map("n", "<leader>t", ":Neotree toggle<CR>", kopts)
+map("n", "<leader>e", ":Neotree focus<CR>", kopts)
 
 -- Search config
 -- See: https://github.com/kevinhwang91/nvim-hlslens

@@ -1,8 +1,9 @@
 .config/*
-!.config/alacritty/.gitkeep
-!.config/coc/
+!.config/alacritty/
+.config/alacritty/*
+!.config/alacritty/alacritty.toml
 !.config/neofetch/
 !.config/nvim/
-!.config/tmux/.gitkeep
+!.config/tmux/
 
 Brewfile.lock.json

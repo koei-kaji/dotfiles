@@ -2,9 +2,6 @@ return {
 	{
 		"ixru/nvim-markdown",
 		ft = { "markdown" },
-		config = function()
-			require("nvim-markdown").setup({})
-		end,
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
