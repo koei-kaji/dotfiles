@@ -2,6 +2,7 @@
 
 targets='
 .zshrc
+.zshenv
 .config
 '
 
@@ -27,4 +28,3 @@ for target in ${targets}; do
   ln -si ${target_pwd} ${target_home}
 
 done
-

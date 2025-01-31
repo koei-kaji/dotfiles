@@ -41,6 +41,14 @@ return {
 		local cmp = require("cmp")
 		local lspkind = require("lspkind")
 
+		lspkind.init({
+			symbol_map = {
+				Copilot = "",
+			},
+		})
+
+		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
 		cmp.setup({
 			snippet = {
 				-- REQUIRED - you must specify a snippet engine
