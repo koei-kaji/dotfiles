@@ -1,5 +1,3 @@
-./create_concrete_files.sh
-
 targets='
 .zshrc
 .zshenv

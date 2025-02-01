@@ -5,6 +5,7 @@
 !.config/lazygit/
 !.config/neofetch/
 !.config/nvim/
+.config/nvim/lazy-lock.json
 !.config/tmux/
 !.config/sheldon/
 

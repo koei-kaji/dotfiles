@@ -146,11 +146,53 @@ require("gitsigns").setup({
 				gitsigns.nav_hunk("next")
 			end
 		end)
+
+		-- Actions
+		lmap("n", "<leader>hs", gitsigns.stage_hunk)
+		lmap("n", "<leader>hr", gitsigns.reset_hunk)
+
+		lmap("v", "<leader>hs", function()
+			gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end)
+
+		lmap("v", "<leader>hr", function()
+			gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end)
+
+		-- lmap("n", "<leader>hS", gitsigns.stage_buffer)
+		-- lmap("n", "<leader>hR", gitsigns.reset_buffer)
+		lmap("n", "<leader>hp", gitsigns.preview_hunk)
+		lmap("n", "<leader>hi", gitsigns.preview_hunk_inline)
+
+		lmap("n", "<leader>gb", function()
+			gitsigns.blame_line({ full = true })
+		end)
+
+		-- lmap("n", "<leader>gd", gitsigns.diffthis)
+		--
+		-- lmap("n", "<leader>gD", function()
+		-- 	gitsigns.diffthis("~")
+		-- end)
+
+		-- map("n", "<leader>gQ", function()
+		-- 	gitsigns.setqflist("all")
+		-- end)
+		-- map("n", "<leader>gq", gitsigns.setqflist)
+
+		-- Toggles
+		lmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
+		-- lmap("n", "<leader>gtd", gitsigns.toggle_deleted)
+		-- lmap("n", "<leader>gtw", gitsigns.toggle_word_diff)
+
+		-- Text object
+		-- lmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
+map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", kopts)
 
 -- Overseer
-map("n", "<leader>!", "<Cmd>OverseerToggle<CR>", kopts)
+map("n", "<leader>!!", "<Cmd>OverseerRun<CR>", kopts)
+map("n", "<leader>!t", "<Cmd>OverseerToggle<CR>", kopts)
 
 -- Copilot
 map("n", "<leader>cc", "<Cmd>CopilotChatToggle<CR>", kopts)
