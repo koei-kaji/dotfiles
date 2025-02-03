@@ -10,5 +10,6 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {},
+		enabled = not vim.g.vscode,
 	},
 }

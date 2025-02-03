@@ -24,6 +24,7 @@ alias lz="lazydocker"
 alias gget='ghq get'
 alias gcd='cd $(ghq list --full-path | peco)'
 alias ghb='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+alias arc='open -a "Arc"'
 
 setopt auto_pushd
 setopt pushd_ignore_dups

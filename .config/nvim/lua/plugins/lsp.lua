@@ -16,6 +16,7 @@ return {
 					"lua_ls",
 					"bashls",
 					"ts_ls",
+					"yamlls",
 				},
 			})
 		end,
@@ -38,6 +39,7 @@ return {
 				},
 			})
 			lspconfig.ts_ls.setup({})
+			lspconfig.yamlls.setup({})
 		end,
 	},
 	{
