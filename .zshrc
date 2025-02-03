@@ -19,6 +19,7 @@ alias zshrc="vim ~/.zshrc"
 alias alac="vim ~/.config/alacritty/alacritty.toml"
 alias tmuxconf="vim ~/.config/tmux/tmux.conf"
 alias initlua="vim ~/.config/nvim/init.lua"
+alias lz="lazydocker"
 
 alias gget='ghq get'
 alias gcd='cd $(ghq list --full-path | peco)'
