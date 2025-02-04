@@ -19,4 +19,9 @@ vim.opt.clipboard = "unnamed"
 vim.opt.number = true
 vim.opt.scrolloff = 999
 
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+
 vim.cmd("syntax on")
