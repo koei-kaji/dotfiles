@@ -23,6 +23,7 @@ return {
 			local telescopeConfig = require("telescope.config")
 
 			-- Clone the default Telescope configuration
+			---@diagnostic disable-next-line: deprecated
 			local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
 			-- I want to search in hidden/dot files.

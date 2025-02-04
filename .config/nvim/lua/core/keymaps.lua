@@ -116,6 +116,7 @@ local lazygit = Terminal:new({
 	direction = "float",
 	hidden = true,
 })
+---@diagnostic disable-next-line: lowercase-global
 function _lazygit_toggle()
 	lazygit:toggle()
 end
