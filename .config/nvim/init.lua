@@ -1,3 +1,9 @@
+local ok, secrets = pcall(require, "core.secrets")
+if ok then
+	print("Loaded secrets")
+else
+	print("No secrets file found")
+end
 require("core.lazy")
 require("core.keymaps")
 

@@ -36,6 +36,16 @@ return {
 				require("copilot_cmp").setup()
 			end,
 		},
+
+		-- dbee
+		{
+			"MattiasMTS/cmp-dbee",
+			dependencies = {
+				{ "kndndrj/nvim-dbee" },
+			},
+			ft = "sql", -- optional but good to have
+			opts = {}, -- needed
+		},
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -75,6 +85,7 @@ return {
 				{ name = "luasnip" },
 			}, {
 				{ name = "buffer" },
+				{ name = "cmp-dbee" },
 			}),
 			formatting = {
 				format = lspkind.cmp_format({
@@ -91,6 +102,7 @@ return {
 
 					-- The function below will be called before any actual modifications from lspkind
 					-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+					---@diagnostic disable-next-line: unused-local
 					before = function(entry, vim_item)
 						-- ...
 						return vim_item
@@ -116,7 +128,8 @@ return {
 				{
 					name = "cmdline",
 					option = {
-						ignore_cmds = { "Man", "!" },
+						-- See: https://github.com/kndndrj/nvim-dbee/issues/161#issue-2734461898
+						ignore_cmds = { "Man", "!", "Dbee" },
 					},
 				},
 			}),

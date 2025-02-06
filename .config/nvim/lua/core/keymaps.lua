@@ -48,6 +48,7 @@ map("n", "<C-k>", "<Cmd>BufferNext<CR>", kopts)
 map("n", "<leader>bd", "<Cmd>BufferClose<CR>", kopts)
 map("n", "<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>", kopts)
 map("n", "<leader>bu", "<Cmd>BufferRestore<CR>", kopts)
+map("n", "<leader>br", "<Cmd>Neotree reveal<CR>", kopts)
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
@@ -208,8 +209,7 @@ require("toggleterm").setup({
 })
 
 -- Overseer
-map("n", "<leader>!!", "<Cmd>OverseerRun<CR>", kopts)
-map("n", "<leader>!t", "<Cmd>OverseerToggle<CR>", kopts)
+map("n", "<leader>!", "<Cmd>OverseerToggle<CR>", kopts)
 
 -- Copilot
 map("n", "<leader>cc", "<Cmd>CopilotChatToggle<CR>", kopts)
@@ -246,4 +246,9 @@ vim.keymap.set("v", "g<C-a>", function()
 end)
 vim.keymap.set("v", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
+end)
+
+-- database
+vim.keymap.set("n", "<leader>do", function()
+	require("dbee").toggle()
 end)
