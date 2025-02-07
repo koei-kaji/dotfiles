@@ -17,6 +17,8 @@ return {
 					"bashls",
 					"ts_ls",
 					"yamlls",
+					"ruff",
+					"pyright",
 				},
 			})
 		end,
@@ -40,6 +42,22 @@ return {
 			})
 			lspconfig.ts_ls.setup({})
 			lspconfig.yamlls.setup({})
+			lspconfig.ruff.setup({})
+			lspconfig.pyright.setup({
+				settings = {
+					pyright = {
+						-- Using Ruff's import organizer
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- Ignore all files for analysis to exclusively use Ruff for linting
+							ignore = { "*" },
+						},
+						pythonPath = ".venv/bin/python",
+					},
+				},
+			})
 		end,
 	},
 	{

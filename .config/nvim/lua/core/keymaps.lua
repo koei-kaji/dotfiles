@@ -67,10 +67,8 @@ map("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 -- LSP
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
--- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
--- vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
--- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -87,10 +85,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp", opts)
-		vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref", opts)
-		vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev", opts)
-		vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next", opts)
+		vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)
+		vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref<CR>", opts)
+		vim.keymap.set("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+		vim.keymap.set("n", "<leader>dk", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
 		vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
@@ -249,6 +247,6 @@ vim.keymap.set("v", "g<C-x>", function()
 end)
 
 -- database
-vim.keymap.set("n", "<leader>do", function()
+vim.keymap.set("n", "<leader>dbo", function()
 	require("dbee").toggle()
 end)

@@ -21,6 +21,8 @@ return {
 					"json",
 					"html",
 					"css",
+					"markdown",
+					"markdown_inline",
 				},
 				textsubjects = {
 					enable = true,
