@@ -5,6 +5,7 @@ else
 	print("No secrets file found")
 end
 require("core.lazy")
+require("core.lsp")
 require("core.keymaps")
 
 vim.cmd([[colorscheme tokyonight-night]])

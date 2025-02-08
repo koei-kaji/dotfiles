@@ -10,55 +10,12 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 		},
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"bashls",
-					"ts_ls",
-					"yamlls",
-					"ruff",
-					"pyright",
-				},
-			})
-		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 		},
-		config = function()
-			local lspconfig = require("lspconfig")
-
-			lspconfig.lua_ls.setup({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
-			})
-			lspconfig.ts_ls.setup({})
-			lspconfig.yamlls.setup({})
-			lspconfig.ruff.setup({})
-			lspconfig.pyright.setup({
-				settings = {
-					pyright = {
-						-- Using Ruff's import organizer
-						disableOrganizeImports = true,
-					},
-					python = {
-						analysis = {
-							-- Ignore all files for analysis to exclusively use Ruff for linting
-							ignore = { "*" },
-						},
-						pythonPath = ".venv/bin/python",
-					},
-				},
-			})
-		end,
 	},
 	{
 		"nvimdev/lspsaga.nvim",
@@ -88,27 +45,5 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
 		},
-	},
-	{
-		"stevearc/conform.nvim",
-		config = function()
-			local js_formatters = { "prettierd" }
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					html = js_formatters,
-					javascript = js_formatters,
-					javascriptreact = js_formatters,
-					typescript = js_formatters,
-					typescriptreact = js_formatters,
-					["*"] = { "codespell" },
-					["_"] = { "trim_newlines", "trim_whitespace" },
-				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_format = "fallback",
-				},
-			})
-		end,
 	},
 }
