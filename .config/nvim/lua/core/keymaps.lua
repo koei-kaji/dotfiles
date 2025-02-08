@@ -82,9 +82,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
 
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
 		vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
-		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+		vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
 		vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)
 		vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref<CR>", opts)
 		vim.keymap.set("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
@@ -131,17 +131,17 @@ require("gitsigns").setup({
 			vim.keymap.set(mode, l, r, opts)
 		end
 
-		lmap("n", "[c", function()
+		lmap("n", "<leader>hk", function()
 			if vim.wo.diff then
-				vim.cmd.normal({ "]c", bang = true })
+				vim.cmd.normal({ "<leader>hj", bang = true })
 			else
 				gitsigns.nav_hunk("prev")
 			end
 		end)
 
-		lmap("n", "]c", function()
+		lmap("n", "<leader>hj", function()
 			if vim.wo.diff then
-				vim.cmd.normal({ "[c", bang = true })
+				vim.cmd.normal({ "<leader>hk", bang = true })
 			else
 				gitsigns.nav_hunk("next")
 			end
