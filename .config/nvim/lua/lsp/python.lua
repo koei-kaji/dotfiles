@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local utils = require("utils")
 
 lspconfig.ruff.setup({})
 lspconfig.pyright.setup({
@@ -12,7 +13,7 @@ lspconfig.pyright.setup({
 				-- Ignore all files for analysis to exclusively use Ruff for linting
 				ignore = { "*" },
 			},
-			pythonPath = ".venv/bin/python",
+			pythonPath = utils.path.find_git_root() .. "/.venv/bin/python",
 		},
 	},
 })
