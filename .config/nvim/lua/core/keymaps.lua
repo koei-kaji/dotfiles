@@ -251,8 +251,3 @@ end)
 vim.keymap.set("v", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
-
--- database
-vim.keymap.set("n", "<leader>dbo", function()
-	require("dbee").toggle()
-end)
