@@ -1,74 +1,97 @@
 vim.g.mapleader = " "
 
 local kopts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local function _map(modes, lhs, rhs, desc)
+	local opts = desc and vim.tbl_extend("force", kopts, { desc = desc }) or kopts
+	vim.keymap.set(modes, lhs, rhs, opts)
+end
+local function nmap(lhs, rhs, desc)
+	_map("n", lhs, rhs, desc)
+end
+local function nvmap(lhs, rhs, desc)
+	_map({ "n", "v" }, lhs, rhs, desc)
+end
+local function xmap(lhs, rhs, desc)
+	_map("x", lhs, rhs, desc)
+end
+local function imap(lhs, rhs, desc)
+	_map("i", lhs, rhs, desc)
+end
+local function omap(lhs, rhs, desc)
+	_map("o", lhs, rhs, desc)
+end
 
 -- core
-map("i", "jj", "<ESC>", kopts)
+imap("jj", "<ESC>")
 
-map("n", "j", "gj", { noremap = true })
-map("n", "k", "gk", { noremap = true })
-map("n", "H", "^", { noremap = true })
-map("n", "L", "$", { noremap = true })
+nmap("j", "gj")
+nmap("k", "gk")
+nmap("<Down>", "gj")
+nmap("<Up>", "gk")
+nvmap("H", "^")
+nvmap("L", "$")
+nmap("Y", "y$")
+nmap("U", "<c-r>")
+nmap("M", "%")
+xmap("p", "P")
+nmap("p", "]p`]")
+nmap("P", "]P`]")
 
-map("n", "Y", "y$", { noremap = true })
-map("n", "U", "<c-r>", { noremap = true })
-map("n", "M", "%", { noremap = true })
-map("x", "p", "P", { noremap = true })
-map("n", "p", "]p`]", { noremap = true })
-map("n", "P", "]P`]", { noremap = true })
+nmap("x", '"_d')
+nmap("X", '"_D')
+xmap("x", '"_x')
+omap("x", "d")
 
-map("n", "x", '"_d', { noremap = true })
-map("n", "X", '"_D', { noremap = true })
-map("x", "x", '"_x', { noremap = true })
-map("o", "x", "d", { noremap = true })
+xmap("<", "<gv")
+xmap(">", ">gv")
 
-map("x", "<", "<gv", { noremap = true })
-map("x", ">", ">gv", { noremap = true })
+nmap("F<cr>", "{")
+nmap("f<cr>", "}")
 
-map("n", "F<cr>", "{", { noremap = true })
-map("n", "f<cr>", "}", { noremap = true })
+nmap("<leader>l", "<Cmd>noh<CR>")
 
-map("n", "<leader>l", "<Cmd>noh<CR>", kopts)
+-- vim
+nmap("<leader>q", "<Cmd>q<CR>")
+nmap("<leader>Q", "<Cmd>qa<CR>")
 
 -- window
-map("n", "<leader>w/", ":vsplit<CR><C-w>l", kopts)
-map("n", "<leader>w-", ":split<CR><C-w>j", kopts)
-map("n", "<leader>wh", "<C-w>h", kopts)
-map("n", "<leader>wj", "<C-w>j", kopts)
-map("n", "<leader>wk", "<C-w>k", kopts)
-map("n", "<leader>wl", "<C-w>l", kopts)
-map("n", "<leader>wd", ":close<CR>", kopts)
-map("n", "<leader>wD", ":only<CR>", kopts)
+nmap("<leader>w/", ":vsplit<CR><C-w>l")
+nmap("<leader>w-", ":split<CR><C-w>j")
+nmap("<leader>wh", "<C-w>h")
+nmap("<leader>wj", "<C-w>j")
+nmap("<leader>wk", "<C-w>k")
+nmap("<leader>wl", "<C-w>l")
+nmap("<leader>wd", ":close<CR>")
+nmap("<leader>wD", ":only<CR>")
 
 -- buffer
 -- See: https://github.com/romgrk/barbar.nvim
-map("n", "<C-j>", "<Cmd>BufferPrevious<CR>", kopts)
-map("n", "<C-k>", "<Cmd>BufferNext<CR>", kopts)
-map("n", "<leader>bd", "<Cmd>BufferClose<CR>", kopts)
-map("n", "<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>", kopts)
-map("n", "<leader>bu", "<Cmd>BufferRestore<CR>", kopts)
-map("n", "<leader>br", "<Cmd>Neotree reveal<CR>", kopts)
+nmap("<C-j>", "<Cmd>BufferPrevious<CR>")
+nmap("<C-k>", "<Cmd>BufferNext<CR>")
+nmap("<leader>bd", "<Cmd>BufferClose<CR>")
+nmap("<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>")
+nmap("<leader>bu", "<Cmd>BufferRestore<CR>")
+nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
-map("n", "<leader>t", ":Neotree toggle<CR>", kopts)
-map("n", "<leader>e", ":Neotree focus<CR>", kopts)
+nmap("<leader>t", ":Neotree toggle<CR>")
+nmap("<leader>e", ":Neotree focus<CR>")
 
 -- Search config
 -- See: https://github.com/kevinhwang91/nvim-hlslens
-map("n", "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-map("n", "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-map("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-map("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-map("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-map("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+nmap("n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]])
+nmap("N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]])
+nmap("*", [[*<Cmd>lua require('hlslens').start()<CR>]])
+nmap("#", [[#<Cmd>lua require('hlslens').start()<CR>]])
+nmap("g*", [[g*<Cmd>lua require('hlslens').start()<CR>]])
+nmap("g#", [[g#<Cmd>lua require('hlslens').start()<CR>]])
 
 -- LSP
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist)
+nmap("<leader>do", vim.diagnostic.open_float, "Open diagnostic float window")
+nmap("<leader>dq", vim.diagnostic.setloclist, "Select diagnostic in loclist")
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -82,6 +105,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local opts = { buffer = ev.buf }
 
+		-- vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
 		vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
 		vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 		vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
@@ -105,7 +129,7 @@ require("aerial").setup({
 		vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 	end,
 })
-map("n", "<leader>a", "<cmd>AerialToggle!<CR>", kopts)
+nmap("<leader>a", "<cmd>AerialToggle!<CR>")
 
 -- Git
 ---- lazygit & toggleterm
@@ -119,7 +143,7 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
 	lazygit:toggle()
 end
-map("n", "<leader>gg", "<cmd>lua _lazygit_toggle()<CR>", kopts)
+nmap("<leader>gg", "<cmd>lua _lazygit_toggle()<CR>")
 ---- gitsigns
 require("gitsigns").setup({
 	on_attach = function(bufnr)
@@ -168,28 +192,11 @@ require("gitsigns").setup({
 			gitsigns.blame_line({ full = true })
 		end)
 
-		-- lmap("n", "<leader>gd", gitsigns.diffthis)
-		--
-		-- lmap("n", "<leader>gD", function()
-		-- 	gitsigns.diffthis("~")
-		-- end)
-
-		-- map("n", "<leader>gQ", function()
-		-- 	gitsigns.setqflist("all")
-		-- end)
-		-- map("n", "<leader>gq", gitsigns.setqflist)
-
-		-- Toggles
 		lmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
-		-- lmap("n", "<leader>gtd", gitsigns.toggle_deleted)
-		-- lmap("n", "<leader>gtw", gitsigns.toggle_word_diff)
-
-		-- Text object
-		-- lmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
----- diffview
-map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", kopts)
+nmap("<leader>hd", "<cmd>DiffviewOpen HEAD~1<CR>")
+nmap("<leader>hh", "<cmd>DiffviewFileHistory %<CR>")
 
 -- toggleterm
 require("toggleterm").setup({
@@ -206,48 +213,48 @@ require("toggleterm").setup({
 	close_on_exit = true,
 })
 
--- Overseer
-map("n", "<leader>!", "<Cmd>OverseerToggle<CR>", kopts)
+-- FIXME: ちょっと使いにくいのでコメントアウトする。Overseer 自体不要かも
+-- -- Overseer
+-- map("n", "<leader>!", "<Cmd>OverseerToggle<CR>", kopts)
 
 -- Copilot
-map("n", "<leader>cc", "<Cmd>CopilotChatToggle<CR>", kopts)
-map("v", "<leader>cc", "<Cmd>CopilotChatToggle<CR>", kopts)
+nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
 
 -- telescope
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+nmap("<leader>ff", builtin.find_files, "Telescope find files")
+nmap("<leader>fg", builtin.live_grep, "Telescope live grep")
+nmap("<leader>fb", builtin.buffers, "Telescope buffers")
+nmap("<leader>fh", builtin.help_tags, "Telescope help tags")
 
 local telescope = require("telescope")
 telescope.load_extension("notify")
-vim.keymap.set("n", "<leader>fn", function()
+nmap("<leader>fn", function()
 	telescope.extensions.notify.notify()
 end)
 
 -- dial
-vim.keymap.set("n", "<C-a>", function()
+nmap("<C-a>", function()
 	require("dial.map").manipulate("increment", "normal")
 end)
-vim.keymap.set("n", "<C-x>", function()
+nmap("<C-x>", function()
 	require("dial.map").manipulate("decrement", "normal")
 end)
-vim.keymap.set("n", "g<C-a>", function()
+nmap("g<C-a>", function()
 	require("dial.map").manipulate("increment", "gnormal")
 end)
-vim.keymap.set("n", "g<C-x>", function()
+nmap("g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gnormal")
 end)
-vim.keymap.set("v", "<C-a>", function()
+nmap("<C-a>", function()
 	require("dial.map").manipulate("increment", "visual")
 end)
-vim.keymap.set("v", "<C-x>", function()
+nmap("<C-x>", function()
 	require("dial.map").manipulate("decrement", "visual")
 end)
-vim.keymap.set("v", "g<C-a>", function()
+nmap("g<C-a>", function()
 	require("dial.map").manipulate("increment", "gvisual")
 end)
-vim.keymap.set("v", "g<C-x>", function()
+nmap("g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
