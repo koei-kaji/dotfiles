@@ -30,7 +30,8 @@ args = ["-c", "-l", "/opt/homebrew/bin/tmux"]
 
 [window]
 dynamic_title = true
-opacity = 0.95
+opacity = 0.9
+blur = true
 
 [window.padding]
 x = 5

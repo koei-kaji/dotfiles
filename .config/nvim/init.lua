@@ -28,6 +28,7 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldenable = true
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 require("core.lazy")
 require("core.lsp")
