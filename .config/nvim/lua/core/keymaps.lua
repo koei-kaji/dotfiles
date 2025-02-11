@@ -132,19 +132,9 @@ require("aerial").setup({
 nmap("<leader>a", "<cmd>AerialToggle!<CR>")
 
 -- Git
----- lazygit & toggleterm
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	direction = "float",
-	hidden = true,
-})
----@diagnostic disable-next-line: lowercase-global
-function _lazygit_toggle()
-	lazygit:toggle()
-end
-nmap("<leader>gg", "<cmd>lua _lazygit_toggle()<CR>")
----- gitsigns
+---- lazygit
+nmap("<leader>gg", "<cmd>LazyGit<CR>")
+nmap("<leader>gc", "<cmd>LazyGitFilterCurrentFile<CR>")
 require("gitsigns").setup({
 	on_attach = function(bufnr)
 		local gitsigns = require("gitsigns")
@@ -187,16 +177,16 @@ require("gitsigns").setup({
 		-- lmap("n", "<leader>hR", gitsigns.reset_buffer)
 		lmap("n", "<leader>hp", gitsigns.preview_hunk)
 		lmap("n", "<leader>hi", gitsigns.preview_hunk_inline)
-
-		lmap("n", "<leader>gb", function()
-			gitsigns.blame_line({ full = true })
-		end)
+		lmap("n", "<leader>gb", gitsigns.blame)
 
 		lmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
 	end,
 })
 nmap("<leader>hd", "<cmd>DiffviewOpen HEAD~1<CR>")
 nmap("<leader>hh", "<cmd>DiffviewFileHistory %<CR>")
+---- gitlinker
+nvmap("<leader>gy", "<cmd>GitLink<CR>", "Yank git link")
+nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
 
 -- toggleterm
 require("toggleterm").setup({
@@ -221,14 +211,16 @@ require("toggleterm").setup({
 nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
 
 -- telescope
-local builtin = require("telescope.builtin")
-nmap("<leader>ff", builtin.find_files, "Telescope find files")
-nmap("<leader>fg", builtin.live_grep, "Telescope live grep")
-nmap("<leader>fb", builtin.buffers, "Telescope buffers")
-nmap("<leader>fh", builtin.help_tags, "Telescope help tags")
-
 local telescope = require("telescope")
-telescope.load_extension("notify")
+local builtin = require("telescope.builtin")
+nmap("<leader>ff", builtin.find_files, "Find files")
+nmap("<leader>fg", function()
+	telescope.extensions.live_grep_args.live_grep_args()
+end, "Live grep")
+nmap("<leader>fb", builtin.buffers, "Find buffers")
+nmap("<leader>fh", builtin.help_tags, "Help tags")
+nmap("<leader>fo", builtin.oldfiles, "Find old files")
+nmap("<leader>fw", builtin.grep_string, "Find word under cursor")
 nmap("<leader>fn", function()
 	telescope.extensions.notify.notify()
 end)
@@ -258,3 +250,24 @@ end)
 nmap("g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
+
+-- harpoon
+local harpoon = require("harpoon")
+nmap("ha", function()
+	harpoon:list():add()
+	vim.notify("Added to harpoon")
+end)
+nmap("hl", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+nmap("hj", function()
+	harpoon:list():next()
+end)
+nmap("hk", function()
+	harpoon:list():prev()
+end)
+
+-- ufo
+local ufo = require("ufo")
+nmap("zR", ufo.openAllFolds)
+nmap("zM", ufo.closeAllFolds)

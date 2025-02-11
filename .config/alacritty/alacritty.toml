@@ -26,7 +26,7 @@ y = 0
 
 [terminal.shell]
 program = "/bin/zsh"
-args = ["-c", "-l", "/opt/homebrew/bin/tmux a -t 0 || /opt/homebrew/bin/tmux -u"]
+args = ["-c", "-l", "/opt/homebrew/bin/tmux"]
 
 [window]
 dynamic_title = true
