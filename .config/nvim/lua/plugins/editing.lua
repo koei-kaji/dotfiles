@@ -24,6 +24,7 @@ return {
 					"markdown",
 					"markdown_inline",
 					"python",
+					"toml",
 					"tsx",
 				},
 				textsubjects = {
