@@ -16,16 +16,33 @@ return {
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"bash",
+					"c",
+					"c_sharp",
+					"cpp",
 					"css",
 					"dockerfile",
+					"go",
 					"html",
+					"java",
+					"javascript",
 					"json",
 					"lua",
 					"markdown",
 					"markdown_inline",
+					"php",
 					"python",
+					"query",
+					"rust",
+					"scss",
+					"sql",
 					"toml",
 					"tsx",
+					"typescript",
+					"vim",
+					"vimdoc",
+					"vue",
+					"xml",
+					"yaml",
 				},
 				textsubjects = {
 					enable = true,
@@ -40,6 +57,14 @@ return {
 					},
 				},
 			})
+
+			-- https://github.com/neovim/neovim/pull/26347#issuecomment-1837508178
+			vim.treesitter.start = (function(wrapped)
+				return function(bufnr, lang)
+					lang = lang or vim.fn.getbufvar(bufnr or "", "&filetype")
+					pcall(wrapped, bufnr, lang)
+				end
+			end)(vim.treesitter.start)
 		end,
 	},
 	{
@@ -109,5 +134,14 @@ return {
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
 		end,
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
 	},
 }

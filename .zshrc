@@ -41,6 +41,12 @@ bindkey "jj" vi-cmd-mode
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# go
+export PATH="$HOME/go/bin:$PATH"
+
+# direnv
+export "$(direnv hook zsh)"
+
 preexec() { print -Pn "\e]0;%1~\a" }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

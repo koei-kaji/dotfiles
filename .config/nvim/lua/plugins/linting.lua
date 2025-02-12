@@ -23,6 +23,10 @@ return {
 					print("No linters configured for filetype: " .. filetype)
 				end
 			end, {})
+
+			lint.linters_by_ft = {
+				-- add settings
+			}
 		end,
 	},
 }
