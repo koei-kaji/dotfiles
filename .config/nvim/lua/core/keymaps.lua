@@ -116,7 +116,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
 		vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
-		vim.keymap.set("n", "<leader>f", function()
+		vim.keymap.set("n", "<leader>bf", function()
 			vim.lsp.buf.format({ async = true })
 		end, opts)
 	end,
