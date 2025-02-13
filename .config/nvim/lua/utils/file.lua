@@ -8,7 +8,7 @@ M.find_git_root = function()
 		end
 		d = d .. "/.."
 	end
-	return nil
+	return "."
 end
 
 return M

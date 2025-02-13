@@ -44,8 +44,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # go
 export PATH="$HOME/go/bin:$PATH"
 
-# direnv
-export "$(direnv hook zsh)"
+#direnv
+eval "$(direnv hook zsh)"
 
 preexec() { print -Pn "\e]0;%1~\a" }
 

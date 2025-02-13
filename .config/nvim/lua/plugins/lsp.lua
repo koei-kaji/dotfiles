@@ -36,6 +36,9 @@ return {
 		opts = {
 			-- options
 		},
+		config = function()
+			require("fidget").setup({})
+		end,
 	},
 	{
 		"stevearc/aerial.nvim",
