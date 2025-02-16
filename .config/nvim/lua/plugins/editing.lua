@@ -20,10 +20,6 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"RRethy/nvim-treesitter-textsubjects",
-		},
-		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
@@ -56,18 +52,6 @@ return {
 					"xml",
 					"yaml",
 				},
-				textsubjects = {
-					enable = true,
-					prev_selection = ",", -- (Optional) keymap to select the previous selection
-					keymaps = {
-						["."] = "textsubjects-smart",
-						[";"] = "textsubjects-container-outer",
-						["i;"] = {
-							"textsubjects-container-inner",
-							desc = "Select inside containers (classes, functions, etc.)",
-						},
-					},
-				},
 			})
 
 			-- https://github.com/neovim/neovim/pull/26347#issuecomment-1837508178
@@ -80,12 +64,38 @@ return {
 		end,
 	},
 	{
+		"RRethy/nvim-treesitter-textsubjects",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("nvim-treesitter-textsubjects").configure({
+				prev_selection = ",",
+				keymaps = {
+					["."] = "textsubjects-smart",
+					[";"] = "textsubjects-container-outer",
+					["i;"] = {
+						"textsubjects-container-inner",
+						desc = "Select inside containers (classes, functions, etc.)",
+					},
+				},
+			})
+		end,
+	},
+	{
 		"Wansmer/treesj",
 		keys = { "<space>m", "<space>j", "<space>s" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
 		config = function()
 			require("treesj").setup({--[[ your config ]]
 			})
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+		config = function()
+			require("nvim-ts-autotag").setup({})
 		end,
 	},
 	{
