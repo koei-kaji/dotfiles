@@ -32,10 +32,11 @@ args = ["-c", "-l", "/opt/homebrew/bin/tmux"]
 dynamic_title = true
 opacity = 0.9
 blur = true
+decorations = "Buttonless"
 
 [window.padding]
-x = 5
-y = 0
+x = 10
+y = 10
 
 [window.dimensions]
 columns = 150

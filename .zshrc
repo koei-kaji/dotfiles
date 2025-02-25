@@ -19,7 +19,13 @@ alias zshrc="vim ~/.zshrc"
 alias alac="vim ~/.config/alacritty/alacritty.toml"
 alias tmuxconf="vim ~/.config/tmux/tmux.conf"
 alias initlua="vim ~/.config/nvim/init.lua"
-alias lz="lazydocker"
+alias ld="lazydocker"
+alias ls="eza --icons=always"
+alias ll="ls -l"
+
+# zoxide
+eval "$(zoxide init zsh)"
+alias cd="z"
 
 alias gget='ghq get'
 alias gcd='cd $(ghq list --full-path | peco)'

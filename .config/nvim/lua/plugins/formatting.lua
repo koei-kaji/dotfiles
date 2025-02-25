@@ -43,6 +43,13 @@ return {
 			end, {
 				desc = "Re-enable autoformat-on-save",
 			})
+			vim.api.nvim_create_user_command("SaveWithoutFormatting", function()
+				vim.cmd("FormatDisable!")
+				vim.cmd("write")
+				vim.cmd("FormatEnable")
+			end, {
+				desc = "Save file without formatting",
+			})
 		end,
 	},
 }
