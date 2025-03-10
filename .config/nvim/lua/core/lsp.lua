@@ -1,6 +1,7 @@
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"bashls",
+		"gopls",
 		"lua_ls",
 		"ts_ls",
 		"pyright",
@@ -9,6 +10,7 @@ require("mason-lspconfig").setup({
 	},
 })
 
+require("lsp.go")
 require("lsp.js")
 require("lsp.lua")
 require("lsp.python")

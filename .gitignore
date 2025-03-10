@@ -9,5 +9,6 @@
 .config/nvim/lazy-lock.json
 !.config/tmux/
 !.config/sheldon/
+!.config/wezterm/
 
 Brewfile.lock.json

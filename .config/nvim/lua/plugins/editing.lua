@@ -78,6 +78,10 @@ return {
 						"textsubjects-container-inner",
 						desc = "Select inside containers (classes, functions, etc.)",
 					},
+					disable = function(lang, bufnr)
+						local parser_ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+						return not parser_ok or not parser
+					end,
 				},
 			})
 		end,
@@ -162,9 +166,21 @@ return {
 				return newVirtText
 			end
 
-			require("ufo").setup({
-				fold_virt_text_handler = handler,
-			})
+			-- Tell the server the capability of foldingRange,
+			-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+			local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+			for _, ls in ipairs(language_servers) do
+				require("lspconfig")[ls].setup({
+					capabilities = capabilities,
+					-- you can add other fields for setting up lsp server in this table
+				})
+			end
+			require("ufo").setup()
 		end,
 	},
 	{

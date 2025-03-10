@@ -5,6 +5,7 @@ else
 	print("No secrets file found")
 end
 
+vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.pumblend = 0

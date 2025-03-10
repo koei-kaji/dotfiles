@@ -176,8 +176,8 @@ require("gitsigns").setup({
 			gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end)
 
-		-- lmap("n", "<leader>hS", gitsigns.stage_buffer)
-		-- lmap("n", "<leader>hR", gitsigns.reset_buffer)
+		lmap("n", "<leader>hS", gitsigns.stage_buffer)
+		lmap("n", "<leader>hR", gitsigns.reset_buffer)
 		lmap("n", "<leader>hp", gitsigns.preview_hunk)
 		lmap("n", "<leader>hi", gitsigns.preview_hunk_inline)
 		lmap("n", "<leader>gb", gitsigns.blame)
