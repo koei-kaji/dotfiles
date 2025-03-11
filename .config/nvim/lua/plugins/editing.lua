@@ -78,11 +78,11 @@ return {
 						"textsubjects-container-inner",
 						desc = "Select inside containers (classes, functions, etc.)",
 					},
-					disable = function(lang, bufnr)
-						local parser_ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
-						return not parser_ok or not parser
-					end,
 				},
+				disable = function(lang, bufnr)
+					local parser_ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+					return not parser_ok or not parser
+				end,
 			})
 		end,
 	},
