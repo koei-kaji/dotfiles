@@ -114,6 +114,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
 		vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)
 		vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref<CR>", opts)
+		vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 		vim.keymap.set("n", "<leader>dk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
