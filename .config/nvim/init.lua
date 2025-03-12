@@ -32,7 +32,10 @@ vim.o.foldlevelstart = 99
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 require("core.lazy")
+
 require("core.lsp")
+require("core.editing")
+
 require("core.keymaps")
 
 vim.cmd([[colorscheme tokyonight-night]])
