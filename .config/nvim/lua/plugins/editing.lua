@@ -51,15 +51,6 @@ return {
 		event = "InsertEnter",
 		config = true,
 	},
-	-- TODO: lsp に移動
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
-		end,
-	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },

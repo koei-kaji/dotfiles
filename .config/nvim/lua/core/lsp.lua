@@ -15,3 +15,5 @@ require("lsp.js")
 require("lsp.lua")
 require("lsp.python")
 require("lsp.yaml")
+
+require("lsp.lspsaga")
