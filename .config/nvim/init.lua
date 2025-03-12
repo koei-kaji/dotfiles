@@ -33,6 +33,7 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 require("core.lazy")
 
+require("core.ui")
 require("core.lsp")
 require("core.editing")
 
