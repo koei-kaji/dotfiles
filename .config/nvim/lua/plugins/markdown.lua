@@ -9,7 +9,9 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
 		},
-		opts = {},
+		opts = {
+			anti_conceal = { enabled = false },
+		},
 		enabled = not vim.g.vscode,
 	},
 }
