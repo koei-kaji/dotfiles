@@ -38,6 +38,7 @@ require("core.lsp")
 require("core.editing")
 require("core.completion")
 require("core.formatting")
+require("core.linting")
 
 require("core.keymaps")
 
