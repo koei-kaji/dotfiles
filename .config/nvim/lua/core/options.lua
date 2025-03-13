@@ -1,0 +1,23 @@
+vim.g.mapleader = " "
+
+vim.opt.shell = "/bin/zsh"
+vim.opt.swapfile = false
+vim.opt.termguicolors = true
+vim.opt.number = true
+vim.opt.scrolloff = 999
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.textwidth = 0
+vim.opt.autoindent = true
+vim.opt.hlsearch = true
+vim.opt.clipboard = "unnamed"
+vim.opt.foldcolumn = "1"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
