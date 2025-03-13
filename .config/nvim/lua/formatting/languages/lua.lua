@@ -1,13 +1,13 @@
 local M = {}
 
 function M.formatters_by_ft()
-	return {
-		lua = { "stylua" },
-	}
+    return {
+        lua = { "stylua" },
+    }
 end
 
 function M.formatters()
-	return {}
+    return {}
 end
 
 return M

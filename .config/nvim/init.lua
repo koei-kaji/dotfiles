@@ -1,8 +1,8 @@
 local ok, secrets = pcall(require, "core.secrets")
 if ok then
-	print("Loaded secrets")
+    print("Loaded secrets")
 else
-	print("No secrets file found")
+    print("No secrets file found")
 end
 
 vim.opt.swapfile = false
