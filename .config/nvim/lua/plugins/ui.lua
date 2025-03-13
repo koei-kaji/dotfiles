@@ -71,7 +71,13 @@ return {
     {
         { "akinsho/toggleterm.nvim", version = "*", config = true },
     },
-    { "sphamba/smear-cursor.nvim" },
-    { "karb94/neoscroll.nvim" },
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {},
+    },
+    {
+        "karb94/neoscroll.nvim",
+        opts = {},
+    },
     { "rcarriga/nvim-notify" },
 }
