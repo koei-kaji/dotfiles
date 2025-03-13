@@ -46,9 +46,7 @@ return {
 		"shellRaining/hlchunk.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	{
-		"kevinhwang91/nvim-hlslens",
-	},
+	{ "kevinhwang91/nvim-hlslens" },
 	{
 		"romgrk/barbar.nvim",
 		dependencies = {
@@ -82,13 +80,7 @@ return {
 	{
 		{ "akinsho/toggleterm.nvim", version = "*", config = true },
 	},
-	{
-		"sphamba/smear-cursor.nvim",
-	},
-	{
-		"karb94/neoscroll.nvim",
-	},
-	{
-		"rcarriga/nvim-notify",
-	},
+	{ "sphamba/smear-cursor.nvim" },
+	{ "karb94/neoscroll.nvim" },
+	{ "rcarriga/nvim-notify" },
 }

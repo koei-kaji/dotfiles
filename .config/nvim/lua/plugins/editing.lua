@@ -13,9 +13,7 @@ return {
 			require("nvim-surround").setup({})
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-	},
+	{ "nvim-treesitter/nvim-treesitter" },
 	{
 		"RRethy/nvim-treesitter-textsubjects",
 		dependencies = {
@@ -37,9 +35,7 @@ return {
 			require("nvim-ts-autotag").setup({})
 		end,
 	},
-	{
-		"monaqa/dial.nvim",
-	},
+	{ "monaqa/dial.nvim" },
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = {
