@@ -1,3 +1,3 @@
 return {
-	path = require("utils.file"),
+	path = require("utils.path"),
 }
