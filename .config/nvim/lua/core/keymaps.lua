@@ -208,10 +208,6 @@ require("toggleterm").setup({
     close_on_exit = true,
 })
 
--- FIXME: ちょっと使いにくいのでコメントアウトする。Overseer 自体不要かも
--- -- Overseer
--- map("n", "<leader>!", "<Cmd>OverseerToggle<CR>", kopts)
-
 -- Copilot
 nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
 
