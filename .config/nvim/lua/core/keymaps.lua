@@ -220,16 +220,66 @@ nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
 -- telescope
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
+local themes = require("telescope.themes")
+local conf = require("telescope.config").values
+
 nmap("<leader>ff", builtin.find_files, "Find files")
 nmap("<leader>fg", function()
 	telescope.extensions.live_grep_args.live_grep_args()
 end, "Live grep")
 nmap("<leader>fb", builtin.buffers, "Find buffers")
-nmap("<leader>fh", builtin.help_tags, "Help tags")
 nmap("<leader>fo", builtin.oldfiles, "Find old files")
 nmap("<leader>fw", builtin.grep_string, "Find word under cursor")
 nmap("<leader>fn", function()
-	telescope.extensions.notify.notify()
+	telescope.extensions.notify.notify(themes.get_ivy())
+end)
+
+-- harpoon
+local harpoon = require("harpoon")
+nmap("ha", function()
+	harpoon:list():add()
+	vim.notify("Added to harpoon")
+end)
+nmap("hL", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+nmap("hj", function()
+	harpoon:list():next()
+end)
+nmap("hk", function()
+	harpoon:list():prev()
+end)
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new(themes.get_ivy({}), {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+nmap("hl", function()
+	toggle_telescope(harpoon:list())
+end, "Open harpoon window")
+
+-- bookmarks
+local bookmarks = require("bookmarks")
+nmap("mm", bookmarks.bookmark_toggle)
+nmap("mc", bookmarks.bookmark_clean)
+nmap("mC", bookmarks.bookmark_clear_all)
+nmap("mj", bookmarks.bookmark_next)
+nmap("mk", bookmarks.bookmark_prev)
+nmap("mL", bookmarks.bookmark_list)
+nmap("ml", function()
+	telescope.extensions.bookmarks.list(themes.get_ivy())
 end)
 
 -- dial
@@ -256,22 +306,6 @@ vim.keymap.set("v", "g<C-a>", function()
 end)
 vim.keymap.set("v", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
-end)
-
--- harpoon
-local harpoon = require("harpoon")
-nmap("ha", function()
-	harpoon:list():add()
-	vim.notify("Added to harpoon")
-end)
-nmap("hl", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-nmap("hj", function()
-	harpoon:list():next()
-end)
-nmap("hk", function()
-	harpoon:list():prev()
 end)
 
 -- ufo

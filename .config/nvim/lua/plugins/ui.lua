@@ -7,7 +7,10 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
 		config = function()
 			require("harpoon").setup({})
 		end,
@@ -18,6 +21,10 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-live-grep-args.nvim",
 			"rcarriga/nvim-notify",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
 		},
 	},
 	{
@@ -80,4 +87,10 @@ return {
 		opts = {},
 	},
 	{ "rcarriga/nvim-notify" },
+	{
+		"tomasky/bookmarks.nvim",
+		config = function()
+			require("bookmarks").setup({})
+		end,
+	},
 }

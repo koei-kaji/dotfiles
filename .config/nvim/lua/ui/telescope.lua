@@ -31,11 +31,28 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
+			theme = "ivy",
 			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+		},
+		buffers = {
+			theme = "ivy",
+		},
+		grep_strings = {
+			theme = "ivy",
+		},
+		old_files = {
+			theme = "ivy",
+		},
+	},
+	extensions = {
+		live_grep_args = {
+			theme = "ivy",
 		},
 	},
 })
 
 telescope.load_extension("live_grep_args")
 telescope.load_extension("notify")
+telescope.load_extension("fzf")
+telescope.load_extension("bookmarks")
