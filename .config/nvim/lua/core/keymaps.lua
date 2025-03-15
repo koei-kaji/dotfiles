@@ -84,8 +84,8 @@ nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
-nmap("<leader>t", ":Neotree toggle<CR>")
-nmap("<leader>e", ":Neotree focus<CR>")
+nmap("<leader>t", "<Cmd>Neotree toggle<CR>")
+nmap("<leader>e", "<Cmd>Neotree focus<CR>")
 
 -- Search config
 -- See: https://github.com/kevinhwang91/nvim-hlslens
@@ -119,11 +119,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 		vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
 		vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)
-		vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref<CR>", opts)
+		vim.keymap.set("n", "gr", function()
+			vim.cmd("Neotree close")
+			vim.cmd("Lspsaga finder ref")
+		end, opts)
 		vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 		vim.keymap.set("n", "<leader>dk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+		vim.keymap.set("n", "K", function()
+			local winid = require("ufo").peekFoldedLinesUnderCursor()
+			if not winid then
+				vim.lsp.buf.hover()
+			end
+		end, opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
 		vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
 		vim.keymap.set("n", "<leader>bf", function()
@@ -312,9 +320,6 @@ end)
 local ufo = require("ufo")
 nmap("zR", ufo.openAllFolds)
 nmap("zM", ufo.closeAllFolds)
-nmap("zp", function()
-	require("fold-preview").toggle_preview()
-end)
 
 -- which-key
 nmap("<leader>?", function()
@@ -328,4 +333,10 @@ nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
 -- treesj
 nmap("<leader>m", function()
 	require("treesj").toggle()
+end)
+
+-- neogen
+-- nmap("<Leader>nf", ":lua require('neogen').generate()<CR>")
+nmap("<Leader>nf", function()
+	require("neogen").generate()
 end)

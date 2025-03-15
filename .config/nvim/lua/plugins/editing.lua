@@ -34,6 +34,12 @@ return {
 			require("nvim-ts-autotag").setup({})
 		end,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 	{ "monaqa/dial.nvim" },
 	{
 		"kevinhwang91/nvim-ufo",
@@ -50,5 +56,11 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
+	},
+	{
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({ snippet_engine = "luasnip" })
+		end,
 	},
 }

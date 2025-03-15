@@ -1,5 +1,7 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
+local neogen = require("neogen")
+local luasnip = require("luasnip")
 
 lspkind.init({
 	symbol_map = {
@@ -10,18 +12,45 @@ lspkind.init({
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 cmp.setup({
-	snippet = {
-		-- REQUIRED - you must specify a snippet engine
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
+	-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+	-- https://github.com/danymat/neogen?tab=readme-ov-file#default-cycling-support
 	mapping = cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-,>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if luasnip.expandable() then
+					luasnip.expand()
+				else
+					cmp.confirm({
+						select = true,
+					})
+				end
+			else
+				fallback()
+			end
+		end),
+		["<C-J>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			elseif neogen.jumpable() then
+				neogen.jump_next()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<C-K>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			elseif neogen.jumpable(true) then
+				neogen.jump_prev()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
 		-- Copilot Source
