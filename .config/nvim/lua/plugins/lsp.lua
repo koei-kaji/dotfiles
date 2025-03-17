@@ -25,15 +25,6 @@ return {
 		},
 	},
 	{
-		"j-hui/fidget.nvim",
-		opts = {
-			-- options
-		},
-		config = function()
-			require("fidget").setup({})
-		end,
-	},
-	{
 		"stevearc/aerial.nvim",
 		opts = {},
 		-- Optional dependencies

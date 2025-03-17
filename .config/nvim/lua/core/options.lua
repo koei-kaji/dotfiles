@@ -21,6 +21,7 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.splitright = true
 
 -- https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
 vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)

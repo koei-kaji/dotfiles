@@ -58,6 +58,7 @@ cmp.setup({
 		-- Other Sources
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "codecompanion" },
 	}, {
 		{ name = "buffer" },
 	}),

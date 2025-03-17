@@ -9,7 +9,7 @@ local function nmap(lhs, rhs, desc)
 	_map("n", lhs, rhs, desc)
 end
 local function vmap(lhs, rhs, desc)
-	_map("n", lhs, rhs, desc)
+	_map("v", lhs, rhs, desc)
 end
 local function nvmap(lhs, rhs, desc)
 	_map({ "n", "v" }, lhs, rhs, desc)
@@ -56,8 +56,6 @@ xmap(">", ">gv")
 
 nmap("F<cr>", "{")
 nmap("f<cr>", "}")
-
-nmap("<leader>l", "<Cmd>noh<CR>")
 
 -- vim
 nmap("<leader>q", "<Cmd>q<CR>")
@@ -133,7 +131,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 		end, opts)
 		vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
-		vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
+		vim.keymap.set("n", "<leader>l", "<cmd>Lspsaga code_action<CR>", opts)
 		vim.keymap.set("n", "<leader>bf", function()
 			vim.lsp.buf.format({ async = true })
 			require("conform").format({ async = true })
@@ -340,3 +338,14 @@ end)
 nmap("<Leader>nf", function()
 	require("neogen").generate()
 end)
+
+-- codecompanion
+nmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
+nvmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
+vmap("<leader>ce", "<Cmd>CodeCompanionChat /explain<CR>", "Code Companion - Explain code")
+vmap("<leader>cf", "<Cmd>CodeCompanionChat /fix<CR>", "Code Companion - Fix code")
+nvmap("<leader>cd", "<Cmd>CodeCompanionChat /lsp<CR>", "Code Companion - Explain LSP diagnostic")
+vmap("<leader>ct", "<Cmd>CodeCompanionChat /tests<CR>", "Code Companion - Generate unit test")
+vmap("<leader>cr", "<Cmd>CodeCompanionChat /inline-refactor<CR>", "Code Companion - Refactor code")
+vmap("<leader>cR", "<Cmd>CodeCompanionChat /inline-review<CR>", "Code Companion - Review code")
+vmap("<leader>cd", "<Cmd>CodeCompanionChat /inline-doc<CR>", "Code Companion - Add documentation")
