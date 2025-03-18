@@ -5,7 +5,7 @@ local function code_block(context)
 end
 
 local function prompt(context, instructions)
-	return instructions .. "\n\n" .. code_block(context) .. "\n\n"
+	return "<user_prompt>" .. instructions .. "\n\n" .. code_block(context) .. "\n\n</user_prompt>"
 end
 
 return {
