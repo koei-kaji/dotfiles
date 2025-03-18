@@ -63,4 +63,7 @@ return {
 			require("neogen").setup({ snippet_engine = "luasnip" })
 		end,
 	},
+	{
+		"keaising/im-select.nvim",
+	},
 }
