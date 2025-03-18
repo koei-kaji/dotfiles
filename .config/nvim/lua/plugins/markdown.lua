@@ -13,5 +13,6 @@ return {
 			anti_conceal = { enabled = false },
 		},
 		enabled = not vim.g.vscode,
+		ft = { "markdown", "codecompanion" },
 	},
 }

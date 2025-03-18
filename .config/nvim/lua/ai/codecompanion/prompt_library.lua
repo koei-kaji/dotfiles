@@ -53,12 +53,12 @@ return {
 			},
 		},
 	},
-	["Inline Review"] = {
-		strategy = "inline",
+	["Chat Review"] = {
+		strategy = "chat",
 		description = "Review the provided code.",
 		opts = {
 			modes = { "v" },
-			short_name = "inline-review",
+			short_name = "chat-review",
 			auto_submit = true,
 			stop_context_insertion = true,
 			user_prompt = false,
@@ -68,6 +68,27 @@ return {
 			content = function(context)
 				local instructions =
 					"Please review the following code and provide suggestions for improvement then refactor the following code to improve its clarity and readability:"
+				return prompt(context, instructions)
+			end,
+			opts = {
+				contains_code = true,
+			},
+		},
+	},
+	["Chat Better Naming"] = {
+		strategy = "chat",
+		description = "Give better naming for the provided code.",
+		opts = {
+			modes = { "v" },
+			short_name = "chat-naming",
+			auto_submit = true,
+			stop_context_insertion = true,
+			user_prompt = false,
+		},
+		prompts = {
+			role = "user",
+			content = function(context)
+				local instructions = "Please provide better names for the following variables and functions:"
 				return prompt(context, instructions)
 			end,
 			opts = {

@@ -1,15 +1,22 @@
 require("ai.codecompanion.fidget-spinner"):init()
 
 require("codecompanion").setup({
-	copilot = function()
-		return require("codecompanion.adapters").extend("copilot", {
-			schema = {
-				model = {
-					default = "claude-3.5-sonnet",
+	adapters = {
+		copilot = function()
+			return require("codecompanion.adapters").extend("copilot", {
+				schema = {
+					model = {
+						default = "claude-3.5-sonnet",
+					},
 				},
-			},
-		})
-	end,
+			})
+		end,
+	},
+	display = {
+		diff = {
+			provider = "mini_diff",
+		},
+	},
 	strategies = {
 		chat = {
 			adapter = "copilot",
