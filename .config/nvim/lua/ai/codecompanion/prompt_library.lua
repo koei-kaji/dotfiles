@@ -20,15 +20,17 @@ return {
 			user_prompt = false,
 		},
 		prompts = {
-			role = "user",
-			content = function(context)
-				local instructions =
-					"Please provide documentation in comment code for the following code and suggest to have better naming to improve readability:"
+			{
+				role = "user",
+				content = function(context)
+					local instructions =
+						"Please provide documentation in Japanese in comment code for the following code and suggest to have better naming to improve readability:"
 
-				return prompt(context, instructions)
-			end,
-			opts = {
-				contains_code = true,
+					return prompt(context, instructions)
+				end,
+				opts = {
+					contains_code = true,
+				},
 			},
 		},
 	},
@@ -43,13 +45,16 @@ return {
 			user_prompt = false,
 		},
 		prompts = {
-			role = "user",
-			content = function(context)
-				local instructions = "Please refactor the following code to improve its claritty and readability:"
-				return prompt(context, instructions)
-			end,
-			opts = {
-				contains_code = true,
+			{
+				role = "user",
+				content = function(context)
+					local instructions =
+						"Please refactor the following code to improve its claritty and readability. When you provide documentation, you must write in Japanese:"
+					return prompt(context, instructions)
+				end,
+				opts = {
+					contains_code = true,
+				},
 			},
 		},
 	},
@@ -64,14 +69,16 @@ return {
 			user_prompt = false,
 		},
 		prompts = {
-			role = "user",
-			content = function(context)
-				local instructions =
-					"Please review the following code and provide suggestions for improvement then refactor the following code to improve its clarity and readability:"
-				return prompt(context, instructions)
-			end,
-			opts = {
-				contains_code = true,
+			{
+				role = "user",
+				content = function(context)
+					local instructions =
+						"Please review the following code and provide suggestions for improvement then refactor the following code to improve its clarity and readability:"
+					return prompt(context, instructions)
+				end,
+				opts = {
+					contains_code = true,
+				},
 			},
 		},
 	},
@@ -86,13 +93,16 @@ return {
 			user_prompt = false,
 		},
 		prompts = {
-			role = "user",
-			content = function(context)
-				local instructions = "Please provide better names for the following variables and functions:"
-				return prompt(context, instructions)
-			end,
-			opts = {
-				contains_code = true,
+			{
+
+				role = "user",
+				content = function(context)
+					local instructions = "Please provide better names for the following variables and functions:"
+					return prompt(context, instructions)
+				end,
+				opts = {
+					contains_code = true,
+				},
 			},
 		},
 	},

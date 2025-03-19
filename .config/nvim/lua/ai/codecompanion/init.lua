@@ -6,7 +6,8 @@ require("codecompanion").setup({
 			return require("codecompanion.adapters").extend("copilot", {
 				schema = {
 					model = {
-						default = "claude-3.5-sonnet",
+						-- default = "claude-3.5-sonnet",
+						default = "gpt-4o-2024-11-20",
 					},
 				},
 			})
@@ -32,5 +33,5 @@ require("codecompanion").setup({
 	opts = {
 		language = "Japanese",
 	},
-	prompt_libraty = require("ai.codecompanion.prompt_library"),
+	prompt_library = require("ai.codecompanion.prompt_library"),
 })
