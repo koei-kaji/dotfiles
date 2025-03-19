@@ -17,7 +17,7 @@ chmod +x link_dotfiles.sh
 
 ## ~/.gitconfig の設定
 
-以下を記入する。
+以下を追記
 
 ### for lazygit
 
@@ -46,8 +46,4 @@ chmod +x link_dotfiles.sh
 
 ## colorscheme
 
-[folke/tokyonight.nvim: 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish.](https://github.com/folke/tokyonight.nvim) をしようしている。
-
-### for alacritty
-
-See [alacritty/alacritty-theme: Collection of Alacritty color schemes](https://github.com/alacritty/alacritty-theme?tab=readme-ov-file#installation)
+[folke/tokyonight.nvim: 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish.](https://github.com/folke/tokyonight.nvim)
