@@ -5,53 +5,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-eval "$(sheldon source)"
-
-HISTFILE=~/zsh_history
+# History settings
+HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
-alias vi="nvim"
-alias vim="nvim"
-alias view="nvim -R"
-
-alias zshrc="vim ~/.zshrc"
-alias alac="vim ~/.config/alacritty/alacritty.toml"
-alias tmuxconf="vim ~/.config/tmux/tmux.conf"
-alias initlua="vim ~/.config/nvim/init.lua"
-alias ld="lazydocker"
-alias ls="eza --icons=always"
-alias ll="ls -l"
-
-# zoxide
-eval "$(zoxide init zsh)"
-alias cd="z"
-
-alias gget='ghq get'
-alias gcd='cd $(ghq list --full-path | peco)'
-alias ghb='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
-alias arc='open -a "Arc"'
-
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt auto_cd
-setopt hist_ignore_dups
-setopt share_history
-setopt inc_append_history
-setopt noautomenu
-setopt nomenucomplete
-
-set -o vi
-bindkey "jj" vi-cmd-mode
+source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/options.zsh
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # go
 export PATH="$HOME/go/bin:$PATH"
-
-#direnv
-eval "$(direnv hook zsh)"
 
 preexec() { print -Pn "\e]0;%1~\a" }
 

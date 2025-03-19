@@ -1,7 +1,4 @@
 .config/*
-!.config/alacritty/
-.config/alacritty/*
-!.config/alacritty/alacritty.toml
 !.config/lazygit/
 !.config/neofetch/
 !.config/nvim/
@@ -10,5 +7,6 @@
 !.config/tmux/
 !.config/sheldon/
 !.config/wezterm/
+!.config/zsh/
 
 Brewfile.lock.json
