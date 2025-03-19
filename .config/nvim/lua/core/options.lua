@@ -14,14 +14,15 @@ vim.opt.textwidth = 0
 vim.opt.autoindent = true
 vim.opt.hlsearch = true
 vim.opt.clipboard = "unnamed"
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "auto:9"
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
 vim.opt.splitright = true
+vim.opt.relativenumber = true
 
 -- https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
 vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
