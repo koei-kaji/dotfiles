@@ -30,14 +30,14 @@ end
 -- core
 imap("jj", "<ESC>")
 imap("っj", "<ESC>")
-
 nmap("j", "gj")
 nmap("k", "gk")
 nmap("<Down>", "gj")
 nmap("<Up>", "gk")
+nvmap("$", "g_")
 nvmap("H", "^")
-nvmap("L", "$")
-nmap("Y", "y$")
+nvmap("L", "g_")
+nmap("Y", "yg_")
 nmap("U", "<c-r>")
 nmap("M", "%")
 xmap("p", "P")
