@@ -1,7 +1,7 @@
 -- See: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#file-and-text-search-in-hidden-files-and-directories
+local actions = require("telescope.actions")
 local telescope = require("telescope")
 local telescopeConfig = require("telescope.config")
-local actions = require("telescope.actions")
 
 -- Clone the default Telescope configuration
 ---@diagnostic disable-next-line: deprecated
@@ -14,42 +14,42 @@ table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!**/.git/*")
 
 telescope.setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<esc>"] = actions.close,
-			},
-			n = {
-				["<esc>"] = actions.close,
-				["q"] = actions.close,
-			},
-		},
-		layout_strategy = "vertical",
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+      },
+      n = {
+        ["<esc>"] = actions.close,
+        ["q"] = actions.close,
+      },
+    },
+    layout_strategy = "vertical",
 
-		-- `hidden = true` is not supported in text grep commands.
-		vimgrep_arguments = vimgrep_arguments,
-	},
-	pickers = {
-		find_files = {
-			theme = "ivy",
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
-		buffers = {
-			theme = "ivy",
-		},
-		grep_strings = {
-			theme = "ivy",
-		},
-		old_files = {
-			theme = "ivy",
-		},
-	},
-	extensions = {
-		live_grep_args = {
-			theme = "ivy",
-		},
-	},
+    -- `hidden = true` is not supported in text grep commands.
+    vimgrep_arguments = vimgrep_arguments,
+  },
+  pickers = {
+    find_files = {
+      theme = "ivy",
+      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    },
+    buffers = {
+      theme = "ivy",
+    },
+    grep_strings = {
+      theme = "ivy",
+    },
+    old_files = {
+      theme = "ivy",
+    },
+  },
+  extensions = {
+    live_grep_args = {
+      theme = "ivy",
+    },
+  },
 })
 
 telescope.load_extension("live_grep_args")

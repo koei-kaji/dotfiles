@@ -1,3 +1,3 @@
 require("barbar").setup({
-	exclude_ft = { "qf" },
+  exclude_ft = { "qf" },
 })

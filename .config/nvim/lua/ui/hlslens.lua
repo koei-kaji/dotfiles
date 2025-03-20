@@ -1,3 +1,3 @@
 require("hlslens").setup({
-	calm_down = true,
+  calm_down = true,
 })
