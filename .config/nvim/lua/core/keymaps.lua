@@ -59,8 +59,8 @@ nmap("F<cr>", "{")
 nmap("f<cr>", "}")
 
 -- vim
-nmap("<leader>q", "<Cmd>q<CR>")
-nmap("<leader>Q", "<Cmd>qa<CR>")
+nmap("<leader>qq", "<Cmd>q<CR>")
+nmap("<leader>QQ", "<Cmd>qa<CR>")
 
 -- window
 nmap("<leader>w/", ":vsplit<CR><C-w>l")
