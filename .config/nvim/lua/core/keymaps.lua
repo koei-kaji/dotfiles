@@ -29,6 +29,7 @@ end
 
 -- core
 imap("jj", "<ESC>")
+imap("っj", "<ESC>")
 
 nmap("j", "gj")
 nmap("k", "gk")
