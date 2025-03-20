@@ -10,7 +10,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      anti_conceal = { enabled = false },
+      anti_conceal = { enabled = true },
     },
     enabled = not vim.g.vscode,
     ft = { "markdown", "codecompanion" },
