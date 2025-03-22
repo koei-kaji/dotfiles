@@ -1,3 +1,10 @@
+local fmt = string.format
+
+local constants = {
+  LLM_ROLE = "llm",
+  USER_ROLE = "user",
+  SYSTEM_ROLE = "system",
+}
 local function code_block(context)
   local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
@@ -102,6 +109,34 @@ return {
         end,
         opts = {
           contains_code = true,
+        },
+      },
+    },
+  },
+  -- Custom default prompt
+  -- https://github.com/olimorris/codecompanion.nvim/blob/e114ae6a3168a183bafab3ee54473da88c59747e/lua/codecompanion/config.lua#L420
+  ["Custom Prompt"] = {
+    strategy = "inline",
+    description = "Prompt the LLM from Neovim",
+    opts = {
+      index = 3,
+      short_name = "prompt",
+      is_default = true,
+      is_slash_cmd = false,
+      user_prompt = true,
+    },
+    prompts = {
+      {
+        role = constants.SYSTEM_ROLE,
+        content = function(context)
+          return fmt(
+            [[I want you to act as a senior %s developer. I will ask you specific questions and I want you to return raw code only (no codeblocks and no explanations). If you can't respond with code, respond with nothing]],
+            context.filetype
+          )
+        end,
+        opts = {
+          visible = false,
+          tag = "system_tag",
         },
       },
     },
