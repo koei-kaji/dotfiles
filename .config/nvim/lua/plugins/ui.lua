@@ -76,9 +76,6 @@ return {
     event = "VeryLazy",
   },
   {
-    { "akinsho/toggleterm.nvim", version = "*", config = true },
-  },
-  {
     "sphamba/smear-cursor.nvim",
     opts = {},
   },

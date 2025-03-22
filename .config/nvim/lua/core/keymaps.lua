@@ -33,7 +33,9 @@ nmap("p", "]p`]")
 nmap("P", "]P`]")
 nmap("p", "]p`]")
 xmap("y", "mzy`z")
-cmap("s ", "<C-c>:%s///g<Left><Left>")
+vim.cmd([[
+cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s///g<Left><Left>" : 's'
+]])
 
 nmap("x", '"_d')
 nmap("X", '"_D')
@@ -191,21 +193,6 @@ nmap("<leader>hh", "<cmd>DiffviewFileHistory %<CR>")
 nvmap("<leader>gy", "<cmd>GitLink<CR>", "Yank git link")
 nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
 
--- toggleterm
-require("toggleterm").setup({
-  size = 100,
-  open_mapping = [[<c-t>]],
-  hide_numbers = true,
-  shade_filetypes = {},
-  shade_terminals = true,
-  shading_factor = 2,
-  start_in_insert = true,
-  insert_mappings = true,
-  persist_size = true,
-  direction = "float",
-  close_on_exit = true,
-})
-
 -- Copilot
 nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
 
@@ -311,6 +298,7 @@ nmap("<Leader>nf", function() require("neogen").generate() end)
 -- stylua: ignore end
 
 -- codecompanion
+vim.cmd([[cabbrev cc CodeCompanion]])
 nmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
 nvmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
 nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Code Companion - Explain LSP diagnostic")
@@ -321,3 +309,7 @@ vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "Code Companion - Bett
 vmap("<leader>ct", "<Cmd>CodeCompanion /tests<CR>", "Code Companion - Generate unit test")
 vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Code Companion - Refactor code")
 vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Code Companion - Add documentation")
+nvmap("<leader>cp", "<Cmd>CodeCompanion /prompt<CR>", "Code Companion - Prompt")
+
+-- markdown
+nmap("<C-p>", "<Plug>MarkdownPreviewToggle")
