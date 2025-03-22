@@ -313,3 +313,4 @@ nvmap("<leader>cp", "<Cmd>CodeCompanion /prompt<CR>", "Code Companion - Prompt")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle")
+nmap("<leader>p", "<Cmd>PasteImage<CR>", "Paste image from system clipboard")

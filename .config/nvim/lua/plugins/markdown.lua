@@ -15,4 +15,20 @@ return {
     enabled = not vim.g.vscode,
     ft = { "markdown", "codecompanion" },
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = ":call mkdp#util#install()",
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- https://github.com/HakonHarnes/img-clip.nvim/issues/102
+      default = {
+        process_cmd = "convert - -set gamma 0.4545 -",
+      },
+    },
+  },
 }
