@@ -1,6 +1,14 @@
 local lspconfig = require("lspconfig")
 
+-- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1984586934
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
 lspconfig.yamlls.setup({
+  capabilities = capabilities,
   settings = {
     yaml = {
       schemas = {
