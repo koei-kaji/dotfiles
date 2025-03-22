@@ -1,8 +1,20 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-wezterm.on("format-window-title", function(tab)
-  return "Terminal"
+local function tab_title(tab_info)
+  local title = tab_info.active_pane.title
+  local extracted = title:match('"(.-)"')
+  return extracted or title
+end
+
+wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
+  return tab_title(tab)
+end)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  return {
+    { Text = tab_title(tab) },
+  }
 end)
 
 config.automatically_reload_config = true
@@ -33,5 +45,18 @@ config.font_size = 18.0
 
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
+
+-- https://wezterm.org/config/lua/config/skip_close_confirmation_for_processes_named.html
+config.skip_close_confirmation_for_processes_named = {
+  "bash",
+  "sh",
+  -- 'zsh',
+  "fish",
+  -- 'tmux',
+  "nu",
+  "cmd.exe",
+  "pwsh.exe",
+  "powershell.exe",
+}
 
 return config

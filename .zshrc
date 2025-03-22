@@ -19,6 +19,8 @@ source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/environment.zsh
 source ~/.config/zsh/aliases.zsh
 
+preexec() { print -Pn "\e]0;%1~\a" }
+
 # ZLE settings should be loaded at the end of the file
 fh_widget() {
   local selected_command
