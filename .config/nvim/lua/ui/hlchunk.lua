@@ -5,7 +5,4 @@ require("hlchunk").setup({
   indent = {
     enable = false,
   },
-  line_num = {
-    enable = true,
-  },
 })
