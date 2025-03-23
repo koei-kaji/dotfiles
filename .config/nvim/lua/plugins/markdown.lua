@@ -1,7 +1,7 @@
 return {
   {
     "ixru/nvim-markdown",
-    ft = { "markdown" },
+    ft = { "markdown", "codecompanion" },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
