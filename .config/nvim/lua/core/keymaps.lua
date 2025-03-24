@@ -206,6 +206,7 @@ nmap("<leader>ff", builtin.find_files, "Find files")
 nmap("<leader>fb", builtin.buffers, "Find buffers")
 nmap("<leader>fo", builtin.oldfiles, "Find old files")
 nmap("<leader>fw", builtin.grep_string, "Find word under cursor")
+nmap("<leader>fG", builtin.git_status, "Find uncommitted files")
 -- stylua: ignore start
 nmap("<leader>fg", function() telescope.extensions.live_grep_args.live_grep_args() end, "Live grep")
 nmap("<leader>fn", function() telescope.extensions.notify.notify(themes.get_ivy()) end)

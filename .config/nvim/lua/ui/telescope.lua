@@ -44,6 +44,9 @@ telescope.setup({
     old_files = {
       theme = "ivy",
     },
+    git_status = {
+      theme = "ivy",
+    },
   },
   extensions = {
     live_grep_args = {
