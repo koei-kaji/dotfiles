@@ -6,8 +6,7 @@ require("codecompanion").setup({
       return require("codecompanion.adapters").extend("copilot", {
         schema = {
           model = {
-            -- default = "claude-3.5-sonnet",
-            default = "gpt-4o-2024-11-20",
+            default = "claude-3.7-sonnet",
           },
         },
       })
@@ -17,11 +16,20 @@ require("codecompanion").setup({
     diff = {
       provider = "mini_diff",
     },
+    chat = {
+      auto_scroll = false,
+      show_header_separator = true,
+    },
   },
   strategies = {
     chat = {
       adapter = "copilot",
-      roles = { llm = "  Copilot Chat", user = "Koei" },
+      roles = {
+        llm = function(adapter)
+          return "  " .. adapter.formatted_name .. ""
+        end,
+        user = " Koei",
+      },
     },
     inline = {
       adapter = "copilot",
