@@ -158,7 +158,7 @@ ls-flt = "zk edit $ZK_NOTEBOOK_DIR/FleetingNotes --sort created- --interactive"
 ls-str = "zk edit $ZK_NOTEBOOK_DIR/StructureNotes --sort created- --interactive"
 ls-perm = "zk edit $ZK_NOTEBOOK_DIR/PermanentNotes --sort created- --interactive"
 ls-lit = "zk edit $ZK_NOTEBOOK_DIR/LiteratureNotes --sort created- --interactive"
-cit = 'zk list --interactive --quiet --format path --delimiter0 "$ZK_NOTEBOOK_DIR/LiteratureNotes" | xargs -0 yq --front-matter=extract -r "(.authors | join(\",\")) + \". \" + (.title) + \". \" + (.publication) + \". \" + (.published_at) + \". \" + (.url)" -- | pbcopy'
+cit = 'zk list --interactive --quiet --format path --delimiter0 "$ZK_NOTEBOOK_DIR/LiteratureNotes" | xargs -0 yq --front-matter=extract -r "(.authors | join(\",\")) + \". \" + (.title) + \". \" + (.publication) + \". \" + (.published_at) + \". \" + (.url)" | pbcopy'
 
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/Journal/Daily"'
 standup = 'zk new --no-input "$ZK_NOTEBOOK_DIR/Standup"'
