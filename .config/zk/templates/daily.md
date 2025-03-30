@@ -1,27 +1,32 @@
-# {{format-date now '%Y-%m-%d'}}
+---
+title: {{format-date now '%Y-%m-%d'}}
+date: {{ format-date now 'long' }}
+tags: []
+aliases: []
+---
 
 <[[Journal/Daily/{{format-date (date "yesterday") '%Y-%m-%d'}}|{{format-date (date "yesterday") '%Y-%m-%d'}}]]> | <[[Journal/Daily/{{format-date (date "tomorrow") '%Y-%m-%d'}}|{{format-date (date "tomorrow") '%Y-%m-%d'}}]]>
 
 ---
 
-## FDL
+# FDL
 
-### Fun
+## Fun
 
-### Done
+## Done
 
-### Learn
+## Learn
 
 ---
 
-## Star fish
+# Star fish
 
-### Keep Doing
+## Keep Doing
 
-### More of
+## More of
 
-### Less of
+## Less of
 
-### Stop Doing
+## Stop Doing
 
-### Start Doing
+## Start Doing

@@ -59,29 +59,30 @@ template = "daily.md"
 paths = ["FleetingNotes"]
 
 [group.fleeting.note]
-filename = "{{format-date now 'timestamp'}}"
+filename = "{{id}}-{{format-date now 'timestamp'}}"
 extension = "md"
 
 [group.permanent]
 paths = ["PermanentNotes"]
 
 [group.permanent.note]
-filename = "{{format-date now 'timestamp'}}"
+filename = "{{id}}-{{format-date now 'timestamp'}}"
 extension = "md"
 
 [group.structure]
 paths = ["StuctureNotes"]
 
 [group.structure.note]
-filename = "{{format-date now 'timestamp'}}"
+filename = "{{id}}-{{format-date now 'timestamp'}}"
 extension = "md"
 
 [group.literature]
 paths = ["LiteratureNotes"]
 
 [group.literature.note]
-filename = "{{format-date now 'timestamp'}}"
+filename = "{{id}}-{{format-date now 'timestamp'}}"
 extension = "md"
+template = "literature.md"
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -145,18 +146,19 @@ recent = "zk edit --sort created- --created-after 'last two weeks' --interactive
 lucky = "zk list --quiet --format full --sort random --limit 1"
 
 ls = "zk edit --interactive"
-rm = "zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 rm -vc --"
+rm = "zk list --interactive --quiet --format path --delimiter0 --sort word-count $@ | xargs -0 rm -v --"
 update = "cd $ZK_NOTEBOOK_DIR; git add -A; git commit -am 'updating'; git push; cd -"
 tagless = "zk edit --interactive --tagless"
 
-flt = 'zk new --no-input "$ZK_NOTEBOOK_DIR/FleetingNotes"'
-str = 'zk new --no-input "$ZK_NOTEBOOK_DIR/StructureNotes"'
-perm = 'zk new --no-input "$ZK_NOTEBOOK_DIR/PermanentNotes"'
-lit= 'zk new --no-input "$ZK_NOTEBOOK_DIR/LiteratureNotes"'
+flt = 'zk new --no-input "$ZK_NOTEBOOK_DIR/FleetingNotes" --title "$*"'
+str = 'zk new --no-input "$ZK_NOTEBOOK_DIR/StructureNotes" --title "$*"'
+perm = 'zk new --no-input "$ZK_NOTEBOOK_DIR/PermanentNotes" --title "$*"'
+lit= 'zk new --no-input "$ZK_NOTEBOOK_DIR/LiteratureNotes" --title "$*"'
 ls-flt = "zk edit $ZK_NOTEBOOK_DIR/FleetingNotes --sort created- --interactive"
 ls-str = "zk edit $ZK_NOTEBOOK_DIR/StructureNotes --sort created- --interactive"
 ls-perm = "zk edit $ZK_NOTEBOOK_DIR/PermanentNotes --sort created- --interactive"
 ls-lit = "zk edit $ZK_NOTEBOOK_DIR/LiteratureNotes --sort created- --interactive"
+cit = 'zk list --interactive --quiet --format path --delimiter0 "$ZK_NOTEBOOK_DIR/LiteratureNotes" | xargs -0 yq --front-matter=extract -r "(.authors | join(\",\")) + \". \" + (.title) + \". \" + (.publication) + \". \" + (.published_at) + \". \" + (.url)" -- | pbcopy'
 
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/Journal/Daily"'
 standup = 'zk new --no-input "$ZK_NOTEBOOK_DIR/Standup"'
