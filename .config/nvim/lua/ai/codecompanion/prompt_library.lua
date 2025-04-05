@@ -12,7 +12,7 @@ local function code_block(context)
 end
 
 local function prompt(context, instructions)
-  return "<user_prompt>" .. instructions .. "\n\n" .. code_block(context) .. "\n\n</user_prompt>"
+  return instructions .. "\n\n" .. code_block(context) .. "\n\n"
 end
 
 return {
@@ -101,7 +101,6 @@ return {
     },
     prompts = {
       {
-
         role = "user",
         content = function(context)
           local instructions = "Please provide better names for the following variables and functions:"
@@ -113,32 +112,4 @@ return {
       },
     },
   },
-  -- -- Custom default prompt
-  -- -- https://github.com/olimorris/codecompanion.nvim/blob/e114ae6a3168a183bafab3ee54473da88c59747e/lua/codecompanion/config.lua#L420
-  -- ["Custom Prompt"] = {
-  --   strategy = "inline",
-  --   description = "Prompt the LLM from Neovim",
-  --   opts = {
-  --     index = 3,
-  --     short_name = "prompt",
-  --     is_default = true,
-  --     is_slash_cmd = false,
-  --     user_prompt = true,
-  --   },
-  --   prompts = {
-  --     {
-  --       role = constants.SYSTEM_ROLE,
-  --       content = function(context)
-  --         return fmt(
-  --           [[I want you to act as a senior %s developer. I will ask you specific questions and I want you to return raw code only (no codeblocks and no explanations). If you can't respond with code, respond with nothing]],
-  --           context.filetype
-  --         )
-  --       end,
-  --       opts = {
-  --         visible = false,
-  --         tag = "system_tag",
-  --       },
-  --     },
-  --   },
-  -- },
 }
