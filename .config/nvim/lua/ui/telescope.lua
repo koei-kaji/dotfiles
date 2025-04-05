@@ -38,10 +38,10 @@ telescope.setup({
     buffers = {
       theme = "ivy",
     },
-    grep_strings = {
+    grep_string = {
       theme = "ivy",
     },
-    old_files = {
+    oldfiles = {
       theme = "ivy",
     },
     git_status = {
