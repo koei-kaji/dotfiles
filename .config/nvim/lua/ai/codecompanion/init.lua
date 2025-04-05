@@ -30,6 +30,23 @@ require("codecompanion").setup({
         end,
         user = " Koei",
       },
+      slash_commands = {
+        ["file"] = {
+          opts = {
+            provider = "telescope",
+          },
+        },
+        ["buffer"] = {
+          opts = {
+            provider = "telescope",
+          },
+        },
+        ["symbols"] = {
+          opts = {
+            provider = "telescope",
+          },
+        },
+      },
     },
     inline = {
       adapter = "copilot",

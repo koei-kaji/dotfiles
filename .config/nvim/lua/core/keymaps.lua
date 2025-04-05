@@ -12,7 +12,6 @@ local function nvmap(lhs, rhs, desc) _map({ "n", "v" }, lhs, rhs, desc) end
 local function xmap(lhs, rhs, desc) _map("x", lhs, rhs, desc) end
 local function imap(lhs, rhs, desc) _map("i", lhs, rhs, desc) end
 local function omap(lhs, rhs, desc) _map("o", lhs, rhs, desc) end
-local function cmap(lhs, rhs, desc) _map("c", lhs, rhs, desc) end
 -- stylua: ignore end
 
 -- core
@@ -73,8 +72,8 @@ nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
-nmap("<leader>t", "<Cmd>Neotree toggle<CR>")
-nmap("<leader>e", "<Cmd>Neotree focus<CR>")
+nmap("<leader>wt", "<Cmd>Neotree toggle<CR>")
+nmap("<leader>we", "<Cmd>Neotree focus<CR>")
 
 -- Search config
 -- See: https://github.com/kevinhwang91/nvim-hlslens
@@ -290,7 +289,7 @@ nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
 
 -- treesj
 -- stylua: ignore start
-nmap("<leader>m", function() require("treesj").toggle() end)
+nmap("<leader>M", function() require("treesj").toggle() end)
 -- stylua: ignore end
 
 -- neogen
@@ -300,8 +299,9 @@ nmap("<Leader>nf", function() require("neogen").generate() end)
 
 -- codecompanion
 vim.cmd([[cabbrev cc CodeCompanion]])
+vim.cmd([[cabbrev ccc CodeCompanionChat]])
 nmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
-nvmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
+nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
 nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Code Companion - Explain LSP diagnostic")
 vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Code Companion - Explain code")
 vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "Code Companion - Fix code")
