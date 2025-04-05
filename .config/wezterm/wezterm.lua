@@ -47,16 +47,6 @@ config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
 
 -- https://wezterm.org/config/lua/config/skip_close_confirmation_for_processes_named.html
-config.skip_close_confirmation_for_processes_named = {
-  "bash",
-  "sh",
-  -- 'zsh',
-  "fish",
-  -- 'tmux',
-  "nu",
-  "cmd.exe",
-  "pwsh.exe",
-  "powershell.exe",
-}
+config.skip_close_confirmation_for_processes_named = {}
 
 return config
