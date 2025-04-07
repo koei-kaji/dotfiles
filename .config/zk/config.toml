@@ -73,7 +73,7 @@ extension = "md"
 paths = ["StuctureNotes"]
 
 [group.structure.note]
-filename = "{{id}}-{{format-date now 'timestamp'}}"
+filename = "{{slug title}}"
 extension = "md"
 
 [group.literature]
