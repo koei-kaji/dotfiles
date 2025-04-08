@@ -112,4 +112,27 @@ return {
       },
     },
   },
+  ["Chat Translate into Japanese"] = {
+    strategy = "chat",
+    description = "Translate English into Japanese",
+    opts = {
+      modes = { "v" },
+      short_name = "chat-translate",
+      auto_submit = true,
+      stop_context_insertion = true,
+      user_prompt = false,
+    },
+    prompts = {
+      {
+        role = "user",
+        content = function(context)
+          local instructions = "Please translate the following sentences into Japanese:"
+          return prompt(context, instructions)
+        end,
+        opts = {
+          contains_code = true,
+        },
+      },
+    },
+  },
 }

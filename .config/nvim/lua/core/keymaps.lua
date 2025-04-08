@@ -17,10 +17,10 @@ local function omap(lhs, rhs, desc) _map("o", lhs, rhs, desc) end
 -- core
 imap("jj", "<ESC>")
 imap("っj", "<ESC>")
-nmap("j", "gj")
-nmap("k", "gk")
-nmap("<Down>", "gj")
-nmap("<Up>", "gk")
+nvmap("j", "gj")
+nvmap("k", "gk")
+nvmap("<Down>", "gj")
+nvmap("<Up>", "gk")
 nvmap("$", "g_")
 nvmap("H", "^")
 nvmap("L", "g_")
@@ -308,11 +308,20 @@ vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Code Companion - Explain 
 vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "Code Companion - Fix code")
 vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "Code Companion - Review code")
 vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "Code Companion - Better naming")
-vmap("<leader>ct", "<Cmd>CodeCompanion /tests<CR>", "Code Companion - Generate unit test")
+vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Code Companion - Translate")
+vmap("<leader>cT", "<Cmd>CodeCompanion /tests<CR>", "Code Companion - Generate unit test")
 vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Code Companion - Refactor code")
 vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Code Companion - Add documentation")
-nvmap("<leader>cp", "<Cmd>CodeCompanion /prompt<CR>", "Code Companion - Prompt")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle")
 nmap("<leader>p", "<Cmd>PasteImage<CR>", "Paste image from system clipboard")
+
+-- zk
+nmap("<leader>znf", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'FleetingNotes' }<CR>")
+nmap("<leader>znp", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'PermanentNotes' }<CR>")
+nmap("<leader>zns", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'StructureNotes' }<CR>")
+nmap("<leader>znl", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'LiteratureNotes' }<CR>")
+nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
+vmap("<leader>zf", ":'<,'>ZkMatch<CR>")
+nmap("<leader>zt", "<Cmd>ZkTags<CR>")
