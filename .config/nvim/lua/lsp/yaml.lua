@@ -15,6 +15,7 @@ lspconfig.yamlls.setup({
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
         ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*.gitlab-ci.yml",
         ["https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json"] = "template.yaml",
+        ["https://raw.githubusercontent.com/olimorris/codecompanion.nvim/refs/heads/main/lua/codecompanion/workspace-schema.json"] = "codecompanion-workspace.yaml",
       },
     },
   },

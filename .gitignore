@@ -11,3 +11,5 @@
 !.config/zsh/
 
 Brewfile.lock.json
+
+codecompanion-workspace.json

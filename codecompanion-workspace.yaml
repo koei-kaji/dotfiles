@@ -1,0 +1,69 @@
+name: dotfiles
+version: 1.0.0
+system_prompt: >-
+  dotfiles は、一般的には Unix 系システムの設定ファイルを管理するためのディレクトリ。
+  dotfiles をリポジトリとして git 管理することで、複数のマシン間で同期したり、バックアップできる。
+  このディレクトリの追加の特徴として、テキストエディタには vim 、OS は macos を使用する前提で構成している。
+groups:
+  - name: zsh
+    system_prompt: zsh カスタム設定の内容をまとめる。役割によってファイルを分割することを積極的に行う。
+    opts:
+      remove_config_system_prompt: false
+    data:
+      - zshrc
+      - zshenv
+      - zsh-aliases
+      - zsh-environment
+      - zsh-options
+      - zsh-plugins
+      - sheldon-plugins
+  - name: sheldon
+    system_prompt: sheldon によって zsh プラグインを管理する。
+    opts:
+      remove_config_system_prompt: false
+    data:
+      - sheldon-plugins
+      - sheldon-docs-configuration
+      - sheldon-docs-example
+data:
+  zshrc:
+    type: file
+    path: .zshrc
+    description: >-
+      `${filename}` ファイルは、 zsh カスタム設定のエントリーポイント。起動時に読み込む。
+      ZLE については、別ファイルとして切り出しが困難なため、このファイルの末尾に記述する。
+      このファイルは、シェルスクリプト実行の時には読み込まれない。
+  zshenv:
+    type: file
+    path: .zshenv
+    description: >-
+      `${filename}` ファイルは、zsh 起動時に常に読み込む。
+      積極的には更新せず、まず `.zshrc` を更新できないかを検討すること。
+  zsh-aliases:
+    type: file
+    path: .config/zsh/aliases.zsh
+    description: '`${filename}` ファイルは、zsh で実行できるコマンドの alias を集約している。'
+  zsh-environment:
+    type: file
+    path: .config/zsh/environment.zsh
+    description: '`${filename}` ファイルは、zsh 起動時に読み込む環境変数を集約している。'
+  zsh-options:
+    type: file
+    path: .config/zsh/options.zsh
+    description: '`${filename}` ファイルは、zsh カスタム設定オプションを集約している。'
+  zsh-plugins:
+    type: file
+    path: .config/zsh/plugins.zsh
+    description: '`${filename}` ファイルは、追加コマンドや zsh プラグインマネージャの設定初期化を行う。'
+  sheldon-plugins:
+    type: file
+    path: .config/sheldon/plugins.toml
+    description: '`${filename}` ファイルは、sheldon プラグインマネージャによってインストールするプラグインpluginの一覧を記載する。'
+  sheldon-docs-configuration:
+    type: url
+    path: https://sheldon.cli.rs/Configuration.html
+    description: sheldon プラグインマネージャの設定ドキュメント：
+  sheldon-docs-example:
+    type: url
+    path: https://sheldon.cli.rs/Examples.html
+    description: sheldon プラグインマネージャの設定例：

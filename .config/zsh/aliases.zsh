@@ -22,6 +22,10 @@ alias gvi='cd $(ghq root)/$(_ghq-fzf) && vim .'
 alias gcode='cd $(ghq root)/$(_ghq-fzf) && code .'
 alias ghb="open \$(_ghq-fzf | awk '{print \"https://\"\$1}')"
 
+alias j2y='yq -p=json'
+alias y2j="yq -o=json '.'"
+alias ccw='y2j codecompanion-workspace.yaml > codecompanion-workspace.json'
+
 function _ghq-fzf() {
   local src=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$src" ]; then
