@@ -41,6 +41,16 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
+    "3rd/image.nvim",
+    opts = {
+      integrations = {
+        markdown = {
+          enabled = false,
+        },
+      },
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",

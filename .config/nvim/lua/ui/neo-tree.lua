@@ -59,7 +59,14 @@ require("neo-tree").setup({
   },
   window = {
     mappings = {
-      Y = "copy_selector",
+      ["Y"] = { "copy_selector" },
+      ["P"] = {
+        "toggle_preview",
+        config = {
+          use_float = true,
+          use_image_nvim = true,
+        },
+      },
     },
   },
 })
