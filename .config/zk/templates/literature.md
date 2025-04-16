@@ -1,10 +1,10 @@
 ---
 title: {{ title }}
-date: {{ format-date now 'long' }}
+date: {{format-date now '%Y-%m-%d'}}
 tags: []
 aliases: []
 draft: true
-type: "" # Book or Video or Blog
+type: "" # Book or Video or Blog or Reference
 publication: ""
 published_at: "" # yyyy-mm-dd
 authors: []

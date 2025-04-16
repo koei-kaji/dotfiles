@@ -1,6 +1,6 @@
 ---
 title: {{format-date now '%Y-%m-%d'}}
-date: {{ format-date now 'long' }}
+date: {{format-date now '%Y-%m-%d'}}
 tags: []
 aliases: []
 ---

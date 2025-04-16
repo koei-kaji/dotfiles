@@ -84,6 +84,14 @@ filename = "{{id}}-{{format-date now 'timestamp'}}"
 extension = "md"
 template = "literature.md"
 
+[group.english]
+paths = ["EnglishStudy/Topic"]
+
+[group.english.note]
+filename = "{{id}}-{{format-date now 'timestamp'}}"
+extension = "md"
+template = "english_topic.md"
+
 # MARKDOWN SETTINGS
 [format.markdown]
 # Format used to generate links between notes.
@@ -132,7 +140,8 @@ mkdir -p $ZK_NOTEBOOK_DIR/Standup \
 && mkdir -p $ZK_NOTEBOOK_DIR/FleetingNotes \
 && mkdir -p $ZK_NOTEBOOK_DIR/PermanentNotes \
 && mkdir -p $ZK_NOTEBOOK_DIR/StructureNotes \
-&& mkdir -p $ZK_NOTEBOOK_DIR/LiteratureNotes
+&& mkdir -p $ZK_NOTEBOOK_DIR/LiteratureNotes \
+&& mkdir -p $ZK_NOTEBOOK_DIR/EnglishStudy/Topic
 """
 
 
@@ -154,10 +163,12 @@ flt = 'zk new --no-input "$ZK_NOTEBOOK_DIR/FleetingNotes" --title "$*"'
 str = 'zk new --no-input "$ZK_NOTEBOOK_DIR/StructureNotes" --title "$*"'
 perm = 'zk new --no-input "$ZK_NOTEBOOK_DIR/PermanentNotes" --title "$*"'
 lit= 'zk new --no-input "$ZK_NOTEBOOK_DIR/LiteratureNotes" --title "$*"'
+eng= 'zk new --no-input "$ZK_NOTEBOOK_DIR/EnglishStudy/Topic"'
 ls-flt = "zk edit $ZK_NOTEBOOK_DIR/FleetingNotes --sort created- --interactive"
 ls-str = "zk edit $ZK_NOTEBOOK_DIR/StructureNotes --sort created- --interactive"
 ls-perm = "zk edit $ZK_NOTEBOOK_DIR/PermanentNotes --sort created- --interactive"
 ls-lit = "zk edit $ZK_NOTEBOOK_DIR/LiteratureNotes --sort created- --interactive"
+ls-eng = "zk edit $ZK_NOTEBOOK_DIR/EnglishStudy/Topic --sort created- --interactive"
 cit = 'zk list --interactive --quiet --format path --delimiter0 "$ZK_NOTEBOOK_DIR/LiteratureNotes" | xargs -0 yq --front-matter=extract -r "(.authors | join(\",\")) + \". \" + (.title) + \". \" + (.publication) + \". \" + (.published_at) + \". \" + (.url)" | pbcopy'
 
 daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/Journal/Daily"'
