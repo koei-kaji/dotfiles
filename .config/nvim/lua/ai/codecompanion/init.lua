@@ -30,21 +30,13 @@ require("codecompanion").setup({
         end,
         user = " Koei",
       },
-      slash_commands = {
-        ["file"] = {
-          opts = {
-            provider = "telescope",
-          },
-        },
-        ["buffer"] = {
-          opts = {
-            provider = "telescope",
-          },
-        },
-        ["symbols"] = {
-          opts = {
-            provider = "telescope",
-          },
+      -- mcphub
+      tools = {
+        ["mcp"] = {
+          callback = function()
+            return require("mcphub.extensions.codecompanion")
+          end,
+          description = "Call tools and resources from the MCP Servers",
         },
       },
     },

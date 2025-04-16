@@ -301,7 +301,7 @@ nmap("<Leader>nf", function() require("neogen").generate() end)
 -- codecompanion
 vim.cmd([[cabbrev cc CodeCompanion]])
 vim.cmd([[cabbrev ccc CodeCompanionChat]])
-nmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
+nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
 nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
 nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Code Companion - Explain LSP diagnostic")
 vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Code Companion - Explain code")
