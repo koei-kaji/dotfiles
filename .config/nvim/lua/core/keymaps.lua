@@ -325,3 +325,5 @@ nmap("<leader>znl", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'Litera
 nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 vmap("<leader>zf", ":'<,'>ZkMatch<CR>")
 nmap("<leader>zt", "<Cmd>ZkTags<CR>")
+
+vim.cmd([[cabbrev mcp MCPHub]])
