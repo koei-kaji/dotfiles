@@ -1,16 +1,15 @@
 ---
-title: {{format-date now '%Y-%m-%d'}}
+title: eng-{{format-date now '%Y-%m-%d'}}
 date: {{format-date now '%Y-%m-%d'}}
 tags: []
 aliases: []
 ---
 
-<[[EnglishStudy/Topic/{{format-date (date "yesterday") '%Y-%m-%d'}}|{{format-date (date "yesterday") '%Y-%m-%d'}}]]> | <[[EnglishStudy/Topic/{{format-date (date "tomorrow") '%Y-%m-%d'}}|{{format-date (date "tomorrow") '%Y-%m-%d'}}]]>
+<[[EnglishStudy/Topic/eng-{{format-date (date "yesterday") '%Y-%m-%d'}}|{{format-date (date "yesterday") '%Y-%m-%d'}}]]> | <[[EnglishStudy/Topic/eng-{{format-date (date "tomorrow") '%Y-%m-%d'}}|{{format-date (date "tomorrow") '%Y-%m-%d'}}]]>
 
 # Topic
 
 - 前回：
-- 教材：
 - Notion：
 - ChatGPT：
 
@@ -67,11 +66,13 @@ aliases: []
 
 型：
 
-| AI添削前 | AI添削後 |
-| :---     | :---     |
-|          |          |
-|          |          |
-|          |          |
+### AI添削前
+
+
+
+### AI添削後
+
+
 
 ## ロールプレイング
 
