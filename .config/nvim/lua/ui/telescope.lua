@@ -15,6 +15,10 @@ table.insert(vimgrep_arguments, "!**/.git/*")
 
 telescope.setup({
   defaults = {
+    set_env = {
+      LESS = "",
+      DELTA_PAGER = "less",
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -24,7 +28,6 @@ telescope.setup({
         ["q"] = actions.close,
       },
     },
-    layout_strategy = "vertical",
 
     -- `hidden = true` is not supported in text grep commands.
     vimgrep_arguments = vimgrep_arguments,

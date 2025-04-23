@@ -23,7 +23,7 @@ chmod +x link_dotfiles.sh
 
 ```
 [core]
-    pager = delta --side-by-side
+    pager = delta --keep-plus-minus-markers --line-numbers
 ```
 
 ### for delta

@@ -30,7 +30,6 @@ nmap("M", "%")
 xmap("p", "P")
 nmap("p", "]p`]")
 nmap("P", "]P`]")
-nmap("p", "]p`]")
 xmap("y", "mzy`z")
 vim.cmd([[
 cnoreabbrev <expr> s getcmdtype() .. getcmdline() ==# ':s' ? [getchar(), ''][1] .. "%s///g<Left><Left>" : 's'
@@ -200,14 +199,24 @@ local builtin = require("telescope.builtin")
 local telescope = require("telescope")
 local themes = require("telescope.themes")
 local conf = require("telescope.config").values
+local previewers = require("telescope.previewers")
+local delta = previewers.new_termopen_previewer({
+  get_command = function(entry)
+    if entry.status == "??" or "A " then
+      return { "git", "diff", entry.value }
+    end
+
+    return { "git", "diff", entry.value .. "^!" }
+  end,
+})
 
 nmap("<leader>ff", builtin.find_files, "Find files")
 nmap("<leader>fb", builtin.buffers, "Find buffers")
 nmap("<leader>fo", builtin.oldfiles, "Find old files")
 nmap("<leader>fw", builtin.grep_string, "Find word under cursor")
-nmap("<leader>fG", builtin.git_status, "Find uncommitted files")
 nmap("<leader>ft", "<Cmd>TodoTelescope<CR>", "Find comments")
 -- stylua: ignore start
+nmap("<leader>fG", function() builtin.git_status({previewer = delta}) end, "Find uncommitted files")
 nmap("<leader>fg", function() telescope.extensions.live_grep_args.live_grep_args() end, "Live grep")
 nmap("<leader>fn", function() telescope.extensions.notify.notify(themes.get_ivy()) end)
 -- stylua: ignore end

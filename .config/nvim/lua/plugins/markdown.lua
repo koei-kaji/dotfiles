@@ -11,6 +11,9 @@ return {
     },
     opts = {
       anti_conceal = { enabled = true },
+      code = {
+        border = "thick",
+      },
     },
     enabled = not vim.g.vscode,
     ft = { "markdown", "codecompanion" },
