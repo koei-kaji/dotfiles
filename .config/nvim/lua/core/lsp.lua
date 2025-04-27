@@ -10,10 +10,23 @@ require("mason-lspconfig").setup({
   },
 })
 
-require("lsp.go")
-require("lsp.js")
-require("lsp.lua")
-require("lsp.python")
-require("lsp.yaml")
+require("lspsaga").setup({
+  ui = {
+    code_action = "",
+  },
+  finder = {
+    layout = "normal",
+  },
+})
 
-require("lsp.lspsaga")
+vim.lsp.enable("gopls")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("pyright")
+vim.lsp.enable("ruff")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("yamlls")
+
+vim.lsp.config("*", {
+  root_markers = { ".git" },
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})

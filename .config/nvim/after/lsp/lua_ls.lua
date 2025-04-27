@@ -1,6 +1,4 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.lua_ls.setup({
+return {
   settings = {
     Lua = {
       diagnostics = {
@@ -8,4 +6,4 @@ lspconfig.lua_ls.setup({
       },
     },
   },
-})
+}
