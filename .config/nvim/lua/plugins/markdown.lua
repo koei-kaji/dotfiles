@@ -21,8 +21,13 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = ":call mkdp#util#install()",
+    ft = { "markdown", "codecompanion" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown", "codecompanion" }
+    end,
   },
   {
     "HakonHarnes/img-clip.nvim",

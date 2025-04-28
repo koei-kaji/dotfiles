@@ -52,3 +52,5 @@ require("codecompanion").setup({
   },
   prompt_library = require("ai.codecompanion.prompt_library"),
 })
+
+require("ai.codecompanion.extra_commands")

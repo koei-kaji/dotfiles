@@ -321,6 +321,13 @@ vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Code Companio
 vmap("<leader>cT", "<Cmd>CodeCompanion /tests<CR>", "Code Companion - Generate unit test")
 vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Code Companion - Refactor code")
 vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Code Companion - Add documentation")
+nmap("<leader>cS", function()
+  local name = vim.fn.input("Save as: ")
+  if name and name ~= "" then
+    vim.cmd("CodeCompanionSave " .. name)
+  end
+end, "Code Companion - Save chat")
+nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "Code Companion - Open past chat")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle")

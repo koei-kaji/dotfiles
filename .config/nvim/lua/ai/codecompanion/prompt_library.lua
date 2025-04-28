@@ -1,10 +1,3 @@
-local fmt = string.format
-
-local constants = {
-  LLM_ROLE = "llm",
-  USER_ROLE = "user",
-  SYSTEM_ROLE = "system",
-}
 local function code_block(context)
   local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
