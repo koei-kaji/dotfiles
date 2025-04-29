@@ -13,6 +13,9 @@ require("codecompanion").setup({
     end,
   },
   display = {
+    action_palette = {
+      provider = "default",
+    },
     diff = {
       provider = "mini_diff",
     },
@@ -21,23 +24,34 @@ require("codecompanion").setup({
       show_header_separator = true,
     },
   },
+  extensions = {
+    mcphub = {
+      callback = "mcphub.extensions.codecompanion",
+      opts = {
+        make_vars = true,
+        make_slash_commands = true,
+        show_result_in_chat = true,
+      },
+    },
+  },
   strategies = {
     chat = {
       adapter = "copilot",
       roles = {
+        -- https://github.com/olimorris/codecompanion.nvim/discussions/1094
         llm = function(adapter)
-          return "  " .. adapter.formatted_name .. ""
+          local model = ""
+          -- Try to get the model name from the adapter
+          if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+            model = adapter.schema.model.default
+            if type(model) == "function" then
+              model = model(adapter)
+            end
+          end
+
+          return "  " .. adapter.formatted_name .. " (" .. model .. ")"
         end,
         user = " Koei",
-      },
-      -- mcphub
-      tools = {
-        ["mcp"] = {
-          callback = function()
-            return require("mcphub.extensions.codecompanion")
-          end,
-          description = "Call tools and resources from the MCP Servers",
-        },
       },
     },
     inline = {
