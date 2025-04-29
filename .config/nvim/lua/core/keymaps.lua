@@ -185,6 +185,7 @@ require("gitsigns").setup({
     lmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
   end,
 })
+vim.cmd([[cabbrev dc DiffviewClose]])
 nmap("<leader>hd", "<cmd>DiffviewOpen HEAD~1<CR>")
 nmap("<leader>hh", "<cmd>DiffviewFileHistory %<CR>")
 ---- gitlinker
