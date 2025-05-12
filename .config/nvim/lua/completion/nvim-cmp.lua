@@ -16,25 +16,28 @@ cmp.setup({
   -- https://github.com/danymat/neogen?tab=readme-ov-file#default-cycling-support
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        if luasnip.expandable() then
-          luasnip.expand()
-        else
-          cmp.confirm({
-            select = true,
-          })
-        end
+      if neogen.jumpable() then
+        neogen.jump_next()
+      elseif cmp.visible() then
+        cmp.confirm({
+          select = true,
+        })
       else
         fallback()
       end
-    end),
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if neogen.jumpable(true) then
+        neogen.jump_prev()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
     ["<C-J>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.locally_jumpable(1) then
         luasnip.jump(1)
-      elseif neogen.jumpable() then
-        neogen.jump_next()
       else
         fallback()
       end
@@ -45,8 +48,6 @@ cmp.setup({
         cmp.select_prev_item()
       elseif luasnip.locally_jumpable(-1) then
         luasnip.jump(-1)
-      elseif neogen.jumpable(true) then
-        neogen.jump_prev()
       else
         fallback()
       end
