@@ -2,6 +2,7 @@ targets='
 .zshrc
 .zshenv
 .config
+.aider.conf.yml
 '
 
 for target in ${targets}; do
