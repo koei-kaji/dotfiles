@@ -23,25 +23,25 @@ chmod +x link_dotfiles.sh
 
 ```
 [core]
-    pager = delta --keep-plus-minus-markers --line-numbers
+    pager = delta --dark --keep-plus-minus-markers
 ```
 
 ### for delta
 
 ```
 [delta]
-    line-mumbers = true
-    minus-style                   = syntax "#37222c"
-    minus-non-emph-style          = syntax "#37222c"
-    minus-emph-style              = syntax "#713137"
-    minus-empty-line-marker-style = syntax "#37222c"
-    line-numbers-minus-style      = "#914c54"
-    plus-style                    = syntax "#20303b"
-    plus-non-emph-style           = syntax "#20303b"
-    plus-emph-style               = syntax "#2c5a66"
-    plus-empty-line-marker-style  = syntax "#20303b"
-    line-numbers-plus-style       = "#449dab"
-    line-numbers-zero-style       = "#3b4261"
+  line-numbers = true
+  minus-style                   = syntax "#602a3a"
+  minus-non-emph-style          = syntax "#602a3a"
+  minus-emph-style              = syntax "#803f4f"
+  minus-empty-line-marker-style = syntax "#602a3a"
+  line-numbers-minus-style      = "#db4b4b"
+  plus-style                    = syntax "#1a3449"
+  plus-non-emph-style           = syntax "#1a3449"
+  plus-emph-style               = syntax "#265566"
+  plus-empty-line-marker-style  = syntax "#1a3449"
+  line-numbers-plus-style       = "#4097aa"
+  line-numbers-zero-style       = "#565f89"
 ```
 
 ## colorscheme

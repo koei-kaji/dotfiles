@@ -142,6 +142,14 @@ nmap("<leader>a", "<cmd>AerialToggle!<CR>")
 nmap("<leader>gg", "<cmd>LazyGit<CR>")
 nmap("<leader>gc", "<cmd>LazyGitFilterCurrentFile<CR>")
 require("gitsigns").setup({
+  signs = {
+    add = { text = "▌" },
+    change = { text = "▌" },
+  },
+  signs_staged = {
+    add = { text = "▌" },
+    change = { text = "▌" },
+  },
   on_attach = function(bufnr)
     local gitsigns = require("gitsigns")
 
