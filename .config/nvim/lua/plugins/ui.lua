@@ -1,9 +1,5 @@
 return {
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-  },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
@@ -106,7 +102,13 @@ return {
       -- options
     },
     config = function()
-      require("fidget").setup({})
+      require("fidget").setup({
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
+      })
     end,
   },
   {

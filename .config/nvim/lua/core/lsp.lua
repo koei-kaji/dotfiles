@@ -17,6 +17,9 @@ require("lspsaga").setup({
   finder = {
     layout = "normal",
   },
+  options = {
+    theme = "catppuccin-mocha",
+  },
 })
 
 vim.lsp.enable("gopls")

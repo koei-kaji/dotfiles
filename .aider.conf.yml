@@ -168,31 +168,31 @@
 #pretty: true
 
 ## ユーザー入力の色 (デフォルト: #00cc00)
-user-input-color: "#9ece6a"  # Tokyo Nightの緑色
+user-input-color: "#a6e3a1"  # Catppuccin Mochaの緑色
 
 ## ツール出力の色 (デフォルト: なし)
-tool-output-color: "#7aa2f7"  # Tokyo Nightの青色
+tool-output-color: "#89b4fa"  # Catppuccin Mochaの青色
 
 ## ツールエラーメッセージの色 (デフォルト: #FF2222)
-tool-error-color: "#f7768e"  # Tokyo Nightの赤色
+tool-error-color: "#f38ba8"  # Catppuccin Mochaの赤色
 
 ## ツール警告メッセージの色 (デフォルト: #FFA500)
-tool-warning-color: "#e0af68"  # Tokyo Nightのオレンジ色
+tool-warning-color: "#f9e2af"  # Catppuccin Mochaのオレンジ/黄色
 
 ## アシスタント出力の色 (デフォルト: #0088ff)
-assistant-output-color: "#bb9af7"  # Tokyo Nightの紫色
+assistant-output-color: "#cba6f7"  # Catppuccin Mochaの紫色
 
 ## 補完メニューの色 (デフォルト: ターミナルのデフォルトテキスト色)
-completion-menu-color: "#c0caf5"  # Tokyo Nightの薄い青色
+completion-menu-color: "#cdd6f4"  # Catppuccin Mochaのテキスト色
 
 ## 補完メニューの背景色 (デフォルト: ターミナルのデフォルト背景色)
-completion-menu-bg-color: "#1a1b26"  # Tokyo Nightの背景色
+completion-menu-bg-color: "#1e1e2e"  # Catppuccin Mochaの背景色
 
 ## 補完メニューの現在アイテムの色 (デフォルト: ターミナルのデフォルト背景色)
-completion-menu-current-color: "#c0caf5"  # Tokyo Nightの薄い青色
+completion-menu-current-color: "#cdd6f4"  # Catppuccin Mochaのテキスト色
 
 ## 補完メニューの現在アイテムの背景色 (デフォルト: ターミナルのデフォルトテキスト色)
-completion-menu-current-bg-color: "#3b4261"  # Tokyo Nightのハイライト色
+completion-menu-current-bg-color: "#313244"  # Catppuccin Mochaのサーフェス1色
 
 ## Set the markdown code theme (default: default, other options include monokai, solarized-dark, solarized-light, or a Pygments builtin style, see https://pygments.org/styles for available themes)
 code-theme: lightbulb
