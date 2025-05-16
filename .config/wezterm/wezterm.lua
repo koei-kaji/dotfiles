@@ -39,7 +39,13 @@ config.window_padding = {
 config.window_frame = {
   font = wezterm.font("Moralerspace Argon NF"),
   font_size = 15.0,
+  inactive_titlebar_bg = "none",
+  active_titlebar_bg = "none",
 }
+config.window_background_gradient = {
+  colors = { "#1e1e2e" }, -- Catppuccin mocha base color
+}
+config.show_new_tab_button_in_tab_bar = false
 config.font = wezterm.font("Moralerspace Argon NF")
 config.font_size = 18.0
 
