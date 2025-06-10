@@ -14,6 +14,15 @@ return {
       code = {
         border = "thick",
       },
+      checkbox = {
+        enabled = true,
+        unchecked = {
+          icon = "   󰄱 ",
+        },
+        checked = {
+          icon = "   󰱒 ",
+        },
+      },
     },
     enabled = not vim.g.vscode,
     ft = { "markdown", "codecompanion" },
