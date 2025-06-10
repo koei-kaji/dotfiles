@@ -16,8 +16,9 @@ alias ld="lazydocker"
 alias lg="lazygit"
 alias arc='open -a "Arc"'
 
+alias gw='git worktree'
 alias gget='ghq get'
-alias gcd='cd $(ghq root)/$(_ghq-fzf)'
+alias gcd='cd $(ghq root)/$(_ghq-fzf) && gwcd'
 alias gvi='cd $(ghq root)/$(_ghq-fzf) && vim .'
 alias gcode='cd $(ghq root)/$(_ghq-fzf) && code .'
 alias ghb="open \$(_ghq-fzf | awk '{print \"https://\"\$1}')"
@@ -26,8 +27,9 @@ alias j2y='yq -p=json'
 alias y2j="yq -o=json '.'"
 alias ccw='y2j codecompanion-workspace.yaml > codecompanion-workspace.json'
 
+
 function _ghq-fzf() {
-  local src=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  local src=$(ghq list | grep -v -- '---' | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$src" ]; then
       echo $src
   fi
@@ -61,4 +63,110 @@ function ghmm() {
         echo "No match"
         ;;
     esac
+}
+
+function gwa() {
+  if [ -z "$1" ]; then
+    echo "Usage: gwa <branch-name>"
+    return 1
+  fi
+
+  local repo_dir=$(git rev-parse --show-toplevel)
+  local repo_name=$(basename $repo_dir)
+  local workpath="${repo_name}---$1"
+
+  cd $repo_dir
+  git worktree add ../${workpath} -b $1 && cd ../${workpath}
+
+}
+
+function gwcd() {
+  local repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [ $? -ne 0 ]; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
+  local worktree_info=$(git worktree list --porcelain)
+  if [ -z "$worktree_info" ]; then
+    echo "No worktrees found"
+    return 1
+  fi
+
+  # ブランチ名とパスの対応表を作成
+  local branch_path_map=$(echo "$worktree_info" | awk '
+    /^worktree / { path = substr($0, 10) }
+    /^branch / { branch = substr($0, 8); print branch ":" path }
+  ')
+
+  if [ -z "$branch_path_map" ]; then
+    echo "No worktrees with branches found"
+    return 1
+  fi
+
+  # ブランチ名のみを表示してfzfで選択
+  local selected_branch=$(echo "$branch_path_map" | cut -d':' -f1 | fzf --preview "
+    echo '$branch_path_map' | grep '^{}:' | cut -d':' -f2- | xargs ls -la
+  ")
+
+  if [ -n "$selected_branch" ]; then
+    local selected_path=$(echo "$branch_path_map" | grep "^${selected_branch}:" | cut -d':' -f2-)
+    if [ -n "$selected_path" ]; then
+      cd "$selected_path"
+    fi
+  fi
+}
+
+function gwrm() {
+  local repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [ $? -ne 0 ]; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
+  local worktree_info=$(git worktree list --porcelain)
+  if [ -z "$worktree_info" ]; then
+    echo "No worktrees found"
+    return 1
+  fi
+
+  # ブランチ名とパスの対応表を作成（mainブランチは除外）
+  local branch_path_map=$(echo "$worktree_info" | awk '
+    /^worktree / { path = substr($0, 10) }
+    /^branch / {
+      branch = substr($0, 8)
+      if (branch != "refs/heads/main" && branch != "refs/heads/master") {
+        gsub("refs/heads/", "", branch)
+        print branch ":" path
+      }
+    }
+  ')
+
+  if [ -z "$branch_path_map" ]; then
+    echo "No removable worktrees found (main/master branches are protected)"
+    return 1
+  fi
+
+  # ブランチ名のみを表示してfzfで選択
+  local selected_branch=$(echo "$branch_path_map" | cut -d':' -f1 | fzf --prompt="Select worktree to remove: " --preview "
+    echo '$branch_path_map' | grep '^{}:' | cut -d':' -f2- | xargs ls -la
+  ")
+
+  if [ -n "$selected_branch" ]; then
+    local selected_path=$(echo "$branch_path_map" | grep "^${selected_branch}:" | cut -d':' -f2-)
+    if [ -n "$selected_path" ]; then
+      echo "Removing worktree: $selected_branch ($selected_path)"
+      read "confirm?Are you sure? (y/N): "
+      if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        git worktree remove "$selected_path"
+        if [ $? -eq 0 ]; then
+          echo "Successfully removed worktree: $selected_branch"
+        else
+          echo "Failed to remove worktree: $selected_branch"
+        fi
+      else
+        echo "Cancelled"
+      fi
+    fi
+  fi
 }
