@@ -93,24 +93,31 @@ function gwcd() {
     return 1
   fi
 
-  # ブランチ名とパスの対応表を作成
-  local branch_path_map=$(echo "$worktree_info" | awk '
+  # basename, ブランチ名, パスの対応表を作成
+  local worktree_map=$(echo "$worktree_info" | awk '
     /^worktree / { path = substr($0, 10) }
-    /^branch / { branch = substr($0, 8); print branch ":" path }
+    /^branch / {
+      branch = substr($0, 8)
+      gsub("refs/heads/", "", branch)
+      cmd = "basename " path
+      cmd | getline basename
+      close(cmd)
+      print basename ":" branch ":" path
+    }
   ')
 
-  if [ -z "$branch_path_map" ]; then
+  if [ -z "$worktree_map" ]; then
     echo "No worktrees with branches found"
     return 1
   fi
 
-  # ブランチ名のみを表示してfzfで選択
-  local selected_branch=$(echo "$branch_path_map" | cut -d':' -f1 | fzf --preview "
-    echo '$branch_path_map' | grep '^{}:' | cut -d':' -f2- | xargs ls -la
+  # basenameのみを表示してfzfで選択
+  local selected_basename=$(echo "$worktree_map" | cut -d':' -f1 | fzf --preview "
+    echo '$worktree_map' | grep '^{}:' | cut -d':' -f3- | xargs ls -la
   ")
 
-  if [ -n "$selected_branch" ]; then
-    local selected_path=$(echo "$branch_path_map" | grep "^${selected_branch}:" | cut -d':' -f2-)
+  if [ -n "$selected_basename" ]; then
+    local selected_path=$(echo "$worktree_map" | grep "^${selected_basename}:" | cut -d':' -f3-)
     if [ -n "$selected_path" ]; then
       cd "$selected_path"
     fi
@@ -131,38 +138,44 @@ function gwrm() {
   fi
 
   # ブランチ名とパスの対応表を作成（mainブランチは除外）
-  local branch_path_map=$(echo "$worktree_info" | awk '
+  local worktree_map=$(echo "$worktree_info" | awk '
     /^worktree / { path = substr($0, 10) }
     /^branch / {
       branch = substr($0, 8)
       if (branch != "refs/heads/main" && branch != "refs/heads/master") {
         gsub("refs/heads/", "", branch)
-        print branch ":" path
+        cmd = "basename " path
+        cmd | getline basename
+        close(cmd)
+        if (index(path, "---") > 0) {
+          print basename ":" branch ":" path
+        }
       }
     }
   ')
 
-  if [ -z "$branch_path_map" ]; then
+  if [ -z "$worktree_map" ]; then
     echo "No removable worktrees found (main/master branches are protected)"
     return 1
   fi
 
   # ブランチ名のみを表示してfzfで選択
-  local selected_branch=$(echo "$branch_path_map" | cut -d':' -f1 | fzf --prompt="Select worktree to remove: " --preview "
-    echo '$branch_path_map' | grep '^{}:' | cut -d':' -f2- | xargs ls -la
+  local selected_basename=$(echo "$worktree_map" | cut -d':' -f1 | fzf --prompt="Select worktree to remove: " --preview "
+    echo '$worktree_map' | grep '^{}:' | cut -d':' -f3- | xargs ls -la
   ")
 
-  if [ -n "$selected_branch" ]; then
-    local selected_path=$(echo "$branch_path_map" | grep "^${selected_branch}:" | cut -d':' -f2-)
+  if [ -n "$selected_basename" ]; then
+    local selected_path=$(echo "$worktree_map" | grep "^${selected_basename}:" | cut -d':' -f3-)
+
     if [ -n "$selected_path" ]; then
-      echo "Removing worktree: $selected_branch ($selected_path)"
+      echo "Removing worktree: $selected_basename ($selected_path)"
       read "confirm?Are you sure? (y/N): "
       if [[ "$confirm" =~ ^[Yy]$ ]]; then
         git worktree remove "$selected_path"
         if [ $? -eq 0 ]; then
-          echo "Successfully removed worktree: $selected_branch"
+          echo "Successfully removed worktree: $selected_basename"
         else
-          echo "Failed to remove worktree: $selected_branch"
+          echo "Failed to remove worktree: $selected_basename"
         fi
       else
         echo "Cancelled"
