@@ -113,7 +113,28 @@ function gwcd() {
 
   # basenameのみを表示してfzfで選択
   local selected_basename=$(echo "$worktree_map" | cut -d':' -f1 | fzf --preview "
-    echo '$worktree_map' | grep '^{}:' | cut -d':' -f3- | xargs ls -la
+    worktree_info=\$(echo '$worktree_map' | grep '^{}:')
+    worktree_path=\$(echo \"\$worktree_info\" | cut -d':' -f3-)
+    current_branch=\$(echo \"\$worktree_info\" | cut -d':' -f2)
+
+    if [ -n \"\$worktree_path\" ]; then
+      cd \"\$worktree_path\" 2>/dev/null || exit 1
+
+      # origin/main または origin/master を確認
+      if git show-ref --verify --quiet refs/remotes/origin/main; then
+        base_branch='origin/main'
+      elif git show-ref --verify --quiet refs/remotes/origin/master; then
+        base_branch='origin/master'
+      else
+        echo 'No origin/main or origin/master found'
+        exit 1
+      fi
+
+      echo \"Branch: \$current_branch\"
+      echo \"Diff against \$base_branch:\"
+      echo \"======================================\"
+      git diff \"\$base_branch\"...\$current_branch --color=always --stat
+    fi
   ")
 
   if [ -n "$selected_basename" ]; then
@@ -161,7 +182,29 @@ function gwrm() {
 
   # ブランチ名のみを表示してfzfで選択
   local selected_basename=$(echo "$worktree_map" | cut -d':' -f1 | fzf --prompt="Select worktree to remove: " --preview "
-    echo '$worktree_map' | grep '^{}:' | cut -d':' -f3- | xargs ls -la
+    worktree_info=\$(echo '$worktree_map' | grep '^{}:')
+    worktree_path=\$(echo \"\$worktree_info\" | cut -d':' -f3-)
+    current_branch=\$(echo \"\$worktree_info\" | cut -d':' -f2)
+
+    if [ -n \"\$worktree_path\" ]; then
+      cd \"\$worktree_path\" 2>/dev/null || exit 1
+
+      # origin/main または origin/master を確認
+      if git show-ref --verify --quiet refs/remotes/origin/main; then
+        base_branch='origin/main'
+      elif git show-ref --verify --quiet refs/remotes/origin/master; then
+        base_branch='origin/master'
+      else
+        echo 'No origin/main or origin/master found'
+        exit 1
+      fi
+
+      echo \"Branch: \$current_branch\"
+      echo \"Path: \$worktree_path\"
+      echo \"Diff against \$base_branch:\"
+      echo \"======================================\"
+      git diff \"\$base_branch\"...\$current_branch --color=always --stat
+    fi
   ")
 
   if [ -n "$selected_basename" ]; then
