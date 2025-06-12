@@ -1,3 +1,6 @@
+.claude/*
+!.claude/CLAUDE.md
+!.claude/settings.json
 .config/*
 !.config/bat/
 !.config/lazygit/

@@ -2,6 +2,7 @@ targets='
 .zshrc
 .zshenv
 .config
+.claude
 .aider.conf.yml
 '
 

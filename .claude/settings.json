@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "Bash(uv run:*)",
+      "Bash(make:*)",
+      "Bash(git:*)",
+    ],
+    "deny": [
+      "Bash(rm -r:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(git commit:*)",
+      "Bash(npm publish:*)",
+      "Bash(python:*)",
+      "Bash(uv tool:*)",
+    ]
+  },
+}
