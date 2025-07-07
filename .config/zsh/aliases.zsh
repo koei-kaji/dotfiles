@@ -18,7 +18,7 @@ alias arc='open -a "Arc"'
 
 alias gw='git worktree'
 alias gget='ghq get'
-alias gcd='cd $(ghq root)/$(_ghq-fzf) && gwcd'
+alias gcd='cd $(ghq root)/$(_ghq-fzf)'
 alias gvi='cd $(ghq root)/$(_ghq-fzf) && vim .'
 alias gcode='cd $(ghq root)/$(_ghq-fzf) && code .'
 alias ghb="open \$(_ghq-fzf | awk '{print \"https://\"\$1}')"

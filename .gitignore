@@ -8,6 +8,8 @@
 .config/nvim/lua/core/secrets.lua
 .config/nvim/lazy-lock.json
 !.config/sheldon/
+.config/tmux/*
+!.config/tmux/tmux.conf
 !.config/ueberzugpp/
 !.config/wezterm/
 !.config/zk/
