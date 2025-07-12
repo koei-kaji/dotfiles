@@ -69,6 +69,37 @@ nmap("<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>")
 nmap("<leader>bu", "<Cmd>BufferRestore<CR>")
 nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
 
+-- copy path
+local function copy_to_clipboard(path, description)
+  if path and path ~= "" then
+    vim.fn.setreg("+", path)
+    vim.notify(description .. ": " .. path, vim.log.levels.INFO)
+  else
+    vim.notify("No file path to copy", vim.log.levels.WARN)
+  end
+end
+
+nmap("<leader>y", function()
+  local current_file = vim.fn.expand("%:p")
+  local cwd = vim.fn.getcwd()
+
+  if current_file == "" then
+    vim.notify("No file path to copy", vim.log.levels.WARN)
+    return
+  end
+
+  -- 現在の作業ディレクトリからの相対パスを計算
+  local relative_path = vim.fn.fnamemodify(current_file, ":s?" .. cwd .. "/??")
+
+  -- もし相対パスが絶対パスと同じなら、ファイルがcwd外にある
+  if relative_path == current_file then
+    vim.notify("File is outside current working directory", vim.log.levels.ERROR)
+    return
+  end
+
+  copy_to_clipboard(relative_path, "Relative path copied")
+end, "Copy relative path to clipboard")
+
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
 nmap("<leader>wt", "<Cmd>Neotree toggle<CR>")
