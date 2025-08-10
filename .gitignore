@@ -12,7 +12,6 @@
 !.config/tmux/tmux.conf
 !.config/ueberzugpp/
 !.config/wezterm/
-!.config/zk/
 !.config/zsh/
 .DS_Store
 Brewfile.lock.json
