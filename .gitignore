@@ -3,6 +3,7 @@
 !.claude/settings.json
 .config/*
 !.config/bat/
+!.config/borders/
 !.config/lazygit/
 !.config/nvim/
 .config/nvim/lua/core/secrets.lua
