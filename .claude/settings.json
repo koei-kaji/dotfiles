@@ -5,7 +5,7 @@
       "Bash(npm run test:*)",
       "Bash(uv run:*)",
       "Bash(make:*)",
-      "Bash(git:*)",
+      "Bash(git:*)"
     ],
     "deny": [
       "Bash(rm -r:*)",
@@ -14,7 +14,7 @@
       "Bash(git commit:*)",
       "Bash(npm publish:*)",
       "Bash(python:*)",
-      "Bash(uv tool:*)",
+      "Bash(uv tool:*)"
     ]
   },
   "preferredNotifChannel": "terminal_bell"

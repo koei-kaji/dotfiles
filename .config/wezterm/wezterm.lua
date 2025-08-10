@@ -36,6 +36,18 @@ config.window_padding = {
   bottom = 0,
 }
 
+config.background = {
+  {
+    source = {
+      File = wezterm.config_dir .. "/background.jpg",
+    },
+    opacity = 0.9,
+    hsb = {
+      brightness = 0.08,
+    },
+  },
+}
+
 config.window_frame = {
   font = wezterm.font("Moralerspace Argon NF"),
   font_size = 15.0,
@@ -54,5 +66,14 @@ config.macos_window_background_blur = 30
 
 -- https://wezterm.org/config/lua/config/skip_close_confirmation_for_processes_named.html
 config.skip_close_confirmation_for_processes_named = {}
+
+-- Claude Code specific key bindings
+config.keys = {
+  {
+    key = "Enter",
+    mods = "SHIFT",
+    action = wezterm.action.SendString("\n"),
+  },
+}
 
 return config
