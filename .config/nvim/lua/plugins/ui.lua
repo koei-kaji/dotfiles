@@ -80,6 +80,14 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    opts = {
+      icons = {
+        rules = {
+          { pattern = "explorer", icon = "", color = "blue" },
+          { pattern = "ai", icon = "󰚩", color = "blue" },
+        },
+      },
+    },
   },
   {
     "sphamba/smear-cursor.nvim",
@@ -131,6 +139,19 @@ return {
           enabled = false,
         },
       })
+    end,
+  },
+  {
+    "anuvyklack/windows.nvim",
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require("windows").setup()
     end,
   },
 }

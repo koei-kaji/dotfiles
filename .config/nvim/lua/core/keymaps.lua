@@ -47,31 +47,34 @@ nmap("F<cr>", "{")
 nmap("f<cr>", "}")
 
 -- vim
-nmap("<leader>qq", "<Cmd>q<CR>")
 nmap("<leader>QQ", "<Cmd>qa<CR>")
 
 -- window
-nmap("<leader>w/", ":vsplit<CR><C-w>l")
-nmap("<leader>w-", ":split<CR><C-w>j")
-nmap("<leader>wh", "<C-w>h")
-nmap("<leader>wj", "<C-w>j")
-nmap("<leader>wk", "<C-w>k")
-nmap("<leader>wl", "<C-w>l")
-nmap("<leader>wd", ":close<CR>")
-nmap("<leader>wD", ":only<CR>")
+nmap("<leader>w/", ":vsplit<CR><C-w>l", "Window - split vertically")
+nmap("<leader>w-", ":split<CR><C-w>j", "Window - split horizontally")
+nmap("<leader>wh", "<C-w>h", "Window - focus left")
+nmap("<leader>wj", "<C-w>j", "Window - focus below")
+nmap("<leader>wk", "<C-w>k", "Window - focus above")
+nmap("<leader>wl", "<C-w>l", "Window - focus right")
+nmap("<leader>wd", ":close<CR>", "Window - close")
+nmap("<leader>wD", ":only<CR>", "Window - close others")
+nmap("<leader>w.", "<Cmd>WindowsMaximize<CR>", "Window - maximize")
+nmap("<leader>w_", "<Cmd>WindowsMaximizeVertically<CR>", "Window - maxmize vertically")
+nmap("<leader>w?", "<Cmd>WindowsMaximizeHorizontally<CR>", "Window - mazimaize horizontally")
+nmap("<leader>w=", "<Cmd>WindowsEqualize<CR>", "Window - reset")
 
 -- buffer
 -- See: https://github.com/romgrk/barbar.nvim
 nmap("<C-j>", "<Cmd>BufferPrevious<CR>")
 nmap("<C-k>", "<Cmd>BufferNext<CR>")
-nmap("<leader>bb", "<Cmd>BufferOrderByName<CR>")
-nmap("<leader>bj", "<Cmd>BufferMovePrevious<CR>")
-nmap("<leader>bk", "<Cmd>BufferMoveNext<CR>")
-nmap("<leader>bd", "<Cmd>BufferClose<CR>")
-nmap("<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>")
-nmap("<leader>bu", "<Cmd>BufferRestore<CR>")
-nmap("<leader>bp", "<Cmd>BufferPin<CR>")
-nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
+nmap("<leader>bb", "<Cmd>BufferOrderByName<CR>", "Buffer - order")
+nmap("<leader>bj", "<Cmd>BufferMovePrevious<CR>", "Buffer - move previous")
+nmap("<leader>bk", "<Cmd>BufferMoveNext<CR>", "Buffer - move next")
+nmap("<leader>bd", "<Cmd>BufferClose<CR>", "Buffer - close")
+nmap("<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>", "Buffer - close others")
+nmap("<leader>bu", "<Cmd>BufferRestore<CR>", "Buffer - restore")
+nmap("<leader>bp", "<Cmd>BufferPin<CR>", "Buffer - pin")
+nmap("<leader>br", "<Cmd>Neotree reveal<CR>", "Explorer - reveal")
 
 -- copy path
 local function copy_to_clipboard(path, description)
@@ -106,8 +109,9 @@ end, "Copy relative path to clipboard")
 
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
-nmap("<leader>wt", "<Cmd>Neotree toggle<CR>")
-nmap("<leader>we", "<Cmd>Neotree focus<CR>")
+nmap("<leader>wt", "<Cmd>Neotree toggle<CR>", "Explorer - toggle")
+
+nmap("<leader>we", "<Cmd>Neotree focus<CR>", "Explorer - focus")
 
 -- Search config
 -- See: https://github.com/kevinhwang91/nvim-hlslens
@@ -121,8 +125,8 @@ nmap("g#", [[g#<Cmd>lua require('hlslens').start()<CR>]])
 -- LSP
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-nmap("<leader>do", vim.diagnostic.open_float, "Open diagnostic float window")
-nmap("<leader>dq", vim.diagnostic.setloclist, "Select diagnostic in loclist")
+nmap("<leader>do", vim.diagnostic.open_float, "Diagnostic - show in float")
+nmap("<leader>dq", vim.diagnostic.setloclist, "Diagnostic - select in loclist")
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -170,12 +174,12 @@ require("aerial").setup({
     vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
   end,
 })
-nmap("<leader>a", "<cmd>AerialToggle!<CR>")
+nmap("<leader>a", "<cmd>AerialToggle!<CR>", "Explorer - toggle symbol")
 
 -- Git
 ---- lazygit
-nmap("<leader>gg", "<cmd>LazyGit<CR>")
-nmap("<leader>gc", "<cmd>LazyGitFilterCurrentFile<CR>")
+nmap("<leader>gg", "<cmd>LazyGit<CR>", "Git - open LazyGit")
+nmap("<leader>gc", "<cmd>LazyGitFilterCurrentFile<CR>", "Git - open current file history")
 require("gitsigns").setup({
   signs = {
     add = { text = "▌" },
@@ -229,14 +233,10 @@ require("gitsigns").setup({
   end,
 })
 vim.cmd([[cabbrev dc DiffviewClose]])
-nmap("<leader>hd", "<cmd>DiffviewOpen HEAD~1<CR>")
-nmap("<leader>hh", "<cmd>DiffviewFileHistory %<CR>")
+nmap("<leader>hd", "<cmd>DiffviewOpen HEAD~1<CR>", "Git - open diffview")
 ---- gitlinker
-nvmap("<leader>gy", "<cmd>GitLink<CR>", "Yank git link")
-nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
-
--- Copilot
-nvmap("<leader>cc", "<Cmd>CopilotChatToggle<CR>")
+nvmap("<leader>gy", "<cmd>GitLink<CR>", "Git - yank link")
+nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Git - open link")
 
 -- telescope
 local builtin = require("telescope.builtin")
@@ -254,15 +254,15 @@ local delta = previewers.new_termopen_previewer({
   end,
 })
 
-nmap("<leader>ff", builtin.find_files, "Find files")
-nmap("<leader>fb", builtin.buffers, "Find buffers")
-nmap("<leader>fo", builtin.oldfiles, "Find old files")
-nmap("<leader>fw", builtin.grep_string, "Find word under cursor")
-nmap("<leader>ft", "<Cmd>TodoTelescope<CR>", "Find comments")
+nmap("<leader>ff", builtin.find_files, "Search - files")
+nmap("<leader>fb", builtin.buffers, "Search - buffers")
+nmap("<leader>fo", builtin.oldfiles, "Search - old files")
+nmap("<leader>fw", builtin.grep_string, "Search - word under cursor")
+nmap("<leader>ft", "<Cmd>TodoTelescope<CR>", "Search - TODO comments")
 -- stylua: ignore start
-nmap("<leader>fG", function() builtin.git_status({previewer = delta}) end, "Find uncommitted files")
-nmap("<leader>fg", function() telescope.extensions.live_grep_args.live_grep_args() end, "Live grep")
-nmap("<leader>fn", function() telescope.extensions.notify.notify(themes.get_ivy()) end)
+nmap("<leader>fG", function() builtin.git_status({previewer = delta}) end, "Search - uncommitted files")
+nmap("<leader>fg", function() telescope.extensions.live_grep_args.live_grep_args() end, "Search - grep")
+nmap("<leader>fn", function() telescope.extensions.notify.notify(themes.get_ivy()) end, "Search - notifications")
 -- stylua: ignore end
 
 -- harpoon
@@ -354,35 +354,30 @@ nmap("<Leader>nf", function() require("neogen").generate() end)
 -- codecompanion
 vim.cmd([[cabbrev cc CodeCompanion]])
 vim.cmd([[cabbrev ccc CodeCompanionChat]])
-nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Code Companion - Actions")
-nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Code Companion - Toggle")
-vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Code Companion - Add code to a chat buffer")
-nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Code Companion - Explain LSP diagnostic")
-vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Code Companion - Explain code")
-vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "Code Companion - Fix code")
-vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "Code Companion - Review code")
-vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "Code Companion - Better naming")
-vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Code Companion - Translate")
-vmap("<leader>cT", "<Cmd>CodeCompanion /tests<CR>", "Code Companion - Generate unit test")
-vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Code Companion - Refactor code")
-vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Code Companion - Add documentation")
+nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "AI - actions")
+nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "AI - toggle chat")
+vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "AI - add code to chat")
+nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "AI - explain LSP diagnostic")
+vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "AI - explain code")
+vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "AI - Fix code")
+vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "AI - review code")
+vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "AI - better naming")
+vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "AI - translate into JP")
+vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "AI - refactor code")
+vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "AI - add documentation")
 nmap("<leader>cS", function()
   local name = vim.fn.input("Save as: ")
   if name and name ~= "" then
     vim.cmd("CodeCompanionSave " .. name)
   end
-end, "Code Companion - Save chat")
-nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "Code Companion - Open past chat")
+end, "AI - save chat")
+nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "AI - open past chat")
 
 -- markdown
-nmap("<C-p>", "<Plug>MarkdownPreviewToggle")
-nmap("<leader>p", "<Cmd>PasteImage<CR>", "Paste image from system clipboard")
+nmap("<C-p>", "<Plug>MarkdownPreviewToggle", "Markdown - toggle preview")
+nmap("<leader>p", "<Cmd>PasteImage<CR>", "Image - paste from clipboard")
 
 -- zk
-nmap("<leader>znf", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'FleetingNotes' }<CR>")
-nmap("<leader>znp", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'PermanentNotes' }<CR>")
-nmap("<leader>zns", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'StructureNotes' }<CR>")
-nmap("<leader>znl", "<Cmd>ZkNew { title = vim.fn.input('Title: '), dir = 'LiteratureNotes' }<CR>")
 nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
 vmap("<leader>zf", ":'<,'>ZkMatch<CR>")
 nmap("<leader>zt", "<Cmd>ZkTags<CR>")
