@@ -64,9 +64,13 @@ nmap("<leader>wD", ":only<CR>")
 -- See: https://github.com/romgrk/barbar.nvim
 nmap("<C-j>", "<Cmd>BufferPrevious<CR>")
 nmap("<C-k>", "<Cmd>BufferNext<CR>")
+nmap("<leader>bb", "<Cmd>BufferOrderByName<CR>")
+nmap("<leader>bj", "<Cmd>BufferMovePrevious<CR>")
+nmap("<leader>bk", "<Cmd>BufferMoveNext<CR>")
 nmap("<leader>bd", "<Cmd>BufferClose<CR>")
 nmap("<leader>bD", "<Cmd>BufferCloseAllButCurrent<CR>")
 nmap("<leader>bu", "<Cmd>BufferRestore<CR>")
+nmap("<leader>bp", "<Cmd>BufferPin<CR>")
 nmap("<leader>br", "<Cmd>Neotree reveal<CR>")
 
 -- copy path
