@@ -1,0 +1,28 @@
+litellm_settings:
+  drop_params: true
+
+model_list:
+  - model_name: github_copilot/gemini-2.5-pro
+    litellm_params:
+      model: github_copilot/gemini-2.5-pro
+      extra_headers:
+        User-Agent: GithubCopilot/1.155.0
+        Editor-Plugin-Version: copilot/1.155.0
+        Editor-Version: vscode/1.85.1
+        Copilot-Integration-Id: copilot-chat
+  - model_name: github_copilot/claude-sonnet-4
+    litellm_params:
+      model: github_copilot/claude-sonnet-4
+      extra_headers:
+        User-Agent: GithubCopilot/1.155.0
+        Editor-Plugin-Version: copilot/1.155.0
+        Editor-Version: vscode/1.85.1
+        Copilot-Integration-Id: copilot-chat
+  - model_name: github_copilot/gpt-4
+    litellm_params:
+      model: github_copilot/gpt-4
+      extra_headers:
+        User-Agent: GithubCopilot/1.155.0
+        Editor-Plugin-Version: copilot/1.155.0
+        Editor-Version: vscode/1.85.1
+        Copilot-Integration-Id: copilot-chat

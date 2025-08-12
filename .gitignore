@@ -4,7 +4,11 @@
 .config/*
 !.config/bat/
 !.config/borders/
+!.config/crush/
 !.config/lazygit/
+!.config/litellm/
+.config/litellm/*
+!.config/litellm/config.yaml
 !.config/mise/
 !.config/nvim/
 .config/nvim/lua/core/secrets.lua

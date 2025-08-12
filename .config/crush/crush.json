@@ -1,0 +1,30 @@
+{
+    "$schema": "https://charm.land/crush.json",
+    "providers": {
+        "copilot": {
+            "type": "openai",
+            "base_url": "http://localhost:14000/v1",
+            "api_key": "$LITELLM_COPILOT_KEY",
+            "models": [
+                {
+                    "id": "github_copilot/gemini-2.5-pro",
+                    "name": "gemini-2.5-pro",
+                    "context_window": 128000,
+                    "default_max_tokens": 80000
+                },
+                {
+                    "id": "github_copilot/claude-sonnet-4",
+                    "name": "claude-sonnet-4",
+                    "context_window": 128000,
+                    "default_max_tokens": 80000
+                },
+                {
+                    "id": "github_copilot/gpt-4",
+                    "name": "gpt-4",
+                    "context_window": 128000,
+                    "default_max_tokens": 80000
+                }
+            ]
+        }
+    }
+}

@@ -3,6 +3,7 @@ node = "latest"
 bun = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@google/gemini-cli" = "latest"
+"npm:@openai/codex" = "latest"
 "npm:swagger-ui-watcher" = "latest"
 "npm:mcp-hub" = "latest"
 

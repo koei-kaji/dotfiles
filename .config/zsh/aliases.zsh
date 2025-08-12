@@ -27,6 +27,7 @@ alias j2y='yq -p=json'
 alias y2j="yq -o=json '.'"
 alias ccw='y2j codecompanion-workspace.yaml > codecompanion-workspace.json'
 
+alias litellm='litellm --config ${XDG_CONFIG_HOME}/litellm/config.yaml --port 14000'
 
 function _ghq-fzf() {
   local src=$(ghq list | grep -v -- '---' | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")

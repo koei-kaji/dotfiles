@@ -6,3 +6,5 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!**/.git/*"'
 
 # go
 export PATH="$HOME/go/bin:$PATH"
+
+export LITELLM_COPILOT_KEY=$(cat "$XDG_CONFIG_HOME/litellm/github_copilot/access-token" 2>/dev/null)
