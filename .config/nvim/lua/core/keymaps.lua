@@ -47,7 +47,7 @@ nmap("F<cr>", "{")
 nmap("f<cr>", "}")
 
 -- vim
-nmap("<leader>QQ", "<Cmd>qa<CR>")
+nmap("<leader>QQ", "<Cmd>qa<CR>", "Neovim - close")
 
 -- window
 nmap("<leader>w/", ":vsplit<CR><C-w>l", "Window - split vertically")
@@ -60,7 +60,7 @@ nmap("<leader>wd", ":close<CR>", "Window - close")
 nmap("<leader>wD", ":only<CR>", "Window - close others")
 nmap("<leader>w.", "<Cmd>WindowsMaximize<CR>", "Window - maximize")
 nmap("<leader>w_", "<Cmd>WindowsMaximizeVertically<CR>", "Window - maxmize vertically")
-nmap("<leader>w?", "<Cmd>WindowsMaximizeHorizontally<CR>", "Window - mazimaize horizontally")
+nmap("<leader>w?", "<Cmd>WindowsMaximizeHorizontally<CR>", "Window - maximize horizontally")
 nmap("<leader>w=", "<Cmd>WindowsEqualize<CR>", "Window - reset")
 
 -- buffer
@@ -270,15 +270,15 @@ local harpoon = require("harpoon")
 nmap("<leader>ma", function()
   harpoon:list():add()
   vim.notify("Added to harpoon")
-end)
+end, "Harpoon - add")
 nmap("<leader>md", function()
   harpoon:list():remove()
   vim.notify("Removed from harpoon")
-end)
+end, "Harpoon - remove")
 nmap("<leader>mD", function()
   harpoon:list():clear()
   vim.notify("Clear all")
-end)
+end, "Harpoon - clear all")
 local function toggle_telescope(harpoon_files)
   local file_paths = {}
   for _, item in ipairs(harpoon_files.items) do
@@ -297,10 +297,10 @@ local function toggle_telescope(harpoon_files)
     :find()
 end
 -- stylua: ignore start
-nmap("<leader>mj", function() harpoon:list():next() end)
-nmap("<leader>mk", function() harpoon:list():prev() end)
-nmap("<leader>ml", function() toggle_telescope(harpoon:list()) end, "Open harpoon window")
-nmap("<leader>mL", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+nmap("<leader>mj", function() harpoon:list():next() end, "Harpoon - move next")
+nmap("<leader>mk", function() harpoon:list():prev() end, "Harpoon - previous")
+nmap("<leader>ml", function() toggle_telescope(harpoon:list()) end, "Harpoon - open telescope")
+nmap("<leader>mL", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "Harpoon - toggle menu")
 -- stylua: ignore end
 
 -- bookmarks
@@ -332,54 +332,49 @@ local ufo = require("ufo")
 nmap("zR", ufo.openAllFolds)
 nmap("zM", ufo.closeAllFolds)
 
--- which-key
-nmap("<leader>?", function()
-  require("which-key").show({ global = false })
-end, "Buffer Local Keymaps (which-key)")
-
 -- gitlinker
-nvmap("<leader>gy", "<cmd>GitLink<CR>", "Yank git link")
-nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Open git link")
+nvmap("<leader>gy", "<cmd>GitLink<CR>", "Git - Yank git link")
+nvmap("<leader>gY", "<cmd>GitLink!<CR>", "Git - Open git link")
 
 -- treesj
 -- stylua: ignore start
-nmap("<leader>M", function() require("treesj").toggle() end)
+nmap("<leader>M", function() require("treesj").toggle() end, "Code - toggle node under cursor")
 -- stylua: ignore end
 
 -- neogen
 -- stylua: ignore start
-nmap("<Leader>nf", function() require("neogen").generate() end)
+nmap("<Leader>nf", function() require("neogen").generate() end, "Code - generate annotations")
 -- stylua: ignore end
 
 -- codecompanion
 vim.cmd([[cabbrev cc CodeCompanion]])
 vim.cmd([[cabbrev ccc CodeCompanionChat]])
-nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "AI - actions")
-nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "AI - toggle chat")
-vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "AI - add code to chat")
-nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "AI - explain LSP diagnostic")
-vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "AI - explain code")
-vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "AI - Fix code")
-vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "AI - review code")
-vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "AI - better naming")
-vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "AI - translate into JP")
-vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "AI - refactor code")
-vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "AI - add documentation")
+nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Agent - actions")
+nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Agent - toggle chat")
+vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Agent - add code to chat")
+nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Agent - explain LSP diagnostic")
+vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Agent - explain code")
+vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "Agent - Fix code")
+vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "Agent - review code")
+vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "Agent - better naming")
+vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Agent - translate into JP")
+vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Agent - refactor code")
+vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Agent - add documentation")
 nmap("<leader>cS", function()
   local name = vim.fn.input("Save as: ")
   if name and name ~= "" then
     vim.cmd("CodeCompanionSave " .. name)
   end
-end, "AI - save chat")
-nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "AI - open past chat")
+end, "Agent - save chat")
+nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "Agent - open past chat")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle", "Markdown - toggle preview")
 nmap("<leader>p", "<Cmd>PasteImage<CR>", "Image - paste from clipboard")
 
 -- zk
-nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>")
-vmap("<leader>zf", ":'<,'>ZkMatch<CR>")
-nmap("<leader>zt", "<Cmd>ZkTags<CR>")
+nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search - zk note")
+vmap("<leader>zf", ":'<,'>ZkMatch<CR>", "Search - zk note with selection")
+nmap("<leader>zt", "<Cmd>ZkTags<CR>", "Search - zk tags")
 
 vim.cmd([[cabbrev mcp MCPHub]])

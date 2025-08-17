@@ -84,7 +84,8 @@ return {
       icons = {
         rules = {
           { pattern = "explorer", icon = "", color = "blue" },
-          { pattern = "ai", icon = "󰚩", color = "blue" },
+          { pattern = "agent", icon = "󰚩", color = "blue" },
+          { pattern = "harpoon", icon = "", color = "blue" },
         },
       },
     },
