@@ -21,6 +21,8 @@ nvmap("j", "gj")
 nvmap("k", "gk")
 nvmap("<Down>", "gj")
 nvmap("<Up>", "gk")
+imap("<Down>", "<C-o>gj")
+imap("<Up>", "<C-o>gk")
 nvmap("$", "g_")
 nvmap("H", "^")
 nvmap("L", "g_")
@@ -136,42 +138,49 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
+    -- Buffer local mappings helper
+    local function lmap(modes, lhs, rhs, desc)
+      local opts = desc and vim.tbl_extend("force", kopts, { desc = desc, buffer = ev.buf }) or { buffer = ev.buf }
+      vim.keymap.set(modes, lhs, rhs, opts)
+    end
 
-    -- vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
-    vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts)
-    vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
-    vim.keymap.set("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", opts)
-    vim.keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)
-    vim.keymap.set("n", "gr", function()
+    lmap("n", "gD", "<cmd>Lspsaga goto_definition<CR>", "LSP - goto definition")
+    lmap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", "LSP - peek definition")
+    lmap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", "LSP - goto type definition")
+    lmap("n", "gi", "<cmd>Lspsaga finder imp<CR>", "LSP - find implementations")
+    lmap("n", "gr", function()
       vim.cmd("Neotree close")
       vim.cmd("Lspsaga finder ref")
-    end, opts)
-    vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-    vim.keymap.set("n", "<leader>dk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-    vim.keymap.set("n", "K", function()
+    end, "LSP - find references")
+    lmap("n", "gR", vim.lsp.buf.references, "LSP - show references")
+    lmap("n", "<leader>dj", "<cmd>Lspsaga diagnostic_jump_next<CR>", "LSP - next diagnostic")
+    lmap("n", "<leader>dk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "LSP - previous diagnostic")
+    lmap("n", "K", function()
       local winid = require("ufo").peekFoldedLinesUnderCursor()
       if not winid then
         vim.lsp.buf.hover()
       end
-    end, opts)
-    vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
-    vim.keymap.set("n", "<leader>l", "<cmd>Lspsaga code_action<CR>", opts)
-    vim.keymap.set("n", "<leader>bf", function()
+    end, "LSP - show hover")
+    lmap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", "LSP - rename symbol")
+    lmap("n", "<leader>l", "<cmd>Lspsaga code_action<CR>", "LSP - code action")
+    lmap("n", "<leader>bf", function()
       vim.lsp.buf.format({ async = true })
       require("conform").format({ async = true })
-    end, opts)
+    end, "LSP - format buffer")
   end,
 })
 
 ---- aerial
 require("aerial").setup({
   on_attach = function(bufnr)
-    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+    -- Buffer local mappings helper
+    local function amap(modes, lhs, rhs, desc)
+      local opts = desc and vim.tbl_extend("force", kopts, { desc = desc, buffer = bufnr }) or { buffer = bufnr }
+      vim.keymap.set(modes, lhs, rhs, opts)
+    end
+
+    amap("n", "{", "<cmd>AerialPrev<CR>")
+    amap("n", "}", "<cmd>AerialNext<CR>")
   end,
 })
 nmap("<leader>a", "<cmd>AerialToggle!<CR>", "Explorer - toggle symbol")
@@ -192,44 +201,44 @@ require("gitsigns").setup({
   on_attach = function(bufnr)
     local gitsigns = require("gitsigns")
 
-    local function lmap(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
+    -- Buffer local mappings helper
+    local function gmap(modes, lhs, rhs, desc)
+      local opts = desc and vim.tbl_extend("force", kopts, { desc = desc, buffer = bufnr }) or { buffer = bufnr }
+      vim.keymap.set(modes, lhs, rhs, opts)
     end
 
-    lmap("n", "<leader>hk", function()
+    gmap("n", "<leader>hk", function()
       if vim.wo.diff then
         vim.cmd.normal({ "<leader>hj", bang = true })
       else
         gitsigns.nav_hunk("prev")
       end
-    end)
+    end, "Git - previous hunk")
 
-    lmap("n", "<leader>hj", function()
+    gmap("n", "<leader>hj", function()
       if vim.wo.diff then
         vim.cmd.normal({ "<leader>hk", bang = true })
       else
         gitsigns.nav_hunk("next")
       end
-    end)
+    end, "Git - next hunk")
 
     -- Actions
-    lmap("n", "<leader>hs", gitsigns.stage_hunk)
-    lmap("n", "<leader>hr", gitsigns.reset_hunk)
+    gmap("n", "<leader>hs", gitsigns.stage_hunk, "Git - stage hunk")
+    gmap("n", "<leader>hr", gitsigns.reset_hunk, "Git - reset hunk")
 
     -- stylua: ignore start
-    lmap("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-    lmap("v", "<leader>hr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+    gmap("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Git - stage hunk")
+    gmap("v", "<leader>hr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Git - reset hunk")
     -- stylua: ignore end
 
-    lmap("n", "<leader>hS", gitsigns.stage_buffer)
-    lmap("n", "<leader>hR", gitsigns.reset_buffer)
-    lmap("n", "<leader>hp", gitsigns.preview_hunk)
-    lmap("n", "<leader>hi", gitsigns.preview_hunk_inline)
-    lmap("n", "<leader>gb", gitsigns.blame)
+    gmap("n", "<leader>hS", gitsigns.stage_buffer, "Git - stage buffer")
+    gmap("n", "<leader>hR", gitsigns.reset_buffer, "Git - reset buffer")
+    gmap("n", "<leader>hp", gitsigns.preview_hunk, "Git - preview hunk")
+    gmap("n", "<leader>hi", gitsigns.preview_hunk_inline, "Git - preview hunk inline")
+    gmap("n", "<leader>gb", gitsigns.blame, "Git - blame line")
 
-    lmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame)
+    gmap("n", "<leader>gtb", gitsigns.toggle_current_line_blame, "Git - toggle blame line")
   end,
 })
 vim.cmd([[cabbrev dc DiffviewClose]])
@@ -317,20 +326,20 @@ nmap("mL", bookmarks.bookmark_list)
 
 -- dial
 -- stylua: ignore start
-vim.keymap.set("n", "<C-a>", function() require("dial.map").manipulate("increment", "normal") end)
-vim.keymap.set("n", "<C-x>", function() require("dial.map").manipulate("decrement", "normal") end)
-vim.keymap.set("n", "g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end)
-vim.keymap.set("n", "g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end)
-vim.keymap.set("v", "<C-a>", function() require("dial.map").manipulate("increment", "visual") end)
-vim.keymap.set("v", "<C-x>", function() require("dial.map").manipulate("decrement", "visual") end)
-vim.keymap.set("v", "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
-vim.keymap.set("v", "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
+nmap("<C-a>", function() require("dial.map").manipulate("increment", "normal") end)
+nmap("<C-x>", function() require("dial.map").manipulate("decrement", "normal") end)
+nmap("g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end)
+nmap("g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end)
+vmap("<C-a>", function() require("dial.map").manipulate("increment", "visual") end)
+vmap("<C-x>", function() require("dial.map").manipulate("decrement", "visual") end)
+vmap("g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end)
+vmap("g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end)
 -- stylua: ignore end
 
 -- ufo
 local ufo = require("ufo")
-nmap("zR", ufo.openAllFolds)
-nmap("zM", ufo.closeAllFolds)
+nmap("zR", ufo.openAllFolds, "Code - open all folds")
+nmap("zM", ufo.closeAllFolds, "Code - close all folds")
 
 -- gitlinker
 nvmap("<leader>gy", "<cmd>GitLink<CR>", "Git - Yank git link")

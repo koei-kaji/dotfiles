@@ -86,6 +86,8 @@ return {
           { pattern = "explorer", icon = "", color = "blue" },
           { pattern = "agent", icon = "󰚩", color = "blue" },
           { pattern = "harpoon", icon = "", color = "blue" },
+          { pattern = "lsp", icon = "󰌨", color = "blue" },
+          { pattern = "git", icon = "󰊢", color = "blue" },
         },
       },
     },
