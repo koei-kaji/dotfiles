@@ -24,6 +24,7 @@
 !.config/wezterm/
 !.config/yazi/
 .config/yazi/*
+!.config/yazi/init.lua
 !.config/yazi/keymap.toml
 !.config/yazi/package.toml
 !.config/yazi/theme.toml
