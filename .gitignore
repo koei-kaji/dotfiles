@@ -5,6 +5,9 @@
 !.config/bat/
 !.config/borders/
 !.config/crush/
+.config/crush/*
+!.config/crush/commands/
+!.config/crush/crush.json
 !.config/lazygit/
 !.config/litellm/
 .config/litellm/*
@@ -14,10 +17,17 @@
 .config/nvim/lua/core/secrets.lua
 .config/nvim/lazy-lock.json
 !.config/sheldon/
+!.config/tmux/
 .config/tmux/*
 !.config/tmux/tmux.conf
 !.config/ueberzugpp/
 !.config/wezterm/
+!.config/yazi/
+.config/yazi/*
+!.config/yazi/keymap.toml
+!.config/yazi/package.toml
+!.config/yazi/theme.toml
+!.config/yazi/yazi.toml
 !.config/zsh/
 .DS_Store
 Brewfile.lock.json

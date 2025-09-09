@@ -4,6 +4,10 @@ export PATH="$HOME/.local/bin:$PATH"
 export FZF_DEFAULT_OPTS='--layout reverse'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!**/.git/*"'
 
+# editor
+export EDITOR='nvim'
+export VISUAL='nvim'
+
 # go
 export PATH="$HOME/go/bin:$PATH"
 

@@ -29,6 +29,15 @@ alias ccw='y2j codecompanion-workspace.yaml > codecompanion-workspace.json'
 
 alias litellm='litellm --config ${XDG_CONFIG_HOME}/litellm/config.yaml --port 14000'
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 function _ghq-fzf() {
   local src=$(ghq list | grep -v -- '---' | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$src" ]; then
