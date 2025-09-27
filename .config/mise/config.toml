@@ -5,7 +5,6 @@ bun = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:swagger-ui-watcher" = "latest"
-"npm:mcp-hub" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
