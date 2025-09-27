@@ -1,6 +1,8 @@
 .claude/*
 !.claude/CLAUDE.md
 !.claude/settings.json
+!.claude/agents/
+!.claude/commands/
 .config/*
 !.config/bat/
 !.config/borders/
