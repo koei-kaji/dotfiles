@@ -2,15 +2,17 @@ require("ai.codecompanion.fidget-spinner"):init()
 
 require("codecompanion").setup({
   adapters = {
-    copilot = function()
-      return require("codecompanion.adapters").extend("copilot", {
-        schema = {
-          model = {
-            default = "claude-4-sonnet",
+    http = {
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              default = "claude-4-sonnet",
+            },
           },
-        },
-      })
-    end,
+        })
+      end,
+    },
   },
   display = {
     action_palette = {
