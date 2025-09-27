@@ -6,7 +6,7 @@ require("codecompanion").setup({
       return require("codecompanion.adapters").extend("copilot", {
         schema = {
           model = {
-            default = "claude-3.7-sonnet",
+            default = "claude-4-sonnet",
           },
         },
       })
@@ -22,16 +22,6 @@ require("codecompanion").setup({
     chat = {
       auto_scroll = false,
       show_header_separator = true,
-    },
-  },
-  extensions = {
-    mcphub = {
-      callback = "mcphub.extensions.codecompanion",
-      opts = {
-        make_vars = true,
-        make_slash_commands = true,
-        show_result_in_chat = true,
-      },
     },
   },
   strategies = {

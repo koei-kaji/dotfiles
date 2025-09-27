@@ -28,7 +28,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `lua/editing/` - 編集機能（treesitter、autopairs等）
 - `lua/completion/` - 補完機能
 - `lua/formatting/` - 言語別フォーマット設定
-- `lua/ai/` - AI関連機能（CodeCompanion、mcphub）
+- `lua/ai/` - AI関連機能（CodeCompanion）
 - `after/lsp/` - LSP言語別設定
 - `after/ftplugin/` - ファイルタイプ別設定
 

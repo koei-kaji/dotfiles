@@ -385,5 +385,3 @@ nmap("<leader>p", "<Cmd>PasteImage<CR>", "Image - paste from clipboard")
 nmap("<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Search - zk note")
 vmap("<leader>zf", ":'<,'>ZkMatch<CR>", "Search - zk note with selection")
 nmap("<leader>zt", "<Cmd>ZkTags<CR>", "Search - zk tags")
-
-vim.cmd([[cabbrev mcp MCPHub]])
