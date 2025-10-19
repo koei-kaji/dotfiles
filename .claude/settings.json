@@ -17,5 +17,6 @@
       "Bash(uv tool:*)"
     ]
   },
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "alwaysThinkingEnabled": true
 }
