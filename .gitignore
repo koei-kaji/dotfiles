@@ -3,6 +3,7 @@
 !.claude/settings.json
 !.claude/agents/
 !.claude/commands/
+!.claude/hooks/
 .config/*
 !.config/bat/
 !.config/borders/
@@ -31,7 +32,8 @@
 !.config/yazi/package.toml
 !.config/yazi/theme.toml
 !.config/yazi/yazi.toml
-!.config/zsh/
+!.config/zsh/*
+.config/zsh/secret_env.zsh
 .DS_Store
 Brewfile.lock.json
 codecompanion-workspace.json

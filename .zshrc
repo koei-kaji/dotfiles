@@ -1,3 +1,5 @@
+source ~/.config/zsh/plugins.zsh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -15,9 +17,9 @@ SAVEHIST=100000
 
 # Load custom configurations
 source ~/.config/zsh/options.zsh
-source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/environment.zsh
 source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/secret_env.zsh
 
 preexec() { print -Pn "\e]0;%1~\a" }
 

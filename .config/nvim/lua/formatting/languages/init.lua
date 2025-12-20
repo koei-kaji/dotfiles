@@ -9,7 +9,7 @@ function M.formatters_by_ft()
     require("formatting.languages.python").formatters_by_ft(),
     -- add here
     {
-      ["*"] = { "codespell" },
+      -- ["*"] = { "codespell" },
       ["_"] = { "trim_newlines", "trim_whitespace" },
     }
   )

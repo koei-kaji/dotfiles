@@ -17,6 +17,29 @@
       "Bash(uv tool:*)"
     ]
   },
-  "preferredNotifChannel": "terminal_bell",
-  "alwaysThinkingEnabled": true
+  "model": "opus",
+  "alwaysThinkingEnabled": true,
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME\"/.claude/hooks/notify-waiting.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME\"/.claude/hooks/notify-complete.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "preferredNotifChannel": "terminal_bell"
 }
