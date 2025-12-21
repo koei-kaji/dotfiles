@@ -1,34 +1,12 @@
 require("ai.codecompanion.fidget-spinner"):init()
 
 require("codecompanion").setup({
-  adapters = {
-    http = {
-      copilot = function()
-        return require("codecompanion.adapters").extend("copilot", {
-          schema = {
-            model = {
-              default = "claude-4-sonnet",
-            },
-          },
-        })
-      end,
-    },
-  },
-  display = {
-    action_palette = {
-      provider = "default",
-    },
-    diff = {
-      provider = "mini_diff",
-    },
+  interactions = {
     chat = {
-      auto_scroll = false,
-      show_header_separator = true,
-    },
-  },
-  strategies = {
-    chat = {
-      adapter = "copilot",
+      adapter = {
+        name = "copilot",
+        model = "gpt-4o",
+      },
       roles = {
         -- https://github.com/olimorris/codecompanion.nvim/discussions/1094
         llm = function(adapter)
@@ -47,16 +25,47 @@ require("codecompanion").setup({
       },
     },
     inline = {
-      adapter = "copilot",
+      adapter = {
+        name = "copilot",
+        model = "gpt-4o",
+      },
+      keymaps = {
+        accept_change = {
+          modes = { n = "ga" },
+          description = "Accept the suggested change",
+        },
+        reject_change = {
+          modes = { n = "gr" },
+          opts = { nowait = true },
+          description = "Reject the suggested change",
+        },
+      },
     },
-    agent = {
-      adapter = "copilot",
+  },
+  display = {
+    -- See: builtin actions:
+    --      https://github.com/olimorris/codecompanion.nvim/tree/main/lua/codecompanion/actions/builtins
+    action_palette = {
+      provider = "default",
+    },
+    diff = {
+      provider = "mini_diff",
+    },
+    chat = {
+      auto_scroll = false,
+      show_header_separator = true,
     },
   },
   opts = {
     language = "Japanese",
   },
-  prompt_library = require("ai.codecompanion.prompt_library"),
+  prompt_library = {
+    markdown = {
+      dirs = {
+        "~/.config/nvim/lua/ai/codecompanion/prompts",
+      },
+    },
+  },
 })
 
 require("ai.codecompanion.extra_commands")
