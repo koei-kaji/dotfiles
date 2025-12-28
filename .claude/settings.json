@@ -8,17 +8,41 @@
       "Bash(git:*)"
     ],
     "deny": [
-      "Bash(rm -r:*)",
+      "Bash(sudo:*)",
+      "Bash(rm -rf:*)",
       "Bash(curl:*)",
       "Bash(wget:*)",
-      "Bash(git commit:*)",
-      "Bash(npm publish:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm remove:*)",
       "Bash(python:*)",
-      "Bash(uv tool:*)"
+      "Bash(uv tool:*)",
+      "Bash(mysql:*)",
+      "Read(.env*)",
+      "Read(id_rsa)",
+      "Read(id_ed25519)",
+      "Read(**/*key*)",
+      "Read(**/.ssh/**)",
+      "Write(.env*)",
+      "Write(**/secrets/**)",
+      "Write(**/.ssh/**)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(chmod +x:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git merge:*)",
+      "Bash(git stash:*)",
+      "Bash(git fetch:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(git tag:*)",
+      "Bash(npm publish:*)"
     ]
   },
-  "model": "opus",
-  "alwaysThinkingEnabled": true,
   "hooks": {
     "Notification": [
       {
@@ -41,5 +65,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bun x ccusage statusline"
+  },
+  "alwaysThinkingEnabled": true,
   "preferredNotifChannel": "terminal_bell"
 }
