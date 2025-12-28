@@ -49,7 +49,7 @@ require("codecompanion").setup({
       provider = "default",
     },
     diff = {
-      provider = "mini_diff",
+      provider = "split",
     },
     chat = {
       auto_scroll = false,

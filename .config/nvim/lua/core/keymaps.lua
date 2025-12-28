@@ -359,21 +359,7 @@ vim.cmd([[cabbrev ccc CodeCompanionChat]])
 nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Agent - actions")
 nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Agent - toggle chat")
 vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Agent - add code to chat")
-nvmap("<leader>cl", "<Cmd>CodeCompanion /lsp<CR>", "Agent - explain LSP diagnostic")
-vmap("<leader>ce", "<Cmd>CodeCompanion /explain<CR>", "Agent - explain code")
-vmap("<leader>cf", "<Cmd>CodeCompanion /fix<CR><Esc>", "Agent - Fix code")
-vmap("<leader>cR", "<Cmd>CodeCompanion /chat-review<CR>", "Agent - review code")
-vmap("<leader>cn", "<Cmd>CodeCompanion /chat-naming<CR>", "Agent - better naming")
 vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Agent - translate into JP")
-vmap("<leader>cr", "<Cmd>CodeCompanion /inline-refactor<CR><Esc>", "Agent - refactor code")
-vmap("<leader>cd", "<Cmd>CodeCompanion /inline-doc<CR><Esc>", "Agent - add documentation")
-nmap("<leader>cS", function()
-  local name = vim.fn.input("Save as: ")
-  if name and name ~= "" then
-    vim.cmd("CodeCompanionSave " .. name)
-  end
-end, "Agent - save chat")
-nmap("<leader>co", "<Cmd>CodeCompanionOpen<CR>", "Agent - open past chat")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle", "Markdown - toggle preview")
