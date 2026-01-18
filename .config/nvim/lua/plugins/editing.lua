@@ -13,7 +13,10 @@ return {
       require("nvim-surround").setup({})
     end,
   },
-  { "nvim-treesitter/nvim-treesitter" },
+  { 
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master"
+  },
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = {
