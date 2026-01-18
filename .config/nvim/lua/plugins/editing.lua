@@ -13,9 +13,9 @@ return {
       require("nvim-surround").setup({})
     end,
   },
-  { 
+  {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master"
+    branch = "master",
   },
   {
     "RRethy/nvim-treesitter-textsubjects",
@@ -68,5 +68,10 @@ return {
   },
   {
     "keaising/im-select.nvim",
+  },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    config = true,
+    event = "VeryLazy",
   },
 }

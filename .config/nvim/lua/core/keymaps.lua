@@ -158,7 +158,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.buf.hover({ border = "single" })
       end
     end, "LSP - show hover")
-    -- lmap("n", "K", "<Cmd>Lspsaga hover_doc ++silent ++quiet<CR>")
     lmap("n", "<leader>k", function()
       require("lsp_signature").toggle_float_win()
     end)
@@ -270,7 +269,7 @@ nmap("<leader>fo", builtin.oldfiles, "Search - old files")
 nmap("<leader>fw", builtin.grep_string, "Search - word under cursor")
 nmap("<leader>ft", "<Cmd>TodoTelescope<CR>", "Search - TODO comments")
 -- stylua: ignore start
-nmap("<leader>fG", function() builtin.git_status({previewer = delta}) end, "Search - uncommitted files")
+nmap("<leader>fG", function() builtin.git_status({ previewer = delta }) end, "Search - uncommitted files")
 nmap("<leader>fg", function() telescope.extensions.live_grep_args.live_grep_args() end, "Search - grep")
 nmap("<leader>fn", function() telescope.extensions.notify.notify(themes.get_ivy()) end, "Search - notifications")
 -- stylua: ignore end
