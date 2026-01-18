@@ -21,7 +21,7 @@ config.automatically_reload_config = true
 config.default_prog = {
   "/bin/zsh",
   "-c",
-  "session_name=\"wezterm-$$\"; tmux new-session -A -s \"$session_name\" \\; set-option -t \"$session_name\" destroy-unattached on",
+  'session_name="wezterm-$$"; tmux new-session -A -s "$session_name" \\; set-option -t "$session_name" destroy-unattached on',
 }
 
 config.initial_cols = 150
@@ -72,6 +72,11 @@ config.keys = {
     key = "Enter",
     mods = "SHIFT",
     action = wezterm.action.SendString("\n"),
+  },
+  {
+    key = ".",
+    mods = "CTRL",
+    action = wezterm.action.SendString("\x1b[46;5u"),
   },
 }
 

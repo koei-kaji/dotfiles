@@ -122,7 +122,9 @@ nmap("g#", [[g#<Cmd>lua require('hlslens').start()<CR>]])
 -- LSP
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-nmap("<leader>do", vim.diagnostic.open_float, "Diagnostic - show in float")
+nmap("<leader>do", function()
+  vim.diagnostic.open_float({ border = "rounded" })
+end, "Diagnostic - show in float")
 nmap("<leader>dq", vim.diagnostic.setloclist, "Diagnostic - select in loclist")
 
 -- Use LspAttach autocommand to only map the following keys
@@ -354,13 +356,13 @@ nmap("<leader>M", function() require("treesj").toggle() end, "Code - toggle node
 nmap("<Leader>nf", function() require("neogen").generate() end, "Code - generate annotations")
 -- stylua: ignore end
 
--- codecompanion
-vim.cmd([[cabbrev cc CodeCompanion]])
-vim.cmd([[cabbrev ccc CodeCompanionChat]])
-nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Agent - actions")
-nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Agent - toggle chat")
-vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Agent - add code to chat")
-vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Agent - translate into JP")
+-- -- codecompanion
+-- vim.cmd([[cabbrev cc CodeCompanion]])
+-- vim.cmd([[cabbrev ccc CodeCompanionChat]])
+-- nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Agent - actions")
+-- nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Agent - toggle chat")
+-- vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Agent - add code to chat")
+-- vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Agent - translate into JP")
 
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle", "Markdown - toggle preview")
