@@ -3,12 +3,6 @@ local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local neogen = require("neogen")
 
-lspkind.init({
-  symbol_map = {
-    Copilot = "",
-  },
-})
-
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 cmp.setup({
@@ -60,7 +54,6 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "lazydev", group_index = 0 }, -- set group index to 0 to skip loading LuaLS completions
-    { name = "codecompanion" },
   }, {
     { name = "buffer" },
   }),
@@ -79,9 +72,10 @@ cmp.setup({
 
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      ---@diagnostic disable-next-line: unused-local
       before = function(entry, vim_item)
-        -- ...
+        if entry.source.name == "copilot" then
+          vim_item.kind = ""
+        end
         return vim_item
       end,
     }),

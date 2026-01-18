@@ -1,6 +1,7 @@
 require("focus").setup()
 
 local ignore_filetypes = {
+  "qf",
   "neo-tree",
   "aerial",
   "gitsigns-blame",
