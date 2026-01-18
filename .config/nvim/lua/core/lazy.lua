@@ -23,9 +23,6 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  rocks = {
-    hererocks = true, -- recommended if you do not hav global installation of Lua
-  },
   spec = {
     -- import your plugins
     { import = "plugins" },

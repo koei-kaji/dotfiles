@@ -46,4 +46,3 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### テーマ
 - CatppuccinテーマをNeovim、tmux、git deltaで統一使用
-- TokyoNightテーマも利用可能
