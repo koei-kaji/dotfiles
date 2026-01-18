@@ -4,6 +4,7 @@ require("mason-lspconfig").setup({
     "gopls",
     "lua_ls",
     "ts_ls",
+    "ty",
     "pyright",
     "ruff",
     "yamlls",
@@ -27,6 +28,7 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("pyright")
 vim.lsp.enable("ruff")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("ty")
 vim.lsp.enable("yamlls")
 
 vim.lsp.config("*", {

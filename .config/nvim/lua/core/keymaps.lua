@@ -153,9 +153,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     lmap("n", "K", function()
       local winid = require("ufo").peekFoldedLinesUnderCursor()
       if not winid then
-        vim.lsp.buf.hover()
+        vim.lsp.buf.hover({ border = "single" })
       end
     end, "LSP - show hover")
+    -- lmap("n", "K", "<Cmd>Lspsaga hover_doc ++silent ++quiet<CR>")
+    lmap("n", "<leader>k", function()
+      require("lsp_signature").toggle_float_win()
+    end)
     lmap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", "LSP - rename symbol")
     lmap("n", "<leader>l", "<cmd>Lspsaga code_action<CR>", "LSP - code action")
     lmap("n", "<leader>bf", function()

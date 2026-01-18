@@ -1,14 +1,15 @@
 return {
   settings = {
     pyright = {
-      -- Using Ruff's import organizer
       disableOrganizeImports = true,
     },
     python = {
       pythonPath = ".venv/bin/python",
       analysis = {
-        -- Ignore all files for analysis to exclusively use Ruff for linting
-        ignore = { "*" },
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "openFilesOnly",
+        typeCheckingMode = "off",
       },
     },
   },
