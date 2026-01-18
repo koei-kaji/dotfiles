@@ -50,18 +50,15 @@ nmap("f<cr>", "}")
 nmap("<leader>QQ", "<Cmd>qa<CR>", "Neovim - close")
 
 -- window
-nmap("<leader>w/", ":vsplit<CR><C-w>l", "Window - split vertically")
-nmap("<leader>w-", ":split<CR><C-w>j", "Window - split horizontally")
+nmap("<leader>w/", "<Cmd>FocusSplitRight<CR>", "Window - split vertically")
+nmap("<leader>w-", "<Cmd>FocusSplitDown<CR>", "Window - split horizontally")
 nmap("<leader>wh", "<C-w>h", "Window - focus left")
 nmap("<leader>wj", "<C-w>j", "Window - focus below")
 nmap("<leader>wk", "<C-w>k", "Window - focus above")
 nmap("<leader>wl", "<C-w>l", "Window - focus right")
 nmap("<leader>wd", ":close<CR>", "Window - close")
 nmap("<leader>wD", ":only<CR>", "Window - close others")
-nmap("<leader>w.", "<Cmd>WindowsMaximize<CR>", "Window - maximize")
-nmap("<leader>w_", "<Cmd>WindowsMaximizeVertically<CR>", "Window - maxmize vertically")
-nmap("<leader>w?", "<Cmd>WindowsMaximizeHorizontally<CR>", "Window - maximize horizontally")
-nmap("<leader>w=", "<Cmd>WindowsEqualize<CR>", "Window - reset")
+nmap("<leader>w.", "<Cmd>FocusMaxOrEqual<CR>", "Window - maximize")
 
 -- buffer
 -- See: https://github.com/romgrk/barbar.nvim
