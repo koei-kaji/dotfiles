@@ -8,7 +8,7 @@ local function tab_title(tab_info)
 end
 
 wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
-  return pane.title
+  return tab_title(tab)
 end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
