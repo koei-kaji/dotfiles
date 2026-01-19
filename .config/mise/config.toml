@@ -2,6 +2,7 @@
 node = "latest"
 bun = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
+"npm:@github/copilot" = "latest"
 "npm:@google/gemini-cli" = "latest"
 "npm:@openai/codex" = "latest"
 "npm:swagger-ui-watcher" = "latest"

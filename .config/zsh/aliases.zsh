@@ -25,9 +25,11 @@ alias ghb="open \$(_ghq-fzf | awk '{print \"https://\"\$1}')"
 
 alias j2y='yq -p=json'
 alias y2j="yq -o=json '.'"
-alias ccw='y2j codecompanion-workspace.yaml > codecompanion-workspace.json'
 
 alias litellm='litellm --config ${XDG_CONFIG_HOME}/litellm/config.yaml --port 14000'
+alias claude='tmux rename-window "claude" && command claude'
+alias copilot='tmux rename-window "copilot" && command copilot'
+alias gemini='tmux rename-window "gemini" && command gemini'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

@@ -35,6 +35,11 @@ return {
           class = "{class}",
         },
         picker = "telescope",
+        tools = {
+          claude = { cmd = { "claude" } },
+          copilot = { cmd = { "copilot" } },
+          gemini = { cmd = { "gemini" } },
+        },
       },
     },
     keys = {
