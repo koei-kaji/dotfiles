@@ -8,7 +8,7 @@ local function tab_title(tab_info)
 end
 
 wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
-  return tab_title(tab)
+  return pane.title
 end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -29,9 +29,9 @@ config.initial_rows = 50
 config.window_decorations = "RESIZE"
 config.color_scheme = "Catppuccin Mocha"
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
+  left = 5,
+  right = 5,
+  top = 10,
   bottom = 0,
 }
 
@@ -56,7 +56,7 @@ config.window_frame = {
 config.window_background_gradient = {
   colors = { "#1e1e2e" }, -- Catppuccin mocha base color
 }
-config.show_new_tab_button_in_tab_bar = false
+config.enable_tab_bar = false
 config.font = wezterm.font("Moralerspace Argon NF")
 config.font_size = 18.0
 
@@ -77,6 +77,21 @@ config.keys = {
     key = ".",
     mods = "CTRL",
     action = wezterm.action.SendString("\x1b[46;5u"),
+  },
+  {
+    key = "t",
+    mods = "CMD",
+    action = wezterm.action.SendString("\x07c"), -- tmux prefix + c
+  },
+  {
+    key = "Tab",
+    mods = "CTRL",
+    action = wezterm.action.SendString("\x07n"), -- tmux prefix + n (next-window)
+  },
+  {
+    key = "Tab",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SendString("\x07p"), -- tmux prefix + p (previous-window)
   },
 }
 
