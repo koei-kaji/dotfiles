@@ -8,6 +8,7 @@ require("mason-lspconfig").setup({
     "pyright",
     "ruff",
     "yamlls",
+    "sqlls",
   },
 })
 
@@ -30,6 +31,7 @@ vim.lsp.enable("ruff")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("ty")
 vim.lsp.enable("yamlls")
+vim.lsp.enable("sqlls")
 
 vim.lsp.config("*", {
   root_markers = { ".git" },

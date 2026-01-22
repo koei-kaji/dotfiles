@@ -104,6 +104,32 @@ nmap("<leader>y", function()
   copy_to_clipboard(relative_path, "Relative path copied")
 end, "Copy relative path to clipboard")
 
+vmap("<leader>y", function()
+  local current_file = vim.fn.expand("%:p")
+  local cwd = vim.fn.getcwd()
+
+  if current_file == "" then
+    vim.notify("No file path to copy", vim.log.levels.WARN)
+    return
+  end
+
+  local relative_path = vim.fn.fnamemodify(current_file, ":s?" .. cwd .. "/??")
+
+  if relative_path == current_file then
+    vim.notify("File is outside current working directory", vim.log.levels.ERROR)
+    return
+  end
+
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  local result = relative_path .. "#L" .. start_line .. "-L" .. end_line
+  copy_to_clipboard(result, "Path with range copied")
+end, "Copy relative path with selection range to clipboard")
+
 -- side bar
 -- See: https://github.com/nvim-neo-tree/neo-tree.nvim
 nmap("<leader>wt", "<Cmd>Neotree toggle<CR>", "Explorer - toggle")
@@ -172,6 +198,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 ---- aerial
 require("aerial").setup({
+  ignore = {
+    filetypes = { "sql" },
+  },
   on_attach = function(bufnr)
     -- Buffer local mappings helper
     local function amap(modes, lhs, rhs, desc)
