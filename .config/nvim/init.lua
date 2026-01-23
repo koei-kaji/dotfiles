@@ -9,7 +9,6 @@ require("core.editing")
 require("core.completion")
 require("core.formatting")
 require("core.linting")
-require("core.ai")
 require("core.note-taking")
 
 require("core.keymaps")
