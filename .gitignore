@@ -39,6 +39,5 @@
 !.config/zsh/plugins.zsh
 .DS_Store
 Brewfile.lock.json
-codecompanion-workspace.json
 .aider*
 !.aider.conf.yml

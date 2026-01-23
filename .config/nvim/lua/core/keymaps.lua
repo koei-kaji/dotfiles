@@ -384,14 +384,6 @@ nmap("<leader>M", function() require("treesj").toggle() end, "Code - toggle node
 nmap("<Leader>nf", function() require("neogen").generate() end, "Code - generate annotations")
 -- stylua: ignore end
 
--- -- codecompanion
--- vim.cmd([[cabbrev cc CodeCompanion]])
--- vim.cmd([[cabbrev ccc CodeCompanionChat]])
--- nvmap("<leader>ca", "<Cmd>CodeCompanionActions<CR>", "Agent - actions")
--- nmap("<leader>cc", "<Cmd>CodeCompanionChat Toggle<CR>", "Agent - toggle chat")
--- vmap("<leader>cc", "<Cmd>CodeCompanionChat<CR>", "Agent - add code to chat")
--- vmap("<leader>ct", "<Cmd>CodeCompanion /chat-translate<CR><Esc>", "Agent - translate into JP")
-
 -- markdown
 nmap("<C-p>", "<Plug>MarkdownPreviewToggle", "Markdown - toggle preview")
 nmap("<leader>p", "<Cmd>PasteImage<CR>", "Image - paste from clipboard")

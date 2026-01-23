@@ -1,7 +1,7 @@
 return {
   {
     "ixru/nvim-markdown",
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown" },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -25,17 +25,17 @@ return {
       },
     },
     enabled = not vim.g.vscode,
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown" },
   },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown" },
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
     init = function()
-      vim.g.mkdp_filetypes = { "markdown", "codecompanion" }
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
   },
   {
