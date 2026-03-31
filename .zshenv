@@ -10,3 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+source ~/.config/zsh/plugins-path.zsh

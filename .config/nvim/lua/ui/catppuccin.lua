@@ -6,6 +6,7 @@ require("catppuccin").setup({
     aerial = true,
     barbar = true,
     cmp = true,
+    blink_cmp = true,
     diffview = true,
     fzf = true,
     gitsigns = true,

@@ -1,4 +1,4 @@
-source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/plugins-interactive.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -10,28 +10,22 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 # History settings
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
 # Load custom configurations
+source ~/.config/zsh/rare_tech.zsh
 source ~/.config/zsh/options.zsh
 source ~/.config/zsh/environment.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/secret_env.zsh
 
-preexec() { print -Pn "\e]0;%1~\a" }
 
-# ZLE settings should be loaded at the end of the file
-fh_widget() {
-  local selected_command
-  selected_command=$(([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
-  if [[ -n $selected_command ]]; then
-    BUFFER=$selected_command
-    CURSOR=${#BUFFER}
-    zle redisplay
-  fi
-}
-zle -N fh_widget
-bindkey '^r' fh_widget
+# Completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:*:make:*' tag-order 'targets'

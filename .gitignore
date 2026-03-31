@@ -32,6 +32,7 @@
 !.config/yazi/package.toml
 !.config/yazi/theme.toml
 !.config/yazi/yazi.toml
+!.config/zsh/
 .config/zsh/*
 !.config/zsh/aliases.zsh
 !.config/zsh/environment.zsh
@@ -41,3 +42,6 @@
 Brewfile.lock.json
 .aider*
 !.aider.conf.yml
+!.aider.model.settings.yml
+!.aider.sh
+secret_env.zsh

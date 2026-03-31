@@ -56,6 +56,9 @@ function ghmo() {
       *gitlab*)
         open $(echo $repo | awk '{print "https://"$1"/-/merge_requests"}')
         ;;
+      *rarejob*)
+        open $(echo $repo | awk '{print "https://"$1"/-/merge_requests"}')
+        ;;
       *)
         echo "No match"
         ;;
@@ -69,6 +72,9 @@ function ghmm() {
         open $(echo $repo | awk '{print "https://"$1"/pulls?q=is:pr+is:closed"}')
         ;;
       *gitlab*)
+        open $(echo $repo | awk '{print "https://"$1"/-/merge_requests?scope=all&sort=merged_at_desc&state=merged"}')
+        ;;
+      *rarejob*)
         open $(echo $repo | awk '{print "https://"$1"/-/merge_requests?scope=all&sort=merged_at_desc&state=merged"}')
         ;;
       *)
@@ -101,13 +107,18 @@ function gwcd() {
 }
 
 function gwrm() {
-  # ヘッダー2行をスキップ、メイン worktree (@*) を除外
-  local selected=$(wtp list | tail -n +3 | grep -v '^@' | fzf --prompt="Select worktree to remove: ")
+  # gwcd と同様のパターンで、パスとブランチを取得（メイン worktree を除外）
+  local selected=$(gwq list --json | jq -r '.[] | select(.is_main == false) | "\(.path)\t\(.branch)"' | fzf --with-nth=2 --delimiter=$'\t' --prompt="Select worktree to remove: ")
   if [ -z "$selected" ]; then
     return 0
   fi
 
-  local branch=$(echo "$selected" | awk '{print $2}') # BRANCH 列を取得
+  local wt_path=$(echo "$selected" | cut -f1)
+  local branch=$(echo "$selected" | cut -f2)
+
+  # docker compose を停止（動いていなくても問題なし）
+  (cd "$wt_path" && docker compose down -v 2>/dev/null)
+
   echo "Remove worktree $branch"
   read "confirm?Delete branch too? (y/N): "
   if [[ "$confirm" =~ ^[Yy]$ ]]; then

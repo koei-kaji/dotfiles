@@ -29,30 +29,30 @@ local ensure_installed = {
   "yaml",
 }
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = ensure_installed,
-})
+require("nvim-treesitter").install(ensure_installed)
 
--- https://github.com/neovim/neovim/pull/26347#issuecomment-1837508178
-vim.treesitter.start = (function(wrapped)
-  return function(bufnr, lang)
-    lang = lang or vim.fn.getbufvar(bufnr or "", "&filetype")
-    pcall(wrapped, bufnr, lang)
-  end
-end)(vim.treesitter.start)
-
-require("nvim-treesitter-textsubjects").configure({
-  prev_selection = ",",
-  keymaps = {
-    ["."] = "textsubjects-smart",
-    [";"] = "textsubjects-container-outer",
-    ["i;"] = {
-      "textsubjects-container-inner",
-      desc = "Select inside containers (classes, functions, etc.)",
-    },
+require("nvim-treesitter-textobjects").setup({
+  select = {
+    lookahead = true,
+    include_surrounding_whitespace = false,
   },
-  disable = function(lang, bufnr)
-    local parser_ok, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
-    return not parser_ok or not parser
-  end,
 })
+
+vim.keymap.set({ "x", "o" }, "af", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+end, { desc = "Select outer function" })
+vim.keymap.set({ "x", "o" }, "if", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+end, { desc = "Select inner function" })
+vim.keymap.set({ "x", "o" }, "ac", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+end, { desc = "Select outer class" })
+vim.keymap.set({ "x", "o" }, "ic", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+end, { desc = "Select inner class" })
+vim.keymap.set({ "x", "o" }, "aa", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+end, { desc = "Select outer parameter" })
+vim.keymap.set({ "x", "o" }, "ia", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+end, { desc = "Select inner parameter" })

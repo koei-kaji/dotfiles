@@ -15,10 +15,12 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    lazy = false,
+    build = ":TSUpdate",
   },
   {
-    "RRethy/nvim-treesitter-textsubjects",
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },

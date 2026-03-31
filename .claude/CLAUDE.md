@@ -19,5 +19,11 @@ AI運用5原則
 
 [main_output]
 
-#[n] times. # n = increment each chat, end line, etc(#1, #2...)
+[$CLAUDE_SESSION_ID]:#[n] times. CLAUDE_SESSION_ID = SessionStart フックで環境変数 CLAUDE_SESSION_ID にセットされる値, n = increment each chat, end line, etc($CLAUDE_SESSION_ID:#1, $CLAUDE_SESSION_ID:#2...)
 </every_chat>
+
+<image_sharing>
+スクリーンショットや画像を取得した場合、memos-logger エージェント (subagent_type: memos-logger) を使って
+Memos にアップロードしてユーザーと共有すること。
+prompt に画像ファイルパスを含めれば、エージェントが --image オプション経由でアップロードする。
+</image_sharing>
