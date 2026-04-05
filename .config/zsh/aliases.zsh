@@ -29,7 +29,14 @@ alias y2j="yq -o=json '.'"
 alias litellm='litellm --config ${XDG_CONFIG_HOME}/litellm/config.yaml --port 14000'
 
 alias serena='uvx --from git+https://github.com/oraios/serena serena'
-alias cc='ENABLE_TOOL_SEARCH=true claude'
+alias cc='claude'
+alias cg='ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
+    ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
+    API_TIMEOUT_MS="3000000" \
+    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
+    ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
+    ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
+    ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1" cc'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
