@@ -18,7 +18,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # Load custom configurations
-source ~/.config/zsh/rare_tech.zsh
 source ~/.config/zsh/options.zsh
 source ~/.config/zsh/environment.zsh
 source ~/.config/zsh/aliases.zsh
