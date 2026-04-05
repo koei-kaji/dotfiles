@@ -38,6 +38,8 @@
 !.config/zsh/environment.zsh
 !.config/zsh/options.zsh
 !.config/zsh/plugins.zsh
+!.config/zsh/plugins-interactive.zsh
+!.config/zsh/plugins-path.zsh
 .DS_Store
 Brewfile.lock.json
 .aider*
