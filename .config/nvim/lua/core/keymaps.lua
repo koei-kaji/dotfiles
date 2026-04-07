@@ -50,15 +50,57 @@ nmap("f<cr>", "}")
 nmap("<leader>QQ", "<Cmd>qa<CR>", "Neovim - close")
 
 -- window
-nmap("<leader>w/", "<Cmd>FocusSplitRight<CR>", "Window - split vertically")
-nmap("<leader>w-", "<Cmd>FocusSplitDown<CR>", "Window - split horizontally")
+nmap("<leader>w/", "<C-w>v", "Window - split vertically")
+nmap("<leader>w-", "<C-w>s", "Window - split horizontally")
 nmap("<leader>wh", "<C-w>h", "Window - focus left")
 nmap("<leader>wj", "<C-w>j", "Window - focus below")
 nmap("<leader>wk", "<C-w>k", "Window - focus above")
 nmap("<leader>wl", "<C-w>l", "Window - focus right")
 nmap("<leader>wd", ":close<CR>", "Window - close")
 nmap("<leader>wD", ":only<CR>", "Window - close others")
-nmap("<leader>w.", "<Cmd>FocusMaxOrEqual<CR>", "Window - maximize")
+local saved_win_sizes = nil
+nmap("<leader>w.", function()
+  if saved_win_sizes then
+    for _, entry in ipairs(saved_win_sizes) do
+      if vim.api.nvim_win_is_valid(entry.win) then
+        vim.api.nvim_win_set_width(entry.win, entry.width)
+        vim.api.nvim_win_set_height(entry.win, entry.height)
+      end
+    end
+    saved_win_sizes = nil
+  else
+    saved_win_sizes = {}
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      table.insert(saved_win_sizes, {
+        win = win,
+        width = vim.api.nvim_win_get_width(win),
+        height = vim.api.nvim_win_get_height(win),
+      })
+    end
+    vim.cmd("wincmd _")
+    vim.cmd("wincmd |")
+  end
+end, "Window - maximize toggle")
+nmap("<leader>w=", "<Cmd>FocusResizeOnce<CR>", "Window - auto-resize once")
+local function resize_toward(direction)
+  local cur = vim.fn.winnr()
+  local neighbor = vim.fn.winnr(direction)
+  if neighbor == cur then
+    return
+  end
+  local win = vim.fn.win_getid(neighbor)
+  if direction == "h" or direction == "l" then
+    vim.api.nvim_win_set_width(win, vim.api.nvim_win_get_width(win) - 15)
+  else
+    vim.api.nvim_win_set_height(win, vim.api.nvim_win_get_height(win) - 5)
+  end
+end
+-- stylua: ignore start
+nmap("<leader>wH", function() resize_toward("h") end, "Window - expand left")
+nmap("<leader>wL", function() resize_toward("l") end, "Window - expand right")
+nmap("<leader>wJ", function() resize_toward("j") end, "Window - expand down")
+nmap("<leader>wK", function() resize_toward("k") end, "Window - expand up")
+-- stylua: ignore end
 
 -- buffer
 -- See: https://github.com/romgrk/barbar.nvim
@@ -284,11 +326,16 @@ local conf = require("telescope.config").values
 local previewers = require("telescope.previewers")
 local delta = previewers.new_termopen_previewer({
   get_command = function(entry)
-    if entry.status == "??" or "A " then
-      return { "git", "diff", entry.value }
+    if entry.status == "??" then
+      return { "git", "diff", "--no-index", "--", "/dev/null", entry.value }
     end
 
-    return { "git", "diff", entry.value .. "^!" }
+    local index_status = entry.status:sub(1, 1)
+    if index_status ~= " " and index_status ~= "?" then
+      return { "git", "diff", "--cached", "--", entry.value }
+    end
+
+    return { "git", "diff", "--", entry.value }
   end,
 })
 

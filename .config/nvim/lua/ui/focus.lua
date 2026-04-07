@@ -1,4 +1,13 @@
-require("focus").setup()
+require("focus").setup({
+  autoresize = { enable = false },
+})
+
+vim.api.nvim_create_user_command("FocusResizeOnce", function()
+  vim.cmd("FocusEnable")
+  vim.schedule(function()
+    vim.cmd("FocusDisable")
+  end)
+end, { desc = "Run focus auto-resize once" })
 
 local ignore_filetypes = {
   "qf",

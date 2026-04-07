@@ -16,5 +16,4 @@ terminal-notifier \
   -title "CC Finished" \
   -subtitle "${PROJECT_NAME}" \
   -message "${SUMMARY}" \
-  -sender com.github.wez.wezterm \
   -sound Glass
