@@ -26,6 +26,7 @@ vim.opt.relativenumber = true
 vim.opt.list = true
 vim.opt.listchars = [[tab:·┈,trail:￮,multispace:￮,lead:·,extends:▶,precedes:◀,nbsp:‿]]
 vim.opt.cursorline = true
+vim.opt.exrc = true
 
 -- https://github.com/neovim/neovim/issues/20457#issuecomment-1266782345
 vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)

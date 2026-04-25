@@ -69,6 +69,8 @@ return {
         ["<C-k>"] = { "select_prev", "snippet_backward", "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
       },
 
       appearance = {
@@ -76,9 +78,12 @@ return {
       },
 
       completion = {
+        list = { selection = { preselect = true, auto_insert = false } },
         documentation = { auto_show = true },
+        ghost_text = { enabled = true },
         menu = {
           draw = {
+            treesitter = { "lsp" },
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
           },
         },
@@ -103,7 +108,12 @@ return {
 
       cmdline = {
         enabled = true,
-        keymap = { preset = "cmdline" },
+        keymap = {
+          preset = "cmdline",
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
+        },
+        completion = { menu = { auto_show = true } },
         sources = function()
           local type = vim.fn.getcmdtype()
           if type == "/" or type == "?" then
@@ -116,7 +126,7 @@ return {
         end,
       },
 
-      fuzzy = { implementation = "prefer_rust_with_warning" },
+      fuzzy = { implementation = "prefer_rust_with_warning", sorts = { "exact", "score", "sort_text" } },
     },
     opts_extend = { "sources.default" },
   },

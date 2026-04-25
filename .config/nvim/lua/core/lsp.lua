@@ -2,6 +2,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "bashls",
     "gopls",
+    "intelephense",
     "lua_ls",
     "ts_ls",
     "ty",
@@ -12,19 +13,8 @@ require("mason-lspconfig").setup({
   },
 })
 
-require("lspsaga").setup({
-  ui = {
-    code_action = "",
-  },
-  finder = {
-    layout = "normal",
-  },
-  options = {
-    theme = "catppuccin-mocha",
-  },
-})
-
 vim.lsp.enable("gopls")
+vim.lsp.enable("intelephense")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("pyright")
 vim.lsp.enable("ruff")
