@@ -37,9 +37,9 @@ end
 return {
   root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    local root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git")(fname)
+    local root_dir = util.root_pattern("package.json", ".git")(fname)
 
-    if root_dir ~= nil and not has_vue_dependency(root_dir) then
+    if root_dir ~= nil and has_vue_dependency(root_dir) then
       on_dir(root_dir)
     end
   end,

@@ -232,8 +232,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     lmap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", "LSP - rename symbol")
     lmap("n", "<leader>l", "<cmd>Lspsaga code_action<CR>", "LSP - code action")
     lmap("n", "<leader>bf", function()
-      vim.lsp.buf.format({ async = true })
-      require("conform").format({ async = true })
+      require("conform").format({ async = true, lsp_format = "fallback" })
     end, "LSP - format buffer")
   end,
 })
