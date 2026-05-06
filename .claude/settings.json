@@ -1,6 +1,6 @@
 {
   "env": {
-    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "0",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "ENABLE_TOOL_SEARCH": "1"
   },
   "permissions": {
@@ -202,5 +202,7 @@
     "type": "command",
     "command": "bun x ccusage statusline"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "theme": "dark-daltonized",
+  "preferredNotifChannel": "terminal_bell"
 }
