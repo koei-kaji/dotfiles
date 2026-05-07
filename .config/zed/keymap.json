@@ -1,0 +1,164 @@
+[
+  {
+    "bindings": {
+      "ctrl-.": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j j": ["workspace::SendKeystrokes", "escape"],
+      "っ j": ["workspace::SendKeystrokes", "escape"],
+      "ctrl-.": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "VimControl && !menu && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "shift-h": "vim::FirstNonWhitespace",
+      "shift-l": "vim::EndOfLine",
+      "$": "vim::EndOfLine",
+      "shift-m": "vim::Matching",
+      "shift-u": "vim::Redo",
+      "ctrl-.": "agent::ToggleFocus",
+      "space y": "workspace::CopyRelativePath",
+      "space g y": "editor::CopyPermalinkToLine",
+      "space g shift-y": "editor::CopyPermalinkToLine",
+      "space c a": "agent::ToggleFocus",
+      "space c s": "agent::NewThread",
+      "space c t": "agent::OpenAddContextMenu",
+      "space c p": "agent::OpenRulesLibrary",
+      "space c c": [
+        "agent::NewExternalAgentThread",
+        { "agent": { "custom": { "name": "claude-acp" } } }
+      ]
+    }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode == normal",
+    "bindings": {
+      "shift-y": "vim::YankToEndOfLine",
+      "g t": ["workspace::SendKeystrokes", "g y"],
+      "g i": ["workspace::SendKeystrokes", "g shift-i"],
+      "g r": ["workspace::SendKeystrokes", "g shift-a"],
+      "g shift-r": ["workspace::SendKeystrokes", "g shift-a"],
+      "shift-k": ["workspace::SendKeystrokes", "g h"],
+      "space k": "editor::ShowSignatureHelp",
+      "space r n": ["workspace::SendKeystrokes", "c d"],
+      "space l": ["workspace::SendKeystrokes", "g ."],
+      "space b f": "editor::Format",
+      "space d o": "editor::ToggleDiagnostics",
+      "space d q": "diagnostics::DeployCurrentFile",
+      "space d j": ["workspace::SendKeystrokes", "g ]"],
+      "space d k": ["workspace::SendKeystrokes", "g ["],
+      "space shift-q shift-q": "zed::Quit",
+      "space w /": "pane::SplitRight",
+      "space w -": "pane::SplitDown",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight",
+      "space w d": "pane::CloseActiveItem",
+      "space w shift-d": "workspace::CloseInactiveTabsAndPanes",
+      "space w .": "workspace::ToggleZoom",
+      "space w =": "workspace::ResetOpenDocksSize",
+      "space w shift-h": "workspace::MovePaneLeft",
+      "space w shift-j": "workspace::MovePaneDown",
+      "space w shift-k": "workspace::MovePaneUp",
+      "space w shift-l": "workspace::MovePaneRight",
+      "ctrl-j": "pane::ActivatePreviousItem",
+      "ctrl-k": "pane::ActivateNextItem",
+      "space b b": "tab_switcher::Toggle",
+      "space b j": "pane::SwapItemLeft",
+      "space b k": "pane::SwapItemRight",
+      "space b d": "pane::CloseActiveItem",
+      "space b shift-d": "pane::CloseOtherItems",
+      "space b u": "pane::ReopenClosedItem",
+      "space b p": "pane::TogglePinTab",
+      "space b r": "pane::RevealInProjectPanel",
+      "space w t": "project_panel::Toggle",
+      "space w e": "project_panel::ToggleFocus",
+      "space a": "outline::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+      "space f o": "projects::OpenRecent",
+      "space f w": "buffer_search::Deploy",
+      "space f g": "workspace::NewSearch",
+      "space f shift-g": "git::OpenModifiedFiles",
+      "space f t": "project_symbols::Toggle",
+      "space g g": "git::Diff",
+      "space g c": "git::FileHistory",
+      "space g b": "git::Blame",
+      "space g t b": "editor::ToggleGitBlameInline",
+      "space h j": "editor::GoToHunk",
+      "space h k": "editor::GoToPreviousHunk",
+      "space h s": "git::StageAndNext",
+      "space h r": "git::RestoreAndNext",
+      "space h shift-s": "git::StageFile",
+      "space h shift-r": "git::RestoreFile",
+      "space h p": "editor::ToggleSelectedDiffHunks",
+      "space h i": "editor::ToggleGitBlameInline",
+      "m m": "editor::ToggleBookmark",
+      "m j": "editor::GoToNextBookmark",
+      "m k": "editor::GoToPreviousBookmark",
+      "m l": "editor::ViewBookmarks",
+      "m shift-l": "editor::ViewBookmarks",
+      "space shift-m": "editor::ToggleFoldRecursive",
+      "space n f": "editor::OpenDocs",
+      "ctrl-p": "markdown::OpenPreviewToTheSide",
+      "space z f": "file_finder::Toggle",
+      "space z t": "project_symbols::Toggle"
+    }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode == visual",
+    "bindings": {
+      "<": "vim::Outdent",
+      ">": "vim::Indent",
+      "space l": ["workspace::SendKeystrokes", "g ."],
+      "space b f": "editor::FormatSelections",
+      "space h s": "git::StageAndNext",
+      "space h r": "git::RestoreAndNext",
+      "space z f": "workspace::NewSearch"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "ctrl-.": "workspace::FocusCenterPane"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "h": "project_panel::CollapseSelectedEntry",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+      "l": "project_panel::ExpandSelectedEntry",
+      "o": "project_panel::Open",
+      "enter": "project_panel::Open",
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "y": "workspace::CopyRelativePath",
+      "shift-y": "workspace::CopyPath",
+      "p": "project_panel::OpenSplitVertical",
+      "s": "project_panel::OpenSplitHorizontal",
+      "q": "project_panel::ToggleFocus"
+    }
+  }
+]
