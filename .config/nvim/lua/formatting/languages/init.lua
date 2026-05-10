@@ -7,6 +7,7 @@ function M.formatters_by_ft()
     require("formatting.languages.js").formatters_by_ft(),
     require("formatting.languages.lua").formatters_by_ft(),
     require("formatting.languages.python").formatters_by_ft(),
+    require("formatting.languages.php").formatters_by_ft(),
     -- add here
     {
       -- ["*"] = { "codespell" },
@@ -22,6 +23,7 @@ function M.formatters()
     require("formatting.languages.js").formatters(),
     require("formatting.languages.lua").formatters(),
     require("formatting.languages.python").formatters(),
+    require("formatting.languages.php").formatters(),
     -- add here
     {}
   )

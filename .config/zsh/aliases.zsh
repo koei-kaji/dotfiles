@@ -63,9 +63,6 @@ function ghmo() {
       *gitlab*)
         open $(echo $repo | awk '{print "https://"$1"/-/merge_requests"}')
         ;;
-      *rarejob*)
-        open $(echo $repo | awk '{print "https://"$1"/-/merge_requests"}')
-        ;;
       *)
         echo "No match"
         ;;
@@ -79,9 +76,6 @@ function ghmm() {
         open $(echo $repo | awk '{print "https://"$1"/pulls?q=is:pr+is:closed"}')
         ;;
       *gitlab*)
-        open $(echo $repo | awk '{print "https://"$1"/-/merge_requests?scope=all&sort=merged_at_desc&state=merged"}')
-        ;;
-      *rarejob*)
         open $(echo $repo | awk '{print "https://"$1"/-/merge_requests?scope=all&sort=merged_at_desc&state=merged"}')
         ;;
       *)

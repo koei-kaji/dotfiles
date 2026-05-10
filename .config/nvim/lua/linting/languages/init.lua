@@ -5,6 +5,7 @@ function M.linters_by_ft()
     "force",
     {},
     -- add here
+    require("linting.languages.php").linters_by_ft(),
     {}
   )
 end
