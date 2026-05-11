@@ -1,0 +1,118 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "language": "ja",
+    "appearance": "dark",
+    "newWorkspacePlacement": "afterCurrent",
+    "focusPaneOnFirstClick": true,
+    "preferredEditor": "nvim"
+  },
+  "terminal": {
+    "showScrollBar": false,
+    "autoResumeAgentSessions": true
+  },
+  "notifications": {
+    "dockBadge": true,
+    "showInMenuBar": true,
+    "unreadPaneRing": true,
+    "paneFlash": true,
+    "sound": "default"
+  },
+  "sidebar": {
+    "branchLayout": "vertical",
+    "showNotificationMessage": true,
+    "showBranchDirectory": true,
+    "showPullRequests": false,
+    "makePullRequestsClickable": false,
+    "openPullRequestLinksInCmuxBrowser": false,
+    "openPortLinksInCmuxBrowser": false,
+    "showSSH": false,
+    "showPorts": false,
+    "showLog": true,
+    "showProgress": true,
+    "showCustomMetadata": true
+  },
+  "shortcuts": {
+    "showModifierHoldHints": true,
+    "bindings": {
+      "newSurface": "cmd+t",
+      "nextSurface": "ctrl+tab",
+      "prevSurface": "ctrl+shift+tab",
+      "splitRight": [
+        "ctrl+g",
+        "/"
+      ],
+      "splitDown": [
+        "ctrl+g",
+        "-"
+      ],
+      "focusLeft": [
+        "ctrl+g",
+        "h"
+      ],
+      "focusDown": [
+        "ctrl+g",
+        "j"
+      ],
+      "focusUp": [
+        "ctrl+g",
+        "k"
+      ],
+      "focusRight": [
+        "ctrl+g",
+        "l"
+      ],
+      "toggleSplitZoom": [
+        "ctrl+g",
+        "z"
+      ],
+      "toggleTerminalCopyMode": [
+        "ctrl+g",
+        "["
+      ],
+      "commandPalette": "cmd+shift+p",
+      "reloadConfiguration": [
+        "ctrl+g",
+        "r"
+      ],
+      "closeTab": [
+        "ctrl+g",
+        "x"
+      ],
+      "nextSidebarTab": "ctrl+j",
+      "prevSidebarTab": "ctrl+k",
+      "toggleSidebar": "cmd+b",
+      "newTab": "cmd+n",
+      "find": "cmd+f"
+    }
+  },
+  "ui": {
+    "surfaceTabBar": {
+      "buttons": [
+        "cmux.newTerminal",
+        "cmux.newBrowser",
+        "cmux.splitRight",
+        "cmux.splitDown"
+      ]
+    }
+  },
+  "commands": [
+    {
+      "name": "Lazygit",
+      "keywords": [
+        "git",
+        "lg"
+      ],
+      "command": "lazygit"
+    },
+    {
+      "name": "Yazi",
+      "keywords": [
+        "file",
+        "fm"
+      ],
+      "command": "yazi"
+    }
+  ]
+}

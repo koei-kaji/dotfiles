@@ -5,4 +5,4 @@ format-lua:
 
 .PHONY: dump-brew
 dump-brew:
-	@brew bundle dump --no-vscode --no-go --no-uv --force
+	@brew bundle dump --no-vscode --no-go --no-uv --no-cargo --force
