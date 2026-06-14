@@ -18,10 +18,6 @@
 !.config/cmux/
 .config/cmux/*
 !.config/cmux/cmux.json
-!.config/crush/
-.config/crush/*
-!.config/crush/commands/
-!.config/crush/crush.json
 !.config/ghostty/
 .config/ghostty/*
 !.config/ghostty/config
