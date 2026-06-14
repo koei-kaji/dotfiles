@@ -4,6 +4,14 @@
 !.claude/agents/
 !.claude/commands/
 !.claude/hooks/
+!.claude/rules/
+.claude/rules/*
+!.claude/rules/python-coding.md
+!.claude/rules/python-uv.md
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/log-to-memos/
+!.claude/statusline.sh
 .config/*
 !.config/bat/
 !.config/borders/
@@ -18,9 +26,6 @@
 .config/ghostty/*
 !.config/ghostty/config
 !.config/lazygit/
-!.config/litellm/
-.config/litellm/*
-!.config/litellm/config.yaml
 !.config/mise/
 !.config/nvim/
 .config/nvim/lua/core/secrets.lua
@@ -52,8 +57,4 @@
 !.config/zsh/plugins-path.zsh
 .DS_Store
 Brewfile.lock.json
-.aider*
-!.aider.conf.yml
-!.aider.model.settings.yml
-!.aider.sh
 secret_env.zsh
