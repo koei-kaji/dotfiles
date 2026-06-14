@@ -216,5 +216,6 @@
   },
   "alwaysThinkingEnabled": true,
   "theme": "dark-daltonized",
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "effortLevel": "xhigh"
 }
