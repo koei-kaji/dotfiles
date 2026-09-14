@@ -22,7 +22,7 @@
 .config/ghostty/*
 !.config/herdr/
 .config/herdr/*
-!.config/herdr/status
+!.config/herdr/scripts
 !.config/herdr/config.toml
 !.config/ghostty/config
 !.config/lazygit/

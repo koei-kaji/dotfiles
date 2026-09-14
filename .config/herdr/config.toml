@@ -10,6 +10,7 @@ manage_ssh_config = false
 
 [terminal]
 kitty_graphics = false
+new_cwd = "follow"
 
 [theme.custom]
 sidebar_bg = "#11111b"
@@ -20,10 +21,11 @@ selection_bg = "#45475a"
 [ui]
 window_title = "[HERDR] {workspace}"
 tab_bar_right = [
-  { type = "command", command = "~/.config/herdr/status/system-stats.sh", interval_seconds = 5, timeout_seconds = 2 },
+  { type = "command", command = "~/.config/herdr/scripts/system-stats.sh", interval_seconds = 5, timeout_seconds = 2 },
   { type = "datetime", format = "󰭦 %Y-%m-%d %H:%M" },
 ]
 tab_bar_right_separator = " | "
+confirm_close = true
 
 [ui.toast]
 delivery = "off"
@@ -64,6 +66,10 @@ rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+shift+d"
 workspace_picker = "prefix+w"
 
+previous_agent = "prefix+shift+k"
+next_agent = "prefix+shift+j"
+focus_agent = "prefix+1..9"
+
 detach = "prefix+q"
 reload_config = "prefix+shift+r"
 
@@ -73,28 +79,3 @@ key = "prefix+_"
 type = "shell"
 command = '"$HERDR_BIN_PATH" pane split --pane "$HERDR_ACTIVE_PANE_ID" --direction down --ratio 0.8 --focus'
 description = "split down 20%"
-
-# tmux同様、H/J/K/Lで5単位resize
-[[keys.command]]
-key = "prefix+shift+h"
-type = "shell"
-command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction left --amount 5'
-description = "resize pane left by 5"
-
-[[keys.command]]
-key = "prefix+shift+j"
-type = "shell"
-command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction down --amount 5'
-description = "resize pane down by 5"
-
-[[keys.command]]
-key = "prefix+shift+k"
-type = "shell"
-command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction up --amount 5'
-description = "resize pane up by 5"
-
-[[keys.command]]
-key = "prefix+shift+l"
-type = "shell"
-command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction right --amount 5'
-description = "resize pane right by 5"
