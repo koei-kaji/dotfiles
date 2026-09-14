@@ -1,11 +1,11 @@
 # https://github.com/yazi-rs/plugins/tree/main/git.yazi
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
+url   = "*"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"
+url   = "*/"
+run   = "git"
+group = "git"
