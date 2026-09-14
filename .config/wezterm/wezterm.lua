@@ -19,9 +19,7 @@ end)
 
 config.automatically_reload_config = true
 config.default_prog = {
-  "/bin/zsh",
-  "-c",
-  'session_name="wezterm-$$"; tmux new-session -A -s "$session_name" \\; set-option -t "$session_name" destroy-unattached on',
+  "/opt/homebrew/bin/herdr",
 }
 
 config.initial_cols = 150
@@ -66,32 +64,69 @@ config.macos_window_background_blur = 30
 -- https://wezterm.org/config/lua/config/skip_close_confirmation_for_processes_named.html
 config.skip_close_confirmation_for_processes_named = {}
 
--- Claude Code specific key bindings
+config.disable_default_key_bindings = true
+
+config.disable_default_key_bindings = true
+
 config.keys = {
+  -- WezTerm window
+  {
+    key = "n",
+    mods = "CMD|SHIFT",
+    action = wezterm.action.SpawnWindow,
+  },
+
+  -- Clipboard
+  {
+    key = "v",
+    mods = "CMD",
+    action = wezterm.action.PasteFrom("Clipboard"),
+  },
+
+  -- Font size
+  {
+    key = "+",
+    mods = "CMD",
+    action = wezterm.action.IncreaseFontSize,
+  },
+  {
+    key = "-",
+    mods = "CMD",
+    action = wezterm.action.DecreaseFontSize,
+  },
+  {
+    key = "0",
+    mods = "CMD",
+    action = wezterm.action.ResetFontSize,
+  },
+
+  -- Fullscreen
   {
     key = "Enter",
-    mods = "SHIFT",
-    action = wezterm.action.SendString("\n"),
+    mods = "CMD|CTRL",
+    action = wezterm.action.ToggleFullScreen,
   },
+
+  -- herdr
   {
-    key = ".",
-    mods = "CTRL",
-    action = wezterm.action.SendString("\x1b[46;5u"),
-  },
-  {
-    key = "t",
+    key = "n",
     mods = "CMD",
-    action = wezterm.action.SendString("\x07c"), -- tmux prefix + c
+    action = wezterm.action.SendString("\x0e"),
   },
   {
     key = "Tab",
     mods = "CTRL",
-    action = wezterm.action.SendString("\x07n"), -- tmux prefix + n (next-window)
+    action = wezterm.action.SendString("\x07n"),
   },
   {
     key = "Tab",
     mods = "CTRL|SHIFT",
-    action = wezterm.action.SendString("\x07p"), -- tmux prefix + p (previous-window)
+    action = wezterm.action.SendString("\x07p"),
+  },
+  {
+    key = "t",
+    mods = "CMD",
+    action = wezterm.action.SendString("\x07c"),
   },
 }
 

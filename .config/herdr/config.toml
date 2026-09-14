@@ -1,0 +1,100 @@
+onboarding = false
+
+[update]
+channel = "stable"
+version_check = false
+manifest_check = false
+
+[remote]
+manage_ssh_config = false
+
+[terminal]
+kitty_graphics = false
+
+[theme.custom]
+sidebar_bg = "#11111b"
+accent = "#89b4fa"
+active_row_bg = "#313244"
+selection_bg = "#45475a"
+
+[ui]
+window_title = "[HERDR] {workspace}"
+tab_bar_right = [
+  { type = "command", command = "~/.config/herdr/status/system-stats.sh", interval_seconds = 5, timeout_seconds = 2 },
+  { type = "datetime", format = "󰭦 %Y-%m-%d %H:%M" },
+]
+tab_bar_right_separator = " | "
+
+[ui.toast]
+delivery = "off"
+
+[ui.sound]
+enabled = false
+
+[session]
+resume_agents_on_restore = false
+
+[experimental]
+allow_nested = false
+pane_history = false
+
+[keys]
+prefix = "ctrl+g"
+help = "prefix+?"
+
+new_tab = "prefix+c"
+next_tab = "prefix+n"
+previous_tab = "prefix+p"
+
+split_vertical = "prefix+/"
+split_horizontal = "prefix+minus"
+
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+resize_mode = "prefix+r"
+
+copy_mode = "prefix+["
+zoom = "prefix+z"
+close_pane = "prefix+x"
+
+new_workspace = "ctrl+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+workspace_picker = "prefix+w"
+
+detach = "prefix+q"
+reload_config = "prefix+shift+r"
+
+# 下側へ20%のpaneを作る
+[[keys.command]]
+key = "prefix+_"
+type = "shell"
+command = '"$HERDR_BIN_PATH" pane split --pane "$HERDR_ACTIVE_PANE_ID" --direction down --ratio 0.8 --focus'
+description = "split down 20%"
+
+# tmux同様、H/J/K/Lで5単位resize
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction left --amount 5'
+description = "resize pane left by 5"
+
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction down --amount 5'
+description = "resize pane down by 5"
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction up --amount 5'
+description = "resize pane up by 5"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = '"$HERDR_BIN_PATH" pane resize --pane "$HERDR_ACTIVE_PANE_ID" --direction right --amount 5'
+description = "resize pane right by 5"
