@@ -1,0 +1,4 @@
+interface:
+  display_name: "Herdr Worktree"
+  short_description: "Run isolated Codex and Claude worktree agents"
+  default_prompt: "Use $herdr-worktree to start an isolated agent for a new branch."

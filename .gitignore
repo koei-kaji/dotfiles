@@ -13,6 +13,7 @@
 !.claude/skills/log-to-memos/
 !.claude/statusline.sh
 .config/*
+!.config/agent-skills/
 !.config/bat/
 !.config/borders/
 !.config/cmux/
