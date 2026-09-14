@@ -26,17 +26,8 @@ alias ghb="open \$(_ghq-fzf | awk '{print \"https://\"\$1}')"
 alias j2y='yq -p=json'
 alias y2j="yq -o=json '.'"
 
-alias litellm='litellm --config ${XDG_CONFIG_HOME}/litellm/config.yaml --port 14000'
-
 alias serena='uvx --from git+https://github.com/oraios/serena serena'
 alias cc='claude'
-alias cg='ANTHROPIC_AUTH_TOKEN="${ZAI_API_KEY}" \
-    ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
-    API_TIMEOUT_MS="3000000" \
-    CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 \
-    ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air" \
-    ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7" \
-    ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1" cc'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -45,6 +36,20 @@ function y() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
+}
+
+# Worktrunk
+alias gwn='wt switch --create'
+alias gwcd='wt switch'
+alias gwp='wt switch ^'
+
+function gwrm() {
+  if [ "$#" -eq 0 ]; then
+    echo "Usage: gwrm <branch-name>"
+    return 1
+  fi
+
+  wt remove --foreground "$@"
 }
 
 function _ghq-fzf() {
@@ -83,50 +88,3 @@ function ghmm() {
         ;;
     esac
 }
-
-function gwa() {
-  if [ -z "$1" ]; then
-    echo "Usage: gwa <branch-name>"
-    return 1
-  fi
-  wtp add "$1"
-}
-
-function gwn() {
-  if [ -z "$1" ]; then
-    echo "Usage: gwn <branch-name>"
-    return 1
-  fi
-  wtp add -b "$1"
-}
-
-function gwcd() {
-  local selected=$(gwq list --json | jq -r '.[] | select(.is_main == false) | "\(.path)\t\(.branch)"' | fzf --with-nth=2 --delimiter=$'\t')
-  if [ -n "$selected" ]; then
-    cd "$(echo "$selected" | cut -f1)"
-  fi
-}
-
-function gwrm() {
-  # gwcd と同様のパターンで、パスとブランチを取得（メイン worktree を除外）
-  local selected=$(gwq list --json | jq -r '.[] | select(.is_main == false) | "\(.path)\t\(.branch)"' | fzf --with-nth=2 --delimiter=$'\t' --prompt="Select worktree to remove: ")
-  if [ -z "$selected" ]; then
-    return 0
-  fi
-
-  local wt_path=$(echo "$selected" | cut -f1)
-  local branch=$(echo "$selected" | cut -f2)
-
-  # docker compose を停止（動いていなくても問題なし）
-  (cd "$wt_path" && docker compose down -v 2>/dev/null)
-
-  echo "Remove worktree $branch"
-  read "confirm?Delete branch too? (y/N): "
-  if [[ "$confirm" =~ ^[Yy]$ ]]; then
-    wtp remove --with-branch "$branch"
-  else
-    wtp remove "$branch"
-  fi
-}
-
-alias gwp='cd $(wtp cd @)'

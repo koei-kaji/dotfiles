@@ -32,6 +32,7 @@
 !.config/tmux/tmux.conf
 !.config/ueberzugpp/
 !.config/wezterm/
+!.config/worktrunk/
 !.config/yazi/
 .config/yazi/*
 !.config/yazi/init.lua

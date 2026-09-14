@@ -28,3 +28,5 @@ source ~/.config/zsh/secret_env.zsh
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:*:make:*' tag-order 'targets'
+
+eval "$(wt config shell init zsh)"

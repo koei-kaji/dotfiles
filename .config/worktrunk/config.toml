@@ -1,0 +1,2 @@
+[projects."github.com/*"]
+worktree-path = "~/worktrees/github.com/{{ owner }}/{{ repo }}/{{ branch }}"
