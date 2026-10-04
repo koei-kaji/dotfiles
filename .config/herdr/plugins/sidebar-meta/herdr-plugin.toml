@@ -1,0 +1,14 @@
+# sidebar に「番号」と「space 内の tab 一覧」を出すためのメタデータ供給プラグイン。
+# herdr server の起動時に sidebar-meta.sh をデタッチ常駐させる。
+# 表示側の設定は config.toml の [ui.sidebar.spaces] / [ui.sidebar.agents] にある。
+
+id = "koei-kaji.sidebar-meta"
+name = "Sidebar Metadata"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "spaces/agents sidebar に番号と tab 一覧を表示する"
+platforms = ["macos"]
+
+# startup hook は one-shot なので、スクリプト側で自己デタッチして即 return する。
+[[startup]]
+command = ["./sidebar-meta.sh", "--daemon"]

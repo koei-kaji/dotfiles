@@ -30,20 +30,13 @@ AI運用5原則
 <question_format>
 ユーザーへの確認質問を組み立てるときの方針。
 
-<recommended>
-- AskUserQuestion ツールを使う（UI で答えやすく、構造化された UX になる）
-- 1 質問 = 1 軸の判断（例: 「やる / やらない」「README か detail か」「今やる / 後回し」）
-- 各 option の label は短く（1〜5 単語）、description で意味と影響を補足する
-- options は 2〜4 個に絞る（それ以上は判断疲れを招く）
-- 推奨選択肢を先頭に置き、label に「(推奨)」を付けると選びやすい
-</recommended>
-
 <avoid>
 - 1 つの質問に複数の判断軸を混ぜる（例: 「(a) X やって別 PR / (b) Y やってこの PR / (c) 全部やる」）
   - ユーザーが「どの軸の話か」を頭で分解する手間が発生する
 - ad-hoc な (a) / (b) / (c) を文字列で返させる形式（UI が無く回答しづらい）
 - 「次どうする？」のような open-ended 質問（進路提案をユーザーに丸投げしない）
 - 1 質問に 5 個以上の選択肢を並べる
+- AskUserQuestionツールは使用する
 </avoid>
 
 <examples>

@@ -20,12 +20,11 @@
 .config/cmux/*
 !.config/cmux/cmux.json
 !.config/ghostty/
-.config/ghostty/*
 !.config/herdr/
 .config/herdr/*
+!.config/herdr/plugins
 !.config/herdr/scripts
 !.config/herdr/config.toml
-!.config/ghostty/config
 !.config/lazygit/
 !.config/mise/
 !.config/nvim/
@@ -35,9 +34,10 @@
 !.config/tmux/
 .config/tmux/*
 !.config/tmux/tmux.conf
-!.config/ueberzugpp/
 !.config/wezterm/
 !.config/worktrunk/
+.config/worktrunk/*
+!.config/worktrunk/config.toml
 !.config/yazi/
 .config/yazi/*
 !.config/yazi/init.lua

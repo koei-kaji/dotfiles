@@ -1,6 +1,6 @@
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --keep-plus-minus-markers --line-numbers
+      command: delta --paging=never --keep-plus-minus-markers --line-numbers
 gui:
   showIcons: true
